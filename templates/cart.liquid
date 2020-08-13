@@ -1,0 +1,23 @@
+{% comment %}
+  The contents of the cart.liquid template can be found in /sections/cart-template.liquid
+{% endcomment %}
+
+<header>
+  <h2 class="cart-header__title">{{ 'cart.general.title' | t }}</h2>
+</header>
+
+<div class="page-width content">
+  
+  <div class="grid">
+    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+
+      
+		{% section 'cart-template' %}
+    </div>
+  </div>
+  {% section 'related-products' %}
+</div>
+
+
+
+

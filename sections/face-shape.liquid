@@ -1,0 +1,174 @@
+<header>
+	{% if section.settings.title != blank %}
+		<h2 class="face-header__title">{{ section.settings.title }}</h2>
+	{% endif %}
+</header>
+
+{% if section.settings.subtitle != blank %}
+	<h3 class="face__subtitle">{{ section.settings.subtitle }}</h3>
+{% endif %}
+
+<div class="face-icons__container">
+	{% if section.blocks.size > 0 %}
+		
+	<div class="face-icons">
+		{% for block in section.blocks %}
+
+			{% if block.settings.tab-button-icon != blank %}
+
+				<button class="face-icon face-icon__active" onclick="openShape(event, 'shape__{{ forloop.index }}')">
+					<img src="{{ block.settings.tab-button-icon | img_url: '300x300' }}">
+					<div class="triangle__container">
+						<div class="triangle"></div>
+					</div>
+				</button>
+
+			{% endif %}
+
+		{% endfor %}
+
+	</div>
+	
+	{% endif %}
+</div>
+
+
+<div class="tab-content__container">
+	{% if section.blocks.size > 0 %}
+		{% for block in section.blocks %}
+			<div id="shape__{{ forloop.index }}" class="tab-content" style="display: flex;">
+				{% if block.settings.tab-image != blank %}
+					<div class="tab-content__img--wrapper">
+						<div class="tab-content__img">
+							<img src="{{ block.settings.tab-image | img_url: '720x' }}">
+						</div>
+					</div>
+				{% endif %}
+
+				<div class="tab-content__text">
+				  {% if block.settings.face-diagram != blank %}
+				  	<img src="{{ block.settings.face-diagram | img_url: '300x300' }}">
+				  {% endif %}
+				  {% if block.settings.tab-title != blank %}
+				  	<h3>{{ block.settings.tab-title }}</h3>
+				  {% endif %}
+
+				  {% if block.settings.tab-text != blank %}
+					<p>{{ block.settings.tab-text }}</p>
+				  {% endif %}
+				</div>	
+
+				{% if block.settings.collection != blank %}
+
+					<hr class="gray-hr" >
+
+					<h3 class="face__subtitle--products">Perfect for this shape</h3>
+
+					<div class="grid grid--uniform grid--view-items related-items__grid tab-content__products">
+					  {% for product in collections[block.settings.collection].products limit: 3 %}
+					    <div class="grid__item medium-up--one-third related-item__card">
+					      {% include 'product-card-grid', max_height: '200px' %}
+					    </div>
+					  {% endfor %}
+					</div>
+
+					{% if block.settings.tab-button-label != blank %}
+						<a class="tab-content__button" href="../collections/{{ block.settings.collection }}">
+							<button class="btn">{{ block.settings.tab-button-label }}</button>
+						</a>
+					{% endif %}
+
+				{% endif %}
+			</div>
+		{% endfor %}
+	{% endif %}
+
+</div>
+
+{% schema %}
+  {
+    "name": "Face Shape",
+    "class": "index-section",
+    "max_blocks": 9,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Shop Face Shape"
+      },
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subheading",
+        "default": "Learn more about how to find your perfect fit"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Face Shape Tab",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "tab-button-icon",
+            "label": "Tab Button Icon"
+          },
+          {
+            "type": "image_picker",
+            "id": "tab-image",
+            "label": "Tab Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "face-diagram",
+            "label": "Face Diagram"
+          },
+          {
+            "type": "text",
+            "id": "tab-title",
+            "label": "Tab Heading",
+            "default": "Round Face Shape"
+          },
+          {
+            "type": "richtext",
+            "id": "tab-text",
+            "label": "Tab Text",
+            "default": "<p>Add text about this particular face shape.</p>"
+          },
+          {
+             "type": "collection",
+             "id": "collection",
+             "label": "Tab Collection",
+             "info": "Add a related collection"
+          },
+          {
+            "type": "text",
+            "id": "tab-button-label",
+            "label": "Tab Button Label",
+            "default": "Shop this face shape"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Face Shape",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "text"
+          },
+          {
+            "type": "text"
+          },
+          {
+            "type": "text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+

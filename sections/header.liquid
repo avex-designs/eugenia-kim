@@ -1,0 +1,389 @@
+{% if section.settings.message %}
+  <style>
+    .notification-bar {
+      background-color: {{ section.settings.color_bg }};
+    }
+
+    .notification-bar__message {
+      color: {{ section.settings.color_text }};
+    }
+
+    {% if section.settings.logo != blank %}
+      .site-header__logo-image {
+        max-width: {{ section.settings.logo_max_width | escape }}px;
+      }
+    {% endif %}
+
+    {% if section.settings.align_logo == 'left' %}
+      .site-header__logo-image {
+        margin: 0;
+      }
+    {% endif %}
+  </style>
+{% endif %}
+
+<div data-section-id="{{ section.id }}" data-section-type="header-section">
+  <nav class="mobile-nav-wrapper" role="navigation" >
+    <ul id="MobileNav" class="mobile-nav">
+      <li class="m-dropdown mobile-nav__item border-bottom">
+          <a href="/" class="mobile-nav__link">HOME</a>
+      </li>
+      {% for link in linklists[section.settings.main_linklist].links %}
+        {%- assign child_list_handle = link.title | handleize -%}
+        <li class="m-dropdown mobile-nav__item border-bottom">
+          {% if linklists[child_list_handle].links != blank %}
+            <button type="button" class="btn--link mobile-nav__link {{link.title}}" data-target="{{ child_list_handle }}" data-level="1">
+
+              <div class="m-dropdown-header">
+                {{ link.title }}
+              </div>
+
+              <div class="mobile-nav__icon {{link.title}}-icon">
+                {% include 'icon-chevron-down' %}
+                <span class="icon__fallback-text">{{ 'layout.navigation.expand' | t }}</span>
+              </div>
+
+            </button>
+
+            <ul class="border-top m-dropdown-items dropdown-hidden <!--{{link.title}}-item-->" data-parent="{{ child_list_handle }}" data-level="2">
+              {% for childlink in linklists[child_list_handle].links %}
+                <li class="mobile-nav__item">
+                  <a href="{{ childlink.url }}" class="mobile-nav__sublist-link">
+                    {{ childlink.title | escape }}
+                  </a>
+                </li>
+              {% endfor %}
+
+			  {% if link.title == 'SHOP'%}
+                <a href="#" class="mobile-nav__link m-sublist-heading">
+                  BY CATEGORY
+                </a>
+                {% for link in linklists[section.settings.shop_sublist1].links %}
+                  <li class="mobile-nav__item">
+                    <a style="font-weight:400;" href="{{ link.url }}" class="mobile-nav__sublist-link m-sublist-grey-items">
+                      {{ link.title | escape }}
+                    </a>
+                  </li>
+                {% endfor %}
+                <a href="/pages/face-shape" class="mobile-nav__link m-sublist-heading">
+                    BY FACE TYPE
+                  </a>
+                  {% for link in linklists[section.settings.shop_sublist2].links %}
+                    <li class="mobile-nav__item ">
+                      <a href="{{ childlink.url }}" class="mobile-nav__sublist-link m-sublist-grey-items">
+                        <span class="m-sublist-grey-items">{{ link.title | escape }}</span>
+                      </a>
+                    </li>
+                  {% endfor %}
+
+              {% endif %}
+
+            </ul>
+          {% else %}
+            <a href="{{ link.url }}" class="mobile-nav__link">
+              {{ link.title }}
+            </a>
+          {% endif %}
+        </li>
+
+      {% endfor %}
+      <li class="m-dropdown mobile-nav__item border-bottom">
+          <a href="/account/register" class="mobile-nav__link">ACCOUNT</a>
+      </li>
+      <li class="m-dropdown mobile-nav__item border-bottom">
+        <span class="site-header__search">
+          {% include 'search-form' %}
+        </span>
+      </li>
+      <p class="m-announcement">{{section.settings.message_text}}</p>
+    </ul>
+
+
+  </nav>
+
+  {% if section.settings.message %}
+    {% if section.settings.home_page_only == false or template.name == 'index' %}
+      <style>
+        .announcement-bar {
+          background-color: {{ section.settings.color_bg }};
+        }
+
+        .announcement-bar--link:hover {
+          {% assign brightness = section.settings.color_bg | color_brightness %}
+
+          {% if brightness <= 192 %}
+            {% assign lightenAmount = 255 | minus: brightness | divided_by: 255 | times: 16 %}
+            background-color: {{ section.settings.color_bg | color_lighten: lightenAmount }};
+          {% else %}
+            {% assign darkenAmount = 255 | divided_by: brightness | times: 8 %}
+            background-color: {{ section.settings.color_bg | color_darken: darkenAmount }};
+          {% endif %}
+        }
+
+        .announcement-bar__message {
+          color: {{ section.settings.color_text }};
+        }
+      </style>
+
+      {% if section.settings.message_link == blank %}
+        <div class="announcement-bar">
+      {% else %}
+        <a href="{{ section.settings.message_link }}" class="announcement-bar announcement-bar--link">
+      {% endif %}
+
+        <p class="announcement-bar__message">{{ section.settings.message_text | escape }}</p>
+
+      {% if section.settings.message_link == blank %}
+        </div>
+      {% else %}
+        </a>
+      {% endif %}
+
+    {% endif %}
+  {% endif %}
+
+<div class="desktop-nav-wrapper">
+  <header class="is-moved-by-drawer site-header{% if section.settings.align_logo == 'left' %} logo--left{% else %} logo--center{% endif %}" role="banner">
+
+
+    <div class="grid grid--no-gutters grid--table">
+
+
+      {% if section.settings.align_logo == 'center' %}
+        {%- assign logo_classes = 'medium--hide large-up--one-third logo-align--center' -%}
+      {% else %}
+        {%- assign logo_classes = 'medium--hide large-up--one-fifth widescreen--one-eighth logo-align--left' -%}
+      {% endif %}
+
+
+		<div class="m-nav-container">
+
+          <div class="m-nav-icons">
+            <button type="button" class="btn--link dropdown__closer">
+              {% include 'icon-close' %}
+            </button>
+
+            {% unless linklists[section.settings.main_linklist] == blank %}
+              <button type="button" class="btn--link site-header__menu js-mobile-nav-toggle mobile-nav--open">
+                {% include 'icon-hamburger' %}
+                {% include 'icon-close' %}
+                <span class="icon__fallback-text">{{ 'layout.navigation.toggle' | t }}</span>
+              </button>
+            {% endunless %}
+          </div>
+
+		{% if section.settings.logo %}
+      {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <a id="mobile-logo-hide" href="/" itemprop="url" class="{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}">
+        {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
+        <img class="js mobile-logo"
+             src="{{ section.settings.logo | img_url: 'master' }}"
+             data-src="{{ img_url }}"
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-aspectratio="{{ section.settings.logo.aspect_ratio }}"
+             data-sizes="auto"
+             alt="{{ logo_alt | escape }}"
+             style="margin-top:30px; max-width: {{ section.settings.logo_max_width }}px">
+        <noscript>
+          {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
+          <img class="mobile-logo"
+               src="{{ section.settings.logo | img_url: image_size }}"
+               srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+               alt="{{ section.settings.logo.alt | default: shop.name }}"
+               itemprop="logo"
+               style="max-width: {{ section.settings.logo_max_width }}px; margin-top:30px; ">
+        </noscript>
+      </a>
+      {% else %}
+      <a class="site-header__logo-link" href="/" itemprop="url">{{ shop.name }}</a>
+    {% endif %}
+
+  </div>
+
+
+      <div class="grid__item site-header__section sk-mob-search-account">
+
+          <span class="site-header__search small--hide medium--hide">
+            {% include 'search-form' %}
+          </span>
+
+          {% include 'account-header' %}
+
+          <span class="site-header__cart sk-mob-cart">
+            <a class="site-header__cart--link js-cart-nav-toggle">MY BAG <span>({{ cart.item_count }})</span></a>
+          </span>
+
+        </div>
+     
+
+
+    </div>
+    
+    
+    <div class='sk-desk-nav'>
+        
+      <div class="placeholder">
+      </div>
+     
+      <div class="sk-desk-logo-nav">  
+      <div class="sk-desk-nav-logo">
+      
+          <h1 class="h2 site-header__logo small-hide" itemscope itemtype="http://schema.org/Organization">
+       
+          <div class="h2 site-header__logo small-hide" itemscope itemtype="http://schema.org/Organization">
+       
+          {% if section.settings.logo %}
+            {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <a href="/" itemprop="url" class="mobile-logo site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}">
+              {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
+              <img class="js"
+                   src="{{ section.settings.logo | img_url: 'master' }}"
+                   data-src="{{ img_url }}"
+                   data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                   data-aspectratio="{{ section.settings.logo.aspect_ratio }}"
+                   data-sizes="auto"
+                   alt="{{ logo_alt | escape }}"
+                   style="max-width: {{ section.settings.logo_max_width }}px">
+              <noscript>
+                {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
+                <img src="{{ section.settings.logo | img_url: image_size }}"
+                     srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                     alt="{{ section.settings.logo.alt | default: shop.name }}"
+                     itemprop="logo"
+                     style="max-width: {{ section.settings.logo_max_width }}px;">
+              </noscript>
+            </a>
+          {% else %}
+            <a class="site-header__logo-link" href="/" itemprop="url">{{ shop.name }}</a>
+          {% endif %}
+       
+          </h1>
+       
+      </div>
+        
+       <div>
+         {% include 'site-nav' %}
+        </div>
+       
+      </div>
+        
+      <div class="sk-desk-nav-wrap"> 
+         <div class="medium--hide site-header__section desktop-search desk-search-wrap">
+
+          <span class="site-header__search small--hide">
+            {% include 'search-form' %}
+          </span>
+
+          {% include 'account-header' %}
+
+          <span class="site-header__cart">
+            <a class="site-header__cart--link js-cart-nav-toggle">MY BAG <span>({{ cart.item_count }})</span></a>
+          </span>
+
+        </div>
+      </div>
+
+    </div>
+    
+    
+</header>
+    </div>
+
+  {% if section.settings.align_logo == 'center' %}
+  <nav class="small--hide medium--hide" id="AccessibleNav" role="navigation">
+    {% include 'site-nav', nav_alignment: 'site-nav--centered' %}
+  </nav>
+  {% endif %}
+</div>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "radio",
+        "id": "align_logo",
+        "label": "Logo alignment",
+        "default": "left",
+        "options": [
+          {"value": "left", "label": "Left"},
+          {"value": "center", "label": "Centered"}
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "text",
+        "id": "logo_max_width",
+        "label": "Custom logo width (in pixels)",
+        "default": "100"
+      },
+      {
+        "type": "link_list",
+        "id": "main_linklist",
+        "label": "Menu",
+        "default": "main-menu"
+      },
+	  {
+        "type": "link_list",
+        "id": "shop_sublist1",
+        "label": "SHOP sublist 1",
+        "default": "footer"
+      },
+	  {
+        "type": "link_list",
+        "id": "shop_sublist2",
+        "label": "SHOP sublist 2",
+        "default": "footer"
+      },
+      {
+        "type": "product",
+        "id": "featured_product",
+        "label": "Featured Product"
+      },
+      {
+        "type": "header",
+        "content": "Announcement bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "message",
+        "label": "Show announcement",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "home_page_only",
+        "label": "Home page only",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "message_text",
+        "label": "Announcement text",
+        "default": "Announce something here"
+      },
+      {
+        "type": "url",
+        "id": "message_link",
+        "label": "Announcement link",
+        "info": "Optional"
+      },
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Bar",
+        "default": "#7796a8"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text",
+        "default": "#fff"
+      }
+    ]
+  }
+{% endschema %}

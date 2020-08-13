@@ -1,0 +1,371 @@
+<div class="product-template__container page-width" itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
+  <meta itemprop="name" content="{{ product.title }}">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: '800x' }}">
+
+  {% comment %}
+    Get first variant, or deep linked one
+  {% endcomment %}
+  {%- assign current_variant = product.selected_or_first_available_variant -%}
+  {%- assign product_image_zoom_size = '1024x1024' -%}
+  {%- assign product_image_scale = '2' -%}
+  {%- assign enable_zoom = section.settings.enable_zoom -%}
+
+  {% case section.settings.image_size %}
+    {% when 'small' %}
+      {%- assign product_image_width = 'medium-up--one-third' -%}
+      {%- assign product_description_width = 'medium-up--two-thirds' -%}
+      {%- assign product_thumbnail_width = 'medium-up--one-third' -%}
+      {%- assign height = 345 -%}
+    {% when 'medium' %}
+      {%- assign product_image_width = 'medium-up--one-half' -%}
+      {%- assign product_description_width = 'medium-up--one-half' -%}
+      {%- assign product_thumbnail_width = 'medium-up--one-quarter' -%}
+      {%- assign height = 530 -%}
+    {% when 'large' %}
+      {%- assign product_image_width = 'medium-up--two-thirds' -%}
+      {%- assign product_description_width = 'medium-up--one-third' -%}
+      {%- assign product_thumbnail_width = 'medium-up--one-fifth' -%}
+      {%- assign height = 720 -%}
+    {% when 'full' %}
+      {%- assign product_image_width = '' -%}
+      {%- assign product_description_width = '' -%}
+      {%- assign product_thumbnail_width = 'medium-up--one-eighth' -%}
+      {%- assign height = 1090 -%}
+      {%- assign enable_zoom = false -%}
+  {% endcase %}
+
+  <div class="grid product-single">
+    {% if current_variant.compare_at_price > current_variant.price %}
+      <span class="medium-up--hide sale__label">Final Sale</span>
+    {% endif %}
+    <h1 itemprop="name" class="medium-up--hide product-single__title">{{ product.title }}</h1>
+
+    <div class="product-section-container" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+      <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+
+      <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+      <p class="medium-up--hide product-single__price product-single__price-{{ section.id }}{% unless current_variant.available %} product-price--sold-out{% endunless %}">
+        {% if current_variant.compare_at_price > current_variant.price %}
+            <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+            <s class="compare-price">{{ current_variant.compare_at_price | money }}</s>
+            <span class="product-price__price product-price__price-{{ section.id }} product-price__sale product-price__sale--single">
+              <span id="ProductPrice-{{ section.id }}"
+                itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+                {{ current_variant.price | money }}
+              </span>
+            </span>
+            <br>
+            <!-- <s class="compare-price">(You save {{ current_variant.compare_at_price | minus: current_variant.price | money }} )</s> -->
+        {% else %}
+          <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+          <s class="hide">{{ current_variant.compare_at_price | money }}</s>
+          <span class="product-price__price product-price__price-{{ section.id }}">
+            <span id="ProductPrice-{{ section.id }}"
+              itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+              {{ current_variant.price | money }}
+            </span>
+          </span>
+        {% endif %}
+      </p>
+
+    <div class="grid__item product-single__photos {{ product_image_width }}{% if section.settings.image_size == 'full' %} product-single__photos--full{% endif %}">
+
+
+
+      <div class="product-slider">
+        {%- assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image -%}
+        {% for image in product.images %}
+          {% capture img_id %}FeaturedImage-{{ section.id }}-{{ image.id }}{% endcapture %}
+          {% capture img_class %}product-featured-img{% endcapture %}
+          {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+          <div class="product-slide">
+            <img src="{{ image | img_url: '800x800' }}"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-aspectratio="{{ image.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ image.alt | escape }}">
+          </div>
+
+        {% endfor %}
+      </div>
+
+    </div>
+
+    <div class="grid__item large-up--one-third medium--one-half product_description_item">
+      <div class="product-single__meta">
+        {% if current_variant.compare_at_price > current_variant.price %}
+          <span class="small--hide sale__label">Final Sale</span>
+        {% endif %}
+        <h1 itemprop="name" class="small--hide product-single__title">{{ product.title }}</h1>
+
+        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+          <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+
+          <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+          <p class="small--hide product-single__price product-single__price-{{ section.id }}{% unless current_variant.available %} product-price--sold-out{% endunless %}">
+            {% if current_variant.compare_at_price > current_variant.price %}
+                <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+                <s class="compare-price">{{ current_variant.compare_at_price | money }}</s>
+                <span class="product-price__price product-price__price-{{ section.id }} product-price__sale product-price__sale--single">
+                  <span id="ProductPrice-{{ section.id }}"
+                    itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+                    {{ current_variant.price | money }}
+                  </span>
+                </span>
+                <br>
+                <!-- <s class="compare-price">(You save {{ current_variant.compare_at_price | minus: current_variant.price | money }} )</s> -->
+            {% else %}
+              <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+              <s class="hide">{{ current_variant.compare_at_price | money }}</s>
+              <span class="product-price__price product-price__price-{{ section.id }}">
+                <span id="ProductPrice-{{ section.id }}"
+                  itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+                  {{ current_variant.price | money }}
+                </span>
+              </span>
+            {% endif %}
+            {% if product.variants.first.sku != blank %}
+              <span class="style-number">Style #:{{ product.variants.first.sku }}</span>
+            {% endif %}
+          </p>
+
+      {% if product.description != blank %}
+  		  <div class="rte product-single__description" itemprop="description">
+          {{ product.description }}
+        </div>
+      {% endif %}
+          
+          <!-- Current inventory -->
+          <div id="variant-inventory">
+          {% if product.variants.first.inventory_management == "shopify" and product.variants.first.inventory_quantity == 2 %}
+            Only 2 Left
+            {% elsif product.variants.first.inventory_management == "shopify" and product.variants.first.inventory_quantity == 1 %}
+            Last One!
+          {% endif %}
+          </div>
+          <!-- Current inventory  -->
+
+      <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form-{{ section.id }}{% unless section.settings.show_variant_labels %} product-form--hide-variant-labels{% endunless %}" data-section="{{ section.id }}">
+
+            {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+              {% for option in product.options_with_values %}
+                <div class="selector-wrapper js product-form__item">
+                  <label {% if option.name == 'default' %}class="label--hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index0 }}">
+                    {{ option.name }}
+                  </label>
+                  <select class="single-option-selector single-option-selector-{{ section.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+                    {% for value in option.values %}
+                      <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              {% endfor %}
+            {% endunless %}
+
+            <select name="id" id="ProductSelect-{{ section.id }}" data-section="{{ section.id }}" class="product-form__variants no-js">
+              {% for variant in product.variants %}
+                {% if variant.available %}
+                  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                    {{ variant.title }}
+                  </option>
+                {% else %}
+                  <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+        
+        
+		<div class="product-form__btn-container">
+            {% if section.settings.show_quantity_selector %}
+
+              <div class="quantity-selector">
+                <input type="number" id="Quantity" name="quantity" value="1" pattern="[0-9]*" max="2"/>
+              </div>
+
+            {% endif %}
+         
+
+            <div class="product-form__item product-form__item--submit">
+              <button type="submit" name="add" id="AddToCart-{{ section.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn product-form__cart-submit{% if product.options.size == 1 and product.variants[0].title == 'Default Title' %} product-form__cart-submit--small{% endif %} AddToCart">
+                <span id="AddToCartText-{{ section.id }}">
+                  {{ 'Pre-order' | json | remove: '"' }}
+                </span>
+              </button>
+            </div>
+         </div>
+       
+       </form>
+
+
+ <p class="affirm-as-low-as" data-page-type="product" data-amount="{{current_variant.price}}"></p>
+
+        {% if section.settings.show_share_buttons %}
+          {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+        {% endif %}
+{% if product.available == false %}
+  <button id="BIS_trigger" class="btn product-form__cart-submit product-form__cart-submit--small AddToCart">NOTIFY ME WHEN BACK IN STOCK.</button>
+{% endif %}
+           </div>
+
+        <!--Product Details -->
+        <div class="product__details">
+
+          {% if product.metafields.c_f.product_size_info %}
+          	<p>{{ product.metafields.c_f.product_size_info }}</p>
+          {% endif %}
+           {% comment %}
+          {% if product.metafields.c_f.product_style_info %}
+            <p>{{ product.metafields.c_f.product_style_info }}</p>
+          {% endif %}
+          {% endcomment %}
+          {% if product.metafields.c_f.product_orgin_info %}
+            <p>{{ product.metafields.c_f.product_orgin_info }}</p>
+          {% endif %}
+          {% if product.metafields.c_f.product_cleaning_info %}
+            <p>{{ product.metafields.c_f.product_cleaning_info }}</p>
+          {% endif %}
+
+          <p class="product__details--link storage-care__link"><a href="/pages/storage-and-care" target="_blank">Storage &amp; Care</a><p>
+          {% comment %}<div class="storage-care__dropdown"> {{ pages['storage-and-care'].content }} </div>{% endcomment %}
+          {% comment %}<p class="product__details--link size-guide__link"><a href="#">Size Guide</a></p>{% endcomment %}
+          {% comment %}<div class="size-guide__dropdown">{{ pages['size-guide'].content }}</div>{% endcomment %}
+        </div>
+
+        <!-- Face Shapes -->
+        {% if section.blocks.size > 0 %}
+
+          {% assign face_collection_exists = false %}
+
+          {% for block in section.blocks %}
+            {% for collection in product.collections %}
+              {% if collection.handle == block.settings.shape_collection %}
+                {% assign face_collection_exists = true %}
+              {% endif %}
+            {% endfor %}
+		      {% endfor %}
+
+
+          {% if face_collection_exists %}
+            <p class="face-shape__title">Perfect for these face shapes</p>
+            <div class="face-shape">
+              {% for block in section.blocks %}
+                {% for collection in product.collections %}
+                  {% if collection.handle == block.settings.shape_collection %}
+                	  <a href="{{ collection.url }}"><img src="{{ block.settings.shape-icon | img_url: '300x300' }}"></a>
+                  {% endif %}
+                {% endfor %}
+              {% endfor %}
+
+              {% for block in section.blocks %}
+                {% if block.settings.shape_collection %}
+  				        {% for collection in product.collections %}
+                    {% if product.collection == block.settings.shape_collection %}
+                      <img src="{{ block.settings.shape-icon | img_url: '300x300' }}">
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+
+              <p><a href="/pages/face-shape">Learn more about face shapes</a></p>
+
+            </div>
+          {% endif %}
+
+        {% endif %}
+
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+{% unless product == empty %}
+  <script type="application/json" id="ProductJson-{{ section.id }}">
+    {{ product | json }}
+  </script>
+{% endunless %}
+
+{% schema %}
+  {
+    "name": "Product pages",
+    "settings": [
+      {
+        "type": "select",
+        "id": "image_size",
+        "label": "Image size",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "large",
+            "label": "Large"
+          },
+          {
+            "value": "full",
+            "label": "Full-width"
+          }
+        ],
+        "default": "medium"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_quantity_selector",
+        "label": "Show quantity selector",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_variant_labels",
+        "label": "Show variant labels",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show vendor",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_zoom",
+        "label": "Enable image zoom",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Face Shape Tags",
+        "settings": [
+            {
+            "type": "text",
+            "id": "shape_collection",
+            "label": "Face Shape Collection"
+          },
+          {
+            "type": "image_picker",
+            "id": "shape-icon",
+            "label": "Face Shape Icon"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

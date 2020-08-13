@@ -1,0 +1,117 @@
+<div class="page-width">
+    <div class="text-center">
+      <h1 class="bc-sf-search-result-header h2">{{ 'general.search.title' | t }}</h1>
+      <div class="grid">
+        <div class="grid__item medium-up--two-fifths medium-up--push-three-tenths">
+          <form action="{{ routes.search_url }}" method="get" role="search" class="search">
+            <div class="input-group">
+              <input type="search"
+                     class="input-group__field search__input"
+                     name="q"
+                     value="{{ search.terms | escape }}"
+                     placeholder="{{ 'general.search.placeholder' | t }}"
+                     aria-label="{{ 'general.search.placeholder' | t }}"
+                     autofocus>
+              <input type="search" id="SearchInput">
+              <span class="input-group__btn">
+                <button class="btn search__submit" type="submit">{{ 'general.search.submit' | t }}</button>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <hr class="hr--small hr--invisible">
+      <p class="bc-sf-search-result-number">
+        {% include 'bc-sf-filter-skeleton', width: 2 %}
+      </p>
+  </div>
+</div>
+
+<div class="filters-toolbar-wrapper">
+  <div class="page-width">
+    <div class="filters-toolbar">
+      <div class="filters-toolbar__item">
+        <div id="bc-sf-filter-top-display-type">
+          {% include 'bc-sf-filter-skeleton', width: 2 %}
+        </div>
+      </div>
+
+      <div class="filters-toolbar__item filters-toolbar__item--count">
+        <span class="filters-toolbar__product-count" id="bc-sf-filter-total-product">
+          {% include 'bc-sf-filter-skeleton', width: 2 %}
+        </span>
+      </div>
+
+      <div class="filters-toolbar__item text-right" id="bc-sf-filter-top-sorting">
+        {% include 'bc-sf-filter-skeleton', width: 2 %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-width">
+  <div id="bc-sf-filter-tree-h">
+    {% include 'bc-sf-filter-tree-placeholder-h' %}
+  </div>
+  <div id="bc-sf-filter-tree-mobile">
+    {% include 'bc-sf-filter-skeleton', type: 'button' %}
+  </div>
+  <div id="bc-sf-filter-tree">
+    {% include 'bc-sf-filter-tree-placeholder' %}
+  </div>
+  
+  <div id="bc-sf-filter-products" class="grid grid--uniform grid--view-items">
+    {% comment %} Fix Shopify search term report {% endcomment %}
+    {% paginate search.results by 2 %}
+      {% if search.performed %}
+        {% for item in search.results %}
+          <div class="grid__item" style="display: none !important"></div>
+        {% endfor %}
+      {% endif %}
+    {% endpaginate %}
+  </div>
+
+  <div id="bc-sf-filter-bottom-pagination">
+    {% include 'bc-sf-filter-skeleton', width: 2 %}
+  </div>
+  <div id="bc-sf-filter-load-more"></div>
+</div>
+    
+<script>
+  // Declare bcSfFilterConfig variable
+  var bcSfFilterConfig = {
+    label: {
+      sorting: {% assign temp = 'collections.sorting.title' | t  %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Sorting" {% endunless %},
+      sorting_best_selling: {% assign temp = 'collections.sorting.best_selling' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Best Selling" {% endunless %},
+      sorting_featured: {% assign temp = 'collections.sorting.featured' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Featured" {% endunless %},
+      sorting_title_ascending: {% assign temp = 'collections.sorting.az' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Alphabetically, A-Z" {% endunless %},
+      sorting_title_descending: {% assign temp = 'collections.sorting.za' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Alphabetically, Z-A" {% endunless %},
+      sorting_price_ascending: {% assign temp = 'collections.sorting.price_ascending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Lowest Price" {% endunless %},
+      sorting_price_descending: {% assign temp = 'collections.sorting.price_descending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Highest Price" {% endunless %},
+      sorting_date_ascending: {% assign temp = 'collections.sorting.date_ascending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Date, Old to New" {% endunless %},
+      sorting_date_descending: {% assign temp = 'collections.sorting.date_descending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Date, New to Old" {% endunless %},
+      sorting_sale_descending: {% assign temp = 'collections.sorting.sale_descending' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "% Off" {% endunless %},
+      sorting_relevance: {% assign temp = 'collections.sorting.relevance' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Relevance" {% endunless %},
+      search_general_title: {{ 'general.search.title' | t | json }},
+      search_result_empty: {% assign temp = 'general.search.no_results' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Try checking your spelling or using different words." {% endunless %},
+      search_result_number_one: {{ 'general.search.results_with_count.one' | t | json }},
+      search_result_number_other: {{ 'general.search.results_with_count.other' | t | json }},
+
+      sale: {{ 'products.product.on_sale' | t | json }},
+      sold_out: {{ 'products.product.sold_out' | t | json }},
+      regular_price: {{ 'products.product.regular_price' | t | json }},
+      items_with_count_one: {{ 'collections.general.items_with_count.one' | t | json }},
+      items_with_count_other: {{ 'collections.general.items_with_count.other' | t | json }},
+      current_page: {{ 'general.pagination.current_page' | t | json }},
+    },
+    custom: {
+      products_per_page: 24,
+      products_per_row: 4,
+      product_grid_class: 'grid__item small--one-half medium-up--one-quarter',
+      max_height: 250,
+      vendor_enable: true,
+      layout: "grid"
+    }
+  };
+</script>

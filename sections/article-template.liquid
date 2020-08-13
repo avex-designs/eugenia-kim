@@ -1,0 +1,160 @@
+
+<header class="section-header text-center blog__hero" >
+  <div class="blog__filters--wrapper">
+
+    <div class="blog-filters__container blog__sort--filter article__hero--bar small--hide">
+          
+          <a href="{{ blog.url }}" class="article__back">
+            <i class="fa fa-angle-left"></i>
+            Back to journal
+          </a>
+    </div>
+    {% if article.metafields.c_f.button_link and article.metafields.c_f.button_text %}
+	 <div class="blog-filters__container blog__sort--select article__hero--bar small--hide">
+       <a href="{{ article.metafields.c_f.button_link }}" class="article__tag">{{ article.metafields.c_f.button_text }}</a> 
+    </div>
+    {% endif %}
+   
+
+  </div>
+  <div class="blog__hero--img-wrapper">
+    <div class="blog__hero--img" style="background-image: 
+                                                linear-gradient(
+                                                rgba(0, 0, 0, 0.2),
+                                                rgba(0, 0, 0, 0.2)),
+                                                url('{{ article.image | img_url: '1024x' }}')">                                            
+      <h1>{{ page_title }}</h1> 
+
+    </div>
+  </div>
+
+</header>
+<div class="featured-article__wrapper">
+  <div class="featured-article__text">
+    <p class="article__published-date">{{ article.published_at | date: "%m.%d.%y"}}</p>
+    <h1 class="blog__hero--title">{{ article.title }}</h1>
+  </div>
+  <div class="featured-article__container">    
+    <div class="blog__square--featured blog__bg featured-article" style="background-image: url('{{ article.image | img_url: '1024x1024' }}')">  
+    </div>
+  </div>
+</div>
+
+<div class="grid article__container">
+
+  <aside class="grid__item article__aside medium-up--three-tenths small--hide">
+
+    <div class="blog-tags">
+      <h1 class="blog-tags__header">Journal Categories</h1>
+
+      {% for link in linklists.journal-categories.links %}
+        <a href="{{ link.url }}?{{ link.title | handleize }}">
+          <h2 class="blog-tag">{{ link.title }}</h2>
+        </a>
+      {% endfor %}
+
+    </div>
+    
+  </aside>
+
+  <div class="grid__item article__content medium-up--four-tenths" itemprop="articleBody">
+    {{ article.content }}
+    <div class="article__meta">
+      POSTED {{ article.published_at | date: "%m.%d.%y"}} BY {{ article.author }}
+    </div>
+  </div>
+
+
+  <aside class="grid__item article__aside medium-up--hide">
+
+    <div class="blog-tags">
+      <h1 class="blog-tags__header">Journal Categories</h1>
+
+      {% for link in linklists.journal-categories.links %}
+        <a href="{{ link.url }}?{{ link.title | handleize }}">
+          <h2 class="blog-tag">{{ link.title }}</h2>
+        </a>
+      {% endfor %}
+
+    </div>
+    
+  </aside>
+
+  <aside class="grid__item article__aside medium-up--three-tenths">
+
+    {% if section.settings.show_share_buttons %}
+      <div class="blog-share">
+        <h1 class="blog-share__header">Share</h1>
+        {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+      </div>
+    {% endif %}
+
+    <div class="blog-related">
+      <h1 class="blog-related__header">Related Articles</h1>
+
+      {% assign found-related-article = false %}
+
+      {% for related-article in blog.articles limit:8 %}
+        {% if related-article.id != article.id %}
+      
+          {% for related-tag in related-article.tags %}
+              {% for tag in article.tags %}
+                {% if related-tag == tag %}
+                  {% assign found-related-article = true %}
+                {% endif %}
+              {% endfor %}
+          {% endfor %}
+      	  {% if found-related-article %}
+            <a href=" {{ related-article.url }}">
+              <h2 class="blog-related__title">{{ related-article.title }}</h2>
+            </a>
+      	{% endif %}
+      
+        {% endif %}
+      {% endfor %}
+
+      {% comment %}      
+        If no related articles exist, add recent articles
+      {% endcomment %}
+      {% unless found-related-article %}
+        {% for recent-article in blog.articles limit: 3 %}
+          {% if recent-article.id != article.id %}
+            <a href=" {{ recent-article.url }}">
+              <h2 class="blog-related__title">{{ recent-article.title }}</h2>
+            </a>
+          {% endif %}
+        {% endfor %}
+      {% endunless %}
+
+    </div>
+
+  </aside>
+
+</div>
+
+
+{% schema %}
+  {
+    "name": "Posts",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "blog_show_author",
+        "label": "Show author",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_date",
+        "label": "Show date",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

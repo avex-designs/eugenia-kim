@@ -1,0 +1,7 @@
+<div data-section-id="{{ section.id }}" class="collection-landing-page">
+<header class="collection-header">
+  <h1 class="collection-header__title">{{ page.title }}</h1>
+  <p class="collection-header__description">{{ page.content | strip_html }}</p>
+</header>
+ {% section 'collection-landing-hero' %}
+</div>

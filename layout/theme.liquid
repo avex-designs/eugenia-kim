@@ -1,0 +1,243 @@
+<!doctype html>
+<!--[if IE 9]> <html class="ie9 no-js" lang="{{ shop.locale }}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{ shop.locale }}" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_button }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+   <link href="https://fonts.googleapis.com/css?family=Lora:400i|Work+Sans:200,300,400,500,900" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  {% if settings.favicon != blank %}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+  {% endif %}
+  
+  {% if template == 'product.customizable'%}
+  	 <link href="https://fonts.googleapis.com/css?family=Mr+De+Haviland" rel="stylesheet">
+  	 <link href="{{ 'customizer.scss.css' | asset_url }}" rel="stylesheet">
+  {% endif %}
+
+  {% capture seo_title %}
+    {{ page_title }}
+    {% if current_tags %}
+      {%- assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+    {% endif %}
+    {% if current_page != 1 %}
+      &ndash; {{ 'general.meta.page' | t: page: current_page }}
+    {% endif %}
+    {% unless page_title contains shop.name %}
+      &ndash; {{ shop.name }}
+    {% endunless %}
+  {% endcapture %}
+  <title>{{ seo_title }}</title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  {% include 'social-meta-tags' %}
+
+  {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+  {{'skh.css' | asset_url | stylesheet_tag}}
+   {{'jquery.fancybox.min.css' | asset_url | stylesheet_tag}}
+  {% include 'google-fonts' %}
+
+  <script>
+    var theme = {
+      strings: {
+        addToCart: {{ 'products.product.add_to_cart' | t | json }},
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }},
+        showMore: {{ 'general.filters.show_more' | t | json }},
+        showLess: {{ 'general.filters.show_less' | t | json }}
+      },
+      moneyFormat: {{ shop.money_format | json }}
+    }
+
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+  </script>
+ 
+
+  <!-- <script type="text/javascript" src="{{ 'skrollr.min.js' | asset_url }}" ></script> -->
+
+  <!--[if (lte IE 9) ]>{{ 'match-media.min.js' | asset_url | script_tag }}<![endif]-->
+
+  {% if template.directory == 'customers' %}
+    <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script><!--<![endif]-->
+    <!--[if lte IE 9]><script src="{{ 'shopify_common.js' | shopify_asset_url }}"></script><![endif]-->
+  {% endif %}
+  
+  {% if template == 'product.customizable'%}
+  	<!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'circletype.min.js' | asset_url }}" ></script><!--<![endif]-->
+  	<!--[if lte IE 9]><script src="{{ 'circletype.min.js' | asset_url }}"></script><![endif]-->
+  
+  	<!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'fittext.js' | asset_url }}" async="async"></script><!--<![endif]-->
+  	<!--[if lte IE 9]><script src="{{ 'fittext.js' | asset_url }}"></script><![endif]-->
+  {% endif %}
+
+  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script><!--<![endif]-->
+  <!--[if lte IE 9]><script src="{{ 'lazysizes.min.js' | asset_url }}"></script><![endif]-->
+ {% unless template == blank %}
+  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'vendor.js' | asset_url }}" ></script><!--<![endif]-->
+  <!--[if lte IE 9]><script src="{{ 'vendor.js' | asset_url }}"></script><![endif]-->
+ 
+  <!-- HC - Masonry plugin - 25 Jan '18 -->
+  {{ 'jquery.shapeshift.js' | asset_url | script_tag }}
+
+  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'theme.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
+  <!--[if lte IE 9]><script src="{{ 'theme.js' | asset_url }}"></script><![endif]-->
+
+  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'ajax-cart.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
+  <!--[if lte IE 9]><script src="{{ 'ajax-cart.js' | asset_url }}"></script><![endif]-->
+
+
+  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'quick-shop.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
+  <!--[if lte IE 9]><script src="{{ 'ajax-cart.js' | asset_url }}"></script><![endif]-->
+  
+  <script src="{{ 'jquery.fancybox.min.js' | asset_url }}" defer="defer"></script>
+{% endunless %}
+  {{ content_for_header }}
+  
+ <!-- Affirm -->
+<script>
+_affirm_config = {
+   public_api_key:  "O21ABAK5DOOYD1EE",
+   script:          "https://cdn1.affirm.com/js/v2/affirm.js",
+   session_id:      "YOUR_VISITOR_SESSION_ID"
+};
+(function(l,g,m,e,a,f,b){var d,c=l[m]||{},h=document.createElement(f),n=document.getElementsByTagName(f)[0],k=function(a,b,c){return function(){a[b]._.push([c,arguments])}};c[e]=k(c,e,"set");d=c[e];c[a]={};c[a]._=[];d._=[];c[a][b]=k(c,a,b);a=0;for(b="set add save post open empty reset on off trigger ready setProduct".split(" ");a<b.length;a++)d[b[a]]=k(c,e,b[a]);a=0;for(b=["get","token","url","items"];a<b.length;a++)d[b[a]]=function(){};h.async=!0;h.src=g[f];n.parentNode.insertBefore(h,n);delete g[f];d(g);l[m]=c})(window,_affirm_config,"affirm","checkout","ui","script","ready");
+// Use your live public API Key and https://cdn1.affirm.com/js/v2/affirm.js script to point to Affirm production environment.
+</script>
+<!-- End Affirm --> 
+  
+  <script src="{{ 'jquery.zoom.min.js' | asset_url }}" defer="defer"></script>
+  <script type="text/javascript" src="path/to/instafeed.min.js"></script>
+
+<!--begin-bc-sf-filter-css-->
+  {% include 'bc-sf-filter-style' %}
+<!--end-bc-sf-filter-css-->
+
+
+</head>
+
+<body class="template-{{ template | split: '.' | first }}"  id=”skrollr-body”>
+
+  <div class="drawer drawer--right">
+    <div id="CartDrawer">
+      <div id="CartContainer"></div>
+    </div>
+  </div>
+
+  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+  <div id="SearchDrawer" class="search-bar drawer drawer--top">
+    <div class="search-bar__table">
+      <div class="search-bar__table-cell search-bar__form-wrapper">
+        <form class="search search-bar__form" action="/search" method="get" role="search">
+          <button class="search-bar__submit search__submit btn--link" type="submit">
+            {% include 'icon-search' %}
+            <span class="icon__fallback-text">{{ 'general.search.submit' | t }}</span>
+          </button>
+          <input class="search__input search-bar__input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}">
+          <input type="hidden" name="type" value="product" />
+        </form>
+      </div>
+      <div class="search-bar__table-cell text-right">
+        <button type="button" class="btn--link search-bar__close js-drawer-close">
+          {% include 'icon-close' %}
+          <span class="icon__fallback-text">{{ 'general.search.close' | t }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {% section 'header' %}
+
+  <div class="page-container" id="PageContainer">
+
+    <main class="main-content" id="MainContent" role="main">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+
+  </div>
+
+  {% include 'ajax-cart-template' %}
+  {% include 'quick-shop-template' %}
+
+
+<!-- Back in Stock helper snippet -->
+{% render 'back-in-stock-helper' %}
+<!-- End Back in Stock helper snippet -->
+  
+  
+  
+  <script>
+  $(document).ready(function(){
+    
+    $('.m-dropdown').click(function() {
+    	$(this).children('.m-dropdown-items').toggleClass('dropdown-hidden')
+    })
+    
+    $('.image-zoom')
+    .wrap('<span style="display:inline-block"></span>')
+    .css('display', 'block')
+    .parent()
+    .zoom({
+      url: $(this).find('img').attr('data-zoom'),
+      on: 'mouseover',
+      magnify: 1.2
+    });
+    
+    
+      
+    if ($(window).width()<768) {
+        $('.image-zoom').trigger('zoom.destroy'); 
+    }
+    
+   
+    
+    
+    
+    $(window).on('resize', function() {
+    if ($(window).width()<768) {
+        $('.image-zoom').trigger('zoom.destroy'); 
+    }
+      
+    if ($(window).width()>768) {
+         $('.image-zoom')
+    .wrap('<span style="display:inline-block"></span>')
+    .css('display', 'block')
+    .parent()
+    .zoom({
+      url: $(this).find('img').attr('data-zoom'),
+      on: 'mouseover',
+      magnify: 1.2
+    });
+    }
+});
+  
+  });
+</script>
+  
+
+<!--begin-bc-sf-filter-js-->
+  {% include 'bc-sf-filter' %}
+<!--end-bc-sf-filter-js-->
+{% comment %} Init BC Action List {% endcomment %}
+<!--start-bc-al-init-->
+  {% include 'bc-al-init' %}
+<!--end-bc-al-init-->
+{% comment %} Init Recently Viewed Products {% endcomment %}
+<!-- start-bc-recently-viewed-product-init -->
+  {% include 'bc-recently-viewed-product-init' %}
+<!-- end-bc-recently-viewed-product-init -->
+{% comment %} Init Most Popular Widgets {% endcomment %}
+<!--start-bc-most-popular-product-init-->
+  {% include 'bc-most-popular-product-init' %}
+<!--end-bc-most-popular-product-init-->
+</body>
+</html>

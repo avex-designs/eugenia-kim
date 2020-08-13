@@ -1,0 +1,303 @@
+{% comment %}
+<header class="collection-header">
+  <h2 class="collection-header__title">SHOP EUGENIA KIM</h2>
+
+  <ul class="collection-header__nav">
+    {% for link in linklists['collections-nav'].links %}
+      <span class="small--hide">
+        <a href="{{ link.url }}"><li {% if collection.url == link.url %}class="current-link" {% endif %}>{{ link.title }}</li></a>
+      </span>
+
+      {% if collection.url == link.url %}
+        <!--mobile dropdown-->
+        <a class="medium-up--hide collection-header__submenu" href="#">
+          <li class="current-link">{{ link.title }}
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
+          </li>
+        </a>
+      {% endif %}
+
+      {% if collection.url != link.url %}
+        <span class="medium-up--hide collection-header__dropdown">
+          <a href="{{ link.url }}"><li>{{ link.title }}</li></a>
+        </span>
+      {% endif %}
+
+    {% endfor %}
+
+
+  </ul>
+
+
+
+  {% if section.settings.show_collection_image and collection.image %}
+    <div class="collection-hero">
+      <div class="collection-hero__image ratio-container lazyload js"
+           data-bgset="{% include 'bgset', image: collection.image %}"
+           data-sizes="auto"
+           data-parent-fit="cover"
+           style="background-image: url('{{ collection.image | img_url: '600x600' }});"></div>
+      <noscript>
+        <div class="collection-hero__image" style="background-image: url({{ collection.image | img_url: '2048x600', crop: 'top' }});"></div>
+      </noscript>
+      <div class="collection-hero__title-wrapper">
+        <h3 class="collection-hero__subtitle" style="text-align: {{section.settings.text_alignment}}">{{ collection.title }}</h3>
+        <h1 class="collection-hero__title" style="text-align: {{section.settings.text_alignment}}">{{ collection.metafields.c_f.custom_hero_title }}</h1>
+      </div>
+    </div>
+
+    {% if collection.description != blank %}
+      <div class="rte collection-description page-width">
+        {{ collection.description }}
+      </div>
+    {% endif %}
+  {% else %}
+  {% endif %}
+  {% if section.settings.tags_enable or section.settings.sort_enable %}
+    <div class="filters-toolbar-wrapper collection-grid__container">
+      <div>
+        <div class="filters-toolbar">
+          {% if section.settings.tags_enable %}
+            <div class="filters-toolbar__item">
+              <label for="SortTags" class="label--hidden">{{ 'collections.filters.title_tags' | t }}</label>
+              <select class="filters-toolbar__input filters-toolbar__input--filter hidden" name="SortTags" id="SortTags">
+                {% if current_tags %}
+                  {% if collection.handle %}
+                    <option value="/collections/{{ collection.handle }}">{{ 'collections.filters.all_tags' | t }}</option>
+                  {% elsif collection.current_type %}
+                    <option value="{{ collection.current_type | url_for_type }}">{{ 'collections.filters.all_tags' | t }}</option>
+                  {% elsif collection.current_vendor %}
+                    <option value="{{ collection.current_vendor | url_for_vendor }}">{{ 'collections.filters.all_tags' | t }}</option>
+                  {% endif %}
+                {% else %}
+                  {% if current_tags contains tag %}
+                    <option value="">{{ 'collections.filters.all_tags' | t }}</option>
+                  {% else %}
+                    <option value="">{{ 'collections.filters.title_tags' | t }}</option>
+                  {% endif %}
+                {% endif %}
+                {% for tag in collection.all_tags %}
+                  <option value="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}"{% if current_tags contains tag %} selected="selected"{% endif %}>{{ tag }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endif %}
+
+          <div class="filters-toolbar__item filters-toolbar__item--count small--hide">
+            <span class="filters-toolbar__product-count ">
+                <h1 class="page-title">{{ collection.title }}</h1>
+            </span>
+          </div>
+
+          {% if section.settings.sort_enable %}
+            <div class="filters-toolbar__item text-right">
+              {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+              <label for="SortBy" class="label--hidden">SORT BY</label>
+              <select name="SortBy" id="SortBy" class="filters-toolbar__input filters-toolbar__input--sort hidden">
+                {% if sort_by == collection.default_sort_by %}
+                  <option value="title-ascending" selected="selected">SORT BY</option>
+                  {% if collection.default_sort_by != 'manual' %}
+                    <option value="manual"{% if sort_by == "manual" %} selected="selected"{% endif %}>{{ 'collections.sorting.featured' | t }}</option>
+                  {% endif %}
+                  {% if collection.default_sort_by != 'best-selling' %}
+                    <option value="best-selling"{% if sort_by == "best-selling" %} selected="selected"{% endif %}>{{ 'collections.sorting.best_selling' | t }}</option>
+                  {% endif %}
+                  {% if collection.default_sort_by != 'title-ascending' %}
+                    <option value="title-ascending"{% if sort_by == "title-ascending"  %}selected="selected"{% endif %}>{{ 'collections.sorting.az' | t }}</option>
+                  {% endif %}
+                  {% if collection.default_sort_by != 'title-descending' %}
+                    <option value="title-descending"{% if sort_by == "title-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.za' | t }}</option>
+                  {% endif %}
+                  {% if collection.default_sort_by != 'price-ascending' %}
+                    <option value="price-ascending"{% if sort_by == "price-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_ascending' | t }}</option>
+                  {% endif %}
+                  {% if collection.default_sort_by != 'price-descending' %}
+                    <option value="price-descending"{% if sort_by == "price-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_descending' | t }}</option>
+                  {% endif %}
+                  {% if collection.default_sort_by != 'created-descending' %}
+                    <option value="created-descending"{% if sort_by == "created-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_descending' | t }}</option>
+                  {% endif %}
+                  {% if collection.default_sort_by != 'created-ascending' %}
+                    <option value="created-ascending"{% if sort_by == "created-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_ascending' | t }}</option>
+                  {% endif %}
+                {% else %}
+                  <option value="manual"{% if sort_by == "manual" %} selected="selected"{% endif %}>{{ 'collections.sorting.featured' | t }}</option>
+                  <option value="best-selling"{% if sort_by == "best-selling" %} selected="selected"{% endif %}>{{ 'collections.sorting.best_selling' | t }}</option>
+                  <option value="title-ascending"{% if sort_by == "title-ascending"  %}selected="selected"{% endif %}>{{ 'collections.sorting.az' | t }}</option>
+                  <option value="title-descending"{% if sort_by == "title-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.za' | t }}</option>
+                  <option value="price-ascending"{% if sort_by == "price-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_ascending' | t }}</option>
+                  <option value="price-descending"{% if sort_by == "price-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_descending' | t }}</option>
+                  <option value="created-descending"{% if sort_by == "created-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_descending' | t }}</option>
+                  <option value="created-ascending"{% if sort_by == "created-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_ascending' | t }}</option>
+                {% endif %}
+              </select>
+              <input class="collection-header__default-sort" type="hidden" value="{{ collection.default_sort_by }}">
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</header>
+{% endcomment %}
+
+<div class="hero-wrapper hero--medium">
+  <div class="hero box ratio-container lazyload js" id="hero"
+     {% if collection.metafields.c_f.custom_hero_image %}
+     data-sizes="auto"
+     data-parent-fit="cover"
+     style="background-position: {{ section.settings.alignment }}; background-image: url('{{ collection.metafields.c_f.custom_hero_image | file_img_url: '1800x1800' }}');"
+     {% endif %}>
+  {% if collection.metafields.c_f.custom_hero_image == blank %}
+    <div class="placeholder-background">
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {% endif %}
+
+  <div>
+    <div class="hero__inner {{section.settings.text_alignment}} {{section.settings.text_alignment_vertical}}">
+    <div class="hero__content" style="color: {{ section.settings.text_color }} ">
+
+      <h4 class="hero__subtitle small--hide">{{ collection.title }}</h4>
+
+      {% if collection.metafields.c_f.custom_hero_title %}
+        <h1 class="small--hide" style="font-weight: {{ section.settings.text_weight }} ">{{ collection.metafields.c_f.custom_hero_title }}</h1>
+      {% endif %}
+
+    </div>
+
+  	</div>
+  </div>
+
+</div>
+</div>
+
+<div class="collection-grid__container collection__grid--custom">
+
+  {% if section.settings.collection_title != blank %}
+    <div class="collection__title">
+      {{ section.settings.collection_title }}
+    </div>
+  {% endif %}
+
+  {% if collection.metafields.c_f.step_2_description %}
+    <div class="collection__subtitle">
+      {{ collection.metafields.c_f.step_2_description }}
+    </div>
+  {% endif %}
+
+  <div class="grid product-grid product-grid--custom grid--uniform grid--view-items">
+    {% for product in collection.products  %}
+      <div class="grid__item product-grid__item product-grid__item--small small--one-half medium-up--one-third">
+        {% include 'product-card-grid', max_height: max_height %}
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+
+{% schema %}
+  {
+    "name": "Collection Customize",
+    "settings": [
+      {
+       "type": "header",
+       "content": "Collection Hero",
+       "info": "The below settings get applied to all customizable collections. Use custom fields to edit individual collection images and text."
+     },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Image alignment",
+      "default": "center",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ]
+    },
+	  {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text alignment horizontal",
+        "default": "text-left",
+        "options": [
+          {
+            "value": "text-left",
+            "label": "Left"
+          },
+          {
+            "value": "text-center",
+            "label": "Middle"
+          },
+          {
+            "value": "text-right",
+            "label": "Right"
+          }
+        ]
+      },
+	  {
+      "type": "select",
+      "id": "text_alignment_vertical",
+      "label": "Text alignment vertical",
+      "default": "text-middle",
+      "options": [
+        {
+          "value": "text-top",
+          "label": "Top"
+        },
+        {
+          "value": "text-middle",
+          "label": "Middle"
+        },
+        {
+          "value": "text-bottom",
+          "label": "Bottom"
+        }
+      ]
+    },
+    {
+       "type": "color",
+       "id": "text_color",
+       "label": "Text Color",
+       "default": "#000000"
+    },
+	  {
+        "type": "select",
+        "id": "text_weight",
+        "label": "Text Weight",
+        "default": "700",
+        "options": [
+          {
+            "value": "300",
+            "label": "Light"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          }
+        ]
+      },
+      {
+         "type": "header",
+         "content": "Collection Grid"
+      },
+      {
+        "type": "text",
+        "id": "collection_title",
+        "label": "Collection Heading",
+        "default": "Step 2"
+      }
+    ]
+  }
+{% endschema %}

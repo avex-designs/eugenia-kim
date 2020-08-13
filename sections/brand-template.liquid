@@ -1,0 +1,209 @@
+<header>
+  <h2 class="brand-header__title">The Brand</h2>
+</header>
+<h3 class="brand__header text-center">The story behind eugenia kim</h3>
+
+{% if section.settings.image != blank %}
+  <div class="brand-hero">
+
+    <div class="brand-hero__image ratio-container lazyload js"
+         data-bgset="{% include 'bgset', image: section.settings.image %}"
+         data-sizes="auto"
+         data-parent-fit="cover"
+         style="background-image: url('{{ section.settings.image | img_url: '300x300' }});">  
+    </div>
+
+    <noscript>
+      <div class="brand-hero__image" style="background-image: url({{ section.settings.image | img_url: '2048x600', crop: 'top' }});"></div>
+    </noscript>
+
+  </div>
+
+{% endif %}
+
+<div class="grid brand-story">
+
+  <h3 class="brand__header story__header">Story</h3>
+
+  <div class="story-content">
+
+    <div class="grid__item medium-up--one-quarter tab__container">
+      <ul class="tabs">
+        {% for block in section.blocks %}
+          {% if block.settings.tab-title != blank %}
+            <li class="story__subheader"><a class="tab" href=".tab-{{ forloop.index }}">{{block.settings.tab-title}}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="grid__item medium-up--one-half tab__container">
+      {% for block in section.blocks %}
+        {% if block.settings.tab-text != blank %}
+          <p class="story__text tab-{{ forloop.index }}">{{block.settings.tab-text}}</p>
+      	{% endif %}
+        {% if block.settings.page-content != blank %}
+      	   <!-- HC - Ajax - 17 Jan '18 -->
+           <div class="story__page tab-{{ forloop.index }} story__content-hidden ajax" data="{{ pages[block.settings.page-content].url }}"><div>{{ pages[block.settings.page-content].content }}</div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="grid__item medium-up--one-quarter tab__container">
+      {% for block in section.blocks %}
+        {% if block.settings.tab-quote != blank %}
+          <h3 class="story__quote tab-{{ forloop.index }}">&#34;{{block.settings.tab-quote}}&#34;</h3>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+
+</div>
+
+{% if section.settings.image-2 != blank %}
+<div class="brand-hero">
+  <div class="brand-hero__image ratio-container lazyload js"
+       data-bgset="{% include 'bgset', image: section.settings.image-2 %}"
+       data-sizes="auto"
+       data-parent-fit="cover"
+       style="background-image: url('{{ section.settings.image-2 | img_url: '300x300' }});">  
+  </div>
+  <noscript>
+    <div class="brand-hero__image" style="background-image: url({{ section.settings.image-2 | img_url: '2048x600', crop: 'top' }});"></div>
+  </noscript>
+
+  <div class="brand-hero__title-wrapper">
+    <h3 class="brand-hero__quote small--hide" 
+        style="{% if section.settings.text_alignment == 'left' %} margin-left: 0; {% endif %}
+               {% if section.settings.text_alignment == 'right' %} margin-left: 50% {% endif %}">
+      {{ section.settings.hero-quote }}
+    </h3>
+    <h3 class="brand-hero__quote medium-up--hide">
+      {{ section.settings.hero-quote }}
+    </h3>
+  </div>
+</div>
+{% endif %}
+
+<div class="grid awards">
+  <div class="grid__item medium-up--one-quarter">
+    {% if section.settings.awards-title != blank %}
+      <h3 class="awards__title">{{ section.settings.awards-title }}</h3>
+    {% endif %}
+  </div>
+
+  <div class="grid__item medium-up--one-half">
+    {% if section.settings.awards-text != blank %}
+      <p class="awards__text">{{ section.settings.awards-text }}</p>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "The Brand Page",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "1st Hero"
+      },
+      {
+        "type": "image_picker",
+        "id": "image-2",
+        "label": "2nd Hero"
+      },
+    {
+        "type": "text",
+        "id": "hero-quote",
+        "label": "2nd Hero Quote",
+        "default": "2nd Hero quote"
+      },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Quote Text alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Middle"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "awards-title",
+      "label": "Awards Title",
+      "default": "Awards & Achievements"
+    },
+    {
+      "type": "textarea",
+      "id": "awards-text",
+      "label": "Awards Text",
+      "default": "Some text about awards."
+    }
+    ],
+    "blocks": [
+      {
+        "type": "tab",
+        "name": "Tab",
+        "settings": [
+          {
+            "type": "text",
+            "id": "tab-title",
+            "label": "Tab Title",
+            "default": "Tab Title"
+          },
+          {
+            "type": "textarea",
+            "id": "tab-text",
+            "label": "Tab Text",
+            "default": "Some text about the brand."
+          },
+          {
+            "type": "page",
+            "id": "page-content",
+            "label": "Page Content"
+          },
+          {
+            "type": "textarea",
+            "id": "tab-quote",
+            "label": "Quote Text",
+            "default": "A quote about the brand."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+  
+  <!-- HC - Load up ajax content - 17 Jan '18 -->
+  <script>
+    $(document).ready(function(){
+      $('.story__page.ajax').each(function(){
+        var $this = $(this);
+        
+        $.ajax({
+          url: $(this).attr('data'),
+          success: function(data) {
+            var html = $(data).find('#MainContent > div').html();
+            console.log(html);
+            
+            $this.html(html);
+            
+            console.log($this.html());
+          }
+        });
+      });
+    });
+  </script>

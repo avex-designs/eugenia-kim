@@ -1,0 +1,201 @@
+<div class="product-grid__container">
+  {% if section.settings.title != blank %}
+    <div class="section-header text-center">
+      <h2>{{ section.settings.title | escape }}</h2>
+    </div>
+  {% endif %}
+
+  {%- assign collection = collections[section.settings.collection] -%}
+
+  {% case section.settings.grid %}
+    {% when '2' %}
+      {%- assign max_height = 530 -%}
+      {%- assign grid_item_width = 'medium-up--one-half' -%}
+    {% when '3' %}
+      {%- assign max_height = 345 -%}
+      {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+    {% when '4' %}
+      {%- assign max_height = 250 -%}
+      {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
+    {% when '5' %}
+      {%- assign max_height = 195 -%}
+      {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
+  {% endcase %}
+
+  {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
+  
+  <!--MOBILE GRID -->
+{% comment %}  {% for product in collection.products limit: product_limit %}   
+
+    {% if forloop.first %}
+    <div class="grid grid--uniform grid--view-items big-item-grid medium-up--hide">
+      <div class="grid__item grid__item--{{section.id}} big-item medium-up--hide">
+        {% include 'product-card-grid', max_height: max_height %}
+      </div>  
+    </div>
+    {% endif %}
+
+  {% endfor %}
+
+  <div class="grid grid--uniform grid--view-items small-items-grid medium-up--hide">
+    
+    {% for product in collection.products limit: product_limit %}
+
+      {% unless forloop.first %}
+      <div class="grid__item grid__item--{{section.id}} small-item small--one-half medium-up--hide">
+        {% include 'product-card-grid', max_height: max_height %}
+      </div>  
+      {% endunless %}
+    {% endfor %}
+  </div>{% endcomment %}
+  <!-- END MOBILE GRID -->
+
+  <!-- MEDIUM-UP GRID -->     
+  <div class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
+    {% for product in collection.products %}
+    	
+      {% if forloop.null %}
+          <div class="grid__item grid__item--{{section.id}} product-grid__item--large medium-up--one-half">
+            <a class="product-card__link" href="{{ product.url | within: collection }}">
+              {% include 'product-card-grid', max_height: max_height %}
+              {% comment %} <div class="h4 grid-view-item__title">{{ product.title }}</div> {% endcomment %}
+            </a>
+          </div>
+    
+      {% else %}
+        <div class="grid__item product-grid__item grid__item--{{section.id}} small--one-half medium-up--one-third">
+          <a class="product-card__link" href="{{ product.url | within: collection }}">
+            {% include 'product-card-grid', max_height: max_height %}
+          {% comment %}<div class="h4 grid-view-item__title">{{ product.title }}</div>{% endcomment %}
+          </a>
+        </div>
+      {% endif %}
+ 
+
+    {% else %}
+    
+      {% comment %}
+      Add default products to help with onboarding for collections/all only.
+
+      The onboarding styles and products are only loaded if the
+      store has no products.
+      {% endcomment %}
+      {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
+        <div class="grid__item">
+          <div class="grid grid--uniform">
+            {% for i in (1..limit) %}
+              <div class="grid__item {{ grid_item_width }}">
+                <div class="grid-view-item">
+                  <a href="#" class="grid-view-item__link">
+                    <div class="grid-view-item__image">
+                      {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                      {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+<!--                     <div class="h4 grid-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div> -->
+                    <div class="grid-view-item__meta">
+                      <span class="product-price__price">$19.99</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% else %}
+        {%- assign is_empty_collection = true -%}
+      {% endif %}
+    {% endfor %}
+  </div>
+  <!-- END MEDIUM-UP GRID -->
+
+</div>
+
+{% schema %}
+  {
+    "name": "Featured collection",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Featured collection"
+      },
+      {
+        "id": "collection",
+        "type": "collection",
+        "label": "Collection"
+      },
+      {
+        "type": "select",
+        "id": "grid",
+        "label": "Products per row",
+        "default": "3",
+        "options": [
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "rows",
+        "label": "Rows",
+        "default": "2",
+        "options": [
+          {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show product vendors",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_view_all",
+        "label": "Show 'View all' button",
+        "default": false
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured collection",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}

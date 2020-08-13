@@ -1,0 +1,208 @@
+{% if section.settings.image != blank %}
+  <img src="{{ section.settings.image | img_url: '2048x' }}"
+       alt="{{ section.settings.image.alt | escape }}">
+{% endif %}
+
+<div class="grid brand-story">
+
+  <h3 class="brand__header story__header">{{ page.title }}</h3>
+
+  <div class="story-content">
+
+    <div class="grid__item medium-up--one-quarter tab__container">
+      <h4 class="collection__description--title">About The Collection</h4>
+    </div>
+
+    <div class="grid__item medium-up--one-half collection__description">
+
+      {% if section.settings.collection-description != blank %}
+        <span class="collection__description--text tab-{{ forloop.index }}">
+          {{ section.settings.collection-description }}
+        </span>
+      {% endif %}
+
+      {% if section.settings.button-label != blank and section.settings.button-link != blank %}
+      <p>
+        <a class="btn collection__description--button" href="{{ section.settings.button-link }}">
+          {{ section.settings.button-label }}
+        </a>
+      </p>
+      {% endif %}
+
+    </div>
+
+  </div>
+
+</div>
+
+
+{% if section.blocks.size > 0 %}
+
+  {% for block in section.blocks %}
+
+    {% if block.settings.featured-image != blank %}
+      <div class="look-heading">
+        <div class="grid">
+          <div class="grid__item">
+          <img 
+               src="{{ block.settings.featured-image | img_url: '2048x' }}"
+               alt="{{ block.settings.featured-image.alt | escape }}">
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="page-width">
+
+      {% if block.settings.products-header != blank %}
+        <div class="section-header text-center">
+          <h2>{{ block.settings.products-header | escape }}</h2>
+        </div>
+      {% endif %}
+
+      {% if block.settings.featured-product-1 != blank %}
+        <div class="grid grid--uniform grid--view-items related-items__grid" 
+        {% if block.settings.featured-product-2 == blank or block.settings.featured-product-3 == blank %} 
+          style="border: none;" 
+        {% endif %}>
+
+          {% assign product = all_products[block.settings.featured-product-1] %}
+          
+          <div class="grid__item medium-up--one-third related-item__card 
+            {% if block.settings.featured-product-2 == blank %}
+              related-item__card--single
+            {% endif %}
+            {% if block.settings.featured-product-2 != blank and block.settings.featured-product-3 == blank %} 
+              related-item__card--double-1
+            {% endif %}">
+            {% include 'product-card-grid', max_height: max_height %}
+          </div>
+
+          {% if block.settings.featured-product-2 != blank %}
+
+            {% assign product = all_products[block.settings.featured-product-2] %}
+
+            <div class="grid__item medium-up--one-third related-item__card
+              {% if block.settings.featured-product-3 == blank %} 
+                related-item__card--double-2
+              {% endif %}">
+              {% include 'product-card-grid', max_height: max_height %}
+            </div>
+
+          {% endif %}
+
+          {% if block.settings.featured-product-3 != blank %}
+          
+            {% assign product = all_products[block.settings.featured-product-3] %}
+
+            <div class="grid__item medium-up--one-third related-item__card">
+              {% include 'product-card-grid', max_height: max_height %}
+            </div>
+
+          {% endif %}
+
+        </div>
+      {% endif %}
+
+    </div>
+
+  {% endfor %}
+
+{% endif %}
+
+<div class="page-width">
+  <div class="grid">
+    <div class="grid__item text-center">
+      <hr/>
+      <h3>{{ section.settings.lower-heading }}</h3>
+      <p>
+      <a class="btn btn--reverse" href="{{ section.settings.lower-button-link }}">
+        <span>SHOP THIS COLLECTION</span>
+      </a>
+      </p>
+      <p><a href="/collections/all">SHOP ALL</a></p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Collection Landing Hero",
+    "max_blocks": 15,
+    "class": "collection-landing-hero",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Hero Image"
+      },
+      {
+        "type": "richtext",
+        "id": "collection-description",
+        "label": "Collection Description"
+      },
+      {
+        "type": "text",
+        "id": "button-label",
+        "label": "Button Label",
+        "default": "Button Label"
+      },
+      {
+        "type": "url",
+        "id": "button-link",
+        "label": "Button Link"
+      },
+      {
+        "type": "text",
+        "id": "lower-heading",
+        "label": "Lower Heading",
+        "default": "Heading"
+      },
+		  {
+        "type": "text",
+        "id": "lower-button-link",
+        "label": "Lower Button Link",
+        "default": "Button Link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Featured Look",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "featured-image",
+            "label": "Featured Image"
+          },
+		      {
+            "type": "text",
+            "id": "products-header",
+            "label": "Products Header",
+            "default": "Shop this look"
+          },
+          {
+            "id": "featured-products",
+            "type": "collection",
+            "label": "Featured Products"
+          },
+          {
+             "type": "product",
+             "id": "featured-product-1",
+             "label": "Featured product #1"
+          },
+          {
+             "type": "product",
+             "id": "featured-product-2",
+             "label": "Featured product #2"
+          },
+          {
+             "type": "product",
+             "id": "featured-product-3",
+             "label": "Featured product #3"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

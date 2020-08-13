@@ -1,0 +1,218 @@
+{% paginate blog.articles by 50 %}
+ 
+  {% for article in blog.articles %}
+    {% if forloop.first %}
+
+      </header>
+      <header class="collection-header" >
+        <h1 class="general-header__title">{{ blog.title }}</h1>
+        <p class="general-header__description">THE STORY BEHIND EUGENIA KIM.</p>
+        
+        <!--<div class="blog__filters--wrapper">
+
+          <div class="blog-filters__container blog__sort--filter small--hide">
+            <div class="drop-menu drop-menu__sort">
+              <div class="select">
+                <span>Sort By</span>
+                <i class="fa fa-angle-down"></i>
+              </div>
+              <input type="hidden" name="article-sort" value="forward">
+              <ul class="dropeddown">
+                <li id="forward">Most Recent</li>
+                <li id="reversed">Least Recent</li>
+              </ul>
+            </div>
+            
+            <span class="msg__sort">Most Recent</span>
+
+          </div>
+       
+          <div class="blog-filters__container blog__sort--select small--hide">
+                    <div class="drop-menu drop-menu__filter">
+                      <div class="select">
+                        <span>Filter By</span>
+                        <i class="fa fa-angle-down"></i>
+                      </div>
+                      <input type="hidden" name="article-filter" value="all">
+                      <ul class="dropeddown">
+                        <li id="all">All Posts</li>
+                        {% for tag in blog.all_tags %}
+                          <li id="{{ tag }}">{{ tag }}</li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                    
+                    <span class="msg__filter">All Posts</span>
+          </div>
+
+        </div>-->
+
+
+      </header>
+
+      </div>
+
+    {% endif %}
+    {% endfor %}
+ 
+
+  <div class="blog__filters--wrapper blog__filters--mobile medium-up--hide">
+
+    <div class="blog-filters__container blog__sort--filter small--hide">
+      <div class="drop-menu drop-menu__filter">
+        <div class="select">
+          <span>Filter By</span>
+          <i class="fa fa-angle-down"></i>
+        </div>
+        <input type="hidden" name="article-filter" value="all">
+        <ul class="dropeddown">
+          <li id="all">All Posts</li>
+          {% for tag in blog.all_tags %}
+            <li id="{{ tag }}">{{ tag }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <span class="msg__filter"></span>
+    </div>
+
+    <div class="blog-filters__container blog__sort--select small--hide">
+      <div class="drop-menu drop-menu__sort">
+        <div class="select">
+          <span>Sort By</span>
+          <i class="fa fa-angle-down"></i>
+        </div>
+        <input type="hidden" name="article-sort" value="forward">
+        <ul class="dropeddown">
+          <li id="forward">Most Recent</li>
+          <li id="reversed">Least Recent</li>
+        </ul>
+      </div>
+      
+      <span class="msg__sort"></span>
+    </div>
+
+    <div class="blog__sort--filter medium-up--hide">
+      {% if blog.tags.size > 0 %}
+        <select name="blog-filter" id=“BlogTagFilter” onchange="filterArticles('mobile')">
+          <label>Filter by</label>
+          <option value="" disabled selected>Filter by</option>
+          <option value="all">All Posts</option>
+          {% for tag in blog.all_tags %}
+            <option value='{{ tag }}'>{{ tag }}</option>
+          {% endfor %}
+        </select>
+      {% endif %}
+    </div>
+
+    <div class="blog__sort--select medium-up--hide">
+      <select name="blog-sort" id=“BlogSort” onchange="filterArticles('mobile')">
+        <label>Sort by</label>
+        <option value="" disabled selected>Sort by </option>
+        <option value="forward">Most Recent</option>
+        <option value="reversed">Least Recent</option>
+      </select>
+    </div>
+
+  </div>
+
+{% comment %}<!------------ article loop (newest->oldest) -------------->{% endcomment %}
+<section class="page-width masonry blog__articles">
+  {% for article in blog.articles %}
+    {% if article.image %}
+      {% capture img_id %}ArticleImage-{{ article.image.id }}{% endcapture %}
+  <!-- HC - Masonry boxes - 30 Jan '18 -->
+      {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        <div class="blog-masonry"
+              data-all="true"
+              {% if article.tags != blank %} {% for tag in article.tags %}data-{{tag}}="true"{% endfor %}{% endif %}>
+          <a href="{% if article.metafields.c_f.external_url %}{{ article.metafields.c_f.external_url }}{% else %}{{ article.url }}{% endif %}" target="_blank">
+          <div class="blog__content">
+                <div class="blog__table">
+                    <div class="blog__table-cell">
+                      <!-- HC - Info container - 01 Feb '18 -->
+                        <div class="blog-info">
+                            <h3 class="blog__title">{{ article.title }}</h3>
+                            <p class="blog__link">Read More</p>
+                          </div>
+                    </div>
+                </div>
+              {{ article.image | img_url: '500x' | img_tag }}
+            </div>
+            </a>
+        </div>
+    {% endif %}
+  {% endfor %}
+
+  {% comment %}
+  <!------------ article loop (oldest->newest) -------------->
+    {% for article in blog.articles reversed%}
+    {% if article.image %}
+      {% capture img_id %}ArticleImage-{{ article.image.id }}{% endcapture %}
+      {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+  <!-- HC - Masonry boxes - 30 Jan '18 -->
+            <div class="blog-masonry"
+                data-all="true"
+                {% if article.tags != blank %} {% for tag in article.tags %}data-{{tag}}="true"{% endfor %}{% endif %}>
+              <a href="{% if article.metafields.c_f.external_url %}{{ article.metafields.c_f.external_url }}{% else %}{{ article.url }}{% endif %}" target="_blank">
+                <div class="blog__content">
+                    <div class="blog__table">
+                        <div class="blog__table-cell">
+                          <!-- HC - Info container - 01 Feb '18 -->
+                          <div class="blog-info">
+                            <h3 class="blog__title">{{ article.title }}</h3>
+                            <p class="blog__link">Read More</p>
+                          </div>
+                        </div>
+                    </div>
+                  {{ article.image | img_url: '1000x' | img_tag }}
+                </div>
+              </a>
+          </div>
+    {% endif %}
+  {% endfor %}
+  {% endcomment %}
+</section>
+
+
+  {% if paginate.pages > 1 %}
+    {% include 'pagination' %}
+  {% endif %}
+
+{% endpaginate %}
+
+{% schema %}
+  {
+    "name": "Blog pages",
+    "settings": [
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Layout",
+        "default": "list",
+        "options": [
+          {
+            "value": "grid",
+            "label": "Grid"
+          },
+          {
+            "value": "list",
+            "label": "List"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_author",
+        "label": "Show author",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_date",
+        "label": "Show date",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

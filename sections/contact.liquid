@@ -1,0 +1,50 @@
+<header>
+  <h2 class="brand-header__title">{{ page.title }}</h2>
+</header>
+
+<div class="page-width contact-page">
+  <div class="grid">
+    <div class="grid__item medium-up--one-half medium-up--push-one-twelfth">
+
+      <h3 class="contact__subheader">HAVE QUESTIONS? GET IN TOUCH</h3>
+
+      <div class="contact-form form-vertical">
+        {% form 'contact' %}
+
+          {% if form.posted_successfully? %}
+            <p class="note form-success">
+              {{ 'contact.form.post_success' | t }}
+            </p>
+          {% endif %}
+
+          {{ form.errors | default_errors }}
+
+          <div class="grid grid--half-gutters">
+            <div class="grid__item">
+              <label for="ContactFormName">{{ 'contact.form.name' | t }}</label>
+              <input type="text" id="ContactFormName" name="contact[name]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+            </div>
+            <div class="grid__item">
+              <label for="ContactFormEmail" class="{% if form.errors contains 'email' %}label--error{% endif %}">Email Address</label>
+              <input type="email" id="ContactFormEmail" name="contact[email]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" class="{% if form.errors contains 'email' %}input--error{% endif %}">
+            </div>
+          </div>
+
+          <label for="ContactFormMessage">{{ 'contact.form.message' | t }}</label>
+          <textarea rows="10" id="ContactFormMessage" name="contact[body]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+          <input type="submit" class="btn" value="{{ 'contact.form.submit' | t }}">
+
+        {% endform %}
+      </div>
+
+      {% if page.content.size > 0 %}
+        <div class="rte rte__contact">
+          {{ page.content }}
+        </div>
+      {% endif %}
+
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,125 @@
+<ul class="site-nav list--inline {{ nav_alignment }}" id="SiteNav">
+  {% for link in linklists[section.settings.main_linklist].links %}
+    {%- assign child_list_handle = link.title | handleize -%}
+
+    {% if linklists[child_list_handle].links != blank %}
+      <li class="site-nav--has-dropdown{% if link.active %} site-nav--active{% endif %}">
+        <span class="dropdown__hover">
+<!--           <span class="dropdown__hover--triangle"></span> -->
+        </span>
+        <a href="{{ link.url }}" class="site-nav__link site-nav__link--main" aria-has-popup="true" aria-expanded="false" aria-controls="SiteNavLabel-{{ child_list_handle }}">
+          {{ link.title }}
+
+          <span class="visually-hidden">{{ 'layout.navigation.expand' | t }}</span>
+        </a>
+
+        <div class="site-nav__dropdown grid" id="SiteNavLabel-{{ child_list_handle }}">
+
+      
+
+            {% if link.title == 'JOURNAL'%}
+
+              <ul class="grid__item medium-up--one-half site-nav__dropdown--sublist journal__sublist">
+                {% for childlink in linklists['journal'].links %}
+                    <li {% if childlink.active %}class="site-nav--active"{% endif %}>
+                      <a href="{{ childlink.url }}" class="site-nav__link site-nav__child-link{% if forloop.last %} site-nav__link--last{% endif %}">{{ childlink.title | escape }}</a>
+                    </li>
+                {% endfor %}
+              </ul> 
+
+				{% for article in blogs.news.articles limit: 1 %}
+                      <div class="grid__item medium-up--one-half latest-post__container">
+                          <h2 class="latest-post__header">Recent Post</h2>
+                          <a href="{{ article.url }}"><h2 class="latest-post__title">{{ article.title }}</h2></a>
+                       </div>
+                 {% endfor %}
+          		{% comment %}
+               {% for article in blogs.news.articles limit: 1 %}
+                <a href="{{ article.url }}" class="grid__item medium-up--one-quarter site-nav__dropdown--image-container">
+                  <div class="site-nav__dropdown--image" style="background-image: url('{{ article.image | img_url: 'medium' }}');">
+                    <div class="dropdown__image--overlay">
+                      <div>
+                        <h3>{{ article.title }}</h3>
+                        <h4>Read more</h4>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </a>
+              {% endfor %}
+              {% endcomment %}
+            {% endif %}
+
+
+            {% if linklists[child_list_handle].links != blank %}
+
+              <ul class="grid__item medium-up--one-third site-nav__dropdown--sublist {% if linklists[child_list_handle].links.size > 4 %}sk-grid{%endif%}">
+                {% for childlink in linklists[child_list_handle].links %}
+                    <li {% if childlink.active %}class="site-nav--active"{% endif %}>
+                      <a href="{{ childlink.url }}" class="site-nav__link site-nav__child-link{% if forloop.last %} site-nav__link--last{% endif %}">{{ childlink.title | escape }}</a>
+                    </li>
+                {% endfor %}
+              </ul> 
+          
+          {%comment%}
+          {% for product in collection.products %}
+              {{ product.title }}
+              {% assign divisible_by_four = forloop.index | modulo: 4 %}
+              {% if divisible_by_four == 0 %}
+                -- this is the {{ forloop.index }}th item! </br>
+              {% endif %}
+            {% endfor %} 
+        {%endcomment%}
+
+          {%comment%}
+              <ul class="grid__item medium-up--one-third site-nav__dropdown--sublist">
+<!--                 <a href="#" class="mobile-nav__link m-sublist-heading site-nav__dropdown--a">
+                  BY CATEGORY
+                </a> -->
+                {% for link in linklists[section.settings.shop_sublist1].links %}
+                  <li class="mobile-nav__item">
+                    <a style="font-weight:400;" href="{{ link.url }}" class="mobile-nav__sublist-link m-sublist-grey-items">
+                      {{ link.title | escape }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+              
+              <ul class="grid__item medium-up--one-third site-nav__dropdown--sublist">
+<!--                 <a href="/pages/face-shape" class="mobile-nav__link m-sublist-heading site-nav__dropdown--a">
+                 BY FACE SHAPE
+                </a> -->
+                {% for link in linklists[section.settings.shop_sublist2].links %}
+                  <li class="mobile-nav__item ">
+                    <a href="{{ link.url }}" class="mobile-nav__sublist-link m-sublist-grey-items site-nav__dropdown--a">
+                      <span class="m-sublist-grey-items">{{ link.title | escape }}</span>
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+          {%endcomment%}
+          
+			{% comment %}
+            <div class="grid__item medium-up--one-quarter site-nav__dropdown--image-container">
+              <div class="site-nav__dropdown--image" style="background-image: url('{{ all_products[section.settings.featured_product].featured_image | img_url: 'medium' }}');">
+                
+              </div>
+              <a href="{{ all_products[section.settings.featured_product].url }}">
+                <div class="site-nav__dropdown--button">
+                  FEATURED - {{ all_products[section.settings.featured_product].title }}
+                </div>
+              </a>
+            </div>
+            {% endcomment %}
+            
+            {% endif %}
+        </div>
+        
+      </li>
+    {% else %}
+      <li {% if link.active %}class="site-nav--active"{% endif %}>
+        <a href="{{ link.url }}" class="site-nav__link site-nav__link--main">{{ link.title }}</a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

@@ -1,0 +1,1488 @@
+{
+  "current": {
+    "color_text": "#3d4246",
+    "color_body_text": "#788188",
+    "color_sale_text": "#7796a8",
+    "color_borders": "#979797",
+    "color_button": "#000000",
+    "color_button_text": "#fff",
+    "color_small_button": "#fff",
+    "color_small_button_text": "#3d4246",
+    "color_text_field": "#fff",
+    "color_text_field_text": "#000",
+    "color_image_overlay_text": "#fff",
+    "color_image_overlay": "#3d4246",
+    "image_overlay_opacity": "0.25",
+    "color_body_bg": "#fff",
+    "round_icon": "shopify:\/\/shop_images\/round.png",
+    "round_collection": "round",
+    "square_icon": "shopify:\/\/shop_images\/square.png",
+    "square_collection": "square",
+    "oval_icon": "shopify:\/\/shop_images\/oval.png",
+    "oval_collection": "oval",
+    "heart_icon": "shopify:\/\/shop_images\/heart.png",
+    "heart_collection": "heart-shaped",
+    "type_header_family": "'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+    "type_header_base_size": "26px",
+    "type_base_family": "'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+    "type_base_size": "16px",
+    "type_bold_product_titles": false,
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "social_twitter_link": "https:\/\/twitter.com\/EugeniaKim",
+    "social_facebook_link": "https:\/\/www.facebook.com\/eugeniakimnyc",
+    "social_pinterest_link": "https:\/\/www.pinterest.com\/eugeniakim\/",
+    "social_instagram_link": "https:\/\/www.instagram.com\/eugeniakimnyc\/",
+    "social_tumblr_link": "",
+    "social_snapchat_link": "",
+    "social_youtube_link": "",
+    "social_vimeo_link": "",
+    "favicon": "shopify:\/\/shop_images\/EK.png",
+    "checkout_header_image": "",
+    "checkout_logo_image": "shopify:\/\/shop_images\/EUGENIA_KIM_Logo-checkout.png",
+    "checkout_logo_position": "center",
+    "checkout_logo_size": "large",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#ffffff",
+    "checkout_heading_font": "Helvetica Neue",
+    "checkout_body_font": "Helvetica Neue",
+    "checkout_accent_color": "#999999",
+    "checkout_button_color": "#333333",
+    "checkout_error_color": "#000000",
+    "face-round": "shopify:\/\/shop_images\/round-shape.png",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "align_logo": "left",
+          "logo": "shopify:\/\/shop_images\/logo.png",
+          "logo_max_width": "125",
+          "main_linklist": "updated-menu",
+          "shop_sublist1": "",
+          "shop_sublist2": "",
+          "featured_product": "",
+          "message": true,
+          "home_page_only": false,
+          "message_text": "Buy Now, Pay Later with Affirm. Free Ground Shipping & Returns in the U.S. and Canada.",
+          "message_link": "shopify:\/\/collections\/new-arrivals",
+          "color_bg": "#000000",
+          "color_text": "#ffffff"
+        }
+      },
+      "featured-collections": {
+        "type": "collection",
+        "settings": {
+          "title": "New Arrivals",
+          "collection": "frontpage",
+          "grid": "3",
+          "rows": "2",
+          "show_vendor": false,
+          "show_view_all": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "footer_linklist": "footer",
+          "footer_linklist_two": "",
+          "footer_newsletter_enable": true,
+          "show_payment_icons": false
+        }
+      },
+      "1502488989737": {
+        "type": "slideshow",
+        "disabled": true,
+        "blocks": {
+          "1514489901292": {
+            "type": "video",
+            "settings": {
+              "video_url": "https:\/\/youtu.be\/byWnWWMaRuE",
+              "video_type": "background",
+              "image": "",
+              "title": "",
+              "subheading": ""
+            }
+          }
+        },
+        "block_order": [
+          "1514489901292"
+        ],
+        "settings": {
+          "autoplay": false,
+          "autoplay_speed": "5000",
+          "slideshow_height": "large",
+          "text_size": "medium"
+        }
+      },
+      "image-with-text-overlay": {
+        "type": "image-with-text-overlay",
+        "settings": {
+          "image": "",
+          "img_outline": true,
+          "title": "EUGENIA KIM",
+          "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.<\/p>",
+          "text_size": "medium",
+          "button_label": "SHOP SS2017 COLLECTION",
+          "button_link": "shopify:\/\/collections\/all",
+          "transparent_box": true
+        }
+      },
+      "1502750296449": {
+        "type": "hero",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/header.jpg",
+          "alignment": "center",
+          "text_alignment": "text-left",
+          "text_alignment_vertical": "text-bottom",
+          "text_weight": "700",
+          "title": "New Arrivals",
+          "hero_size": "x-small",
+          "button_label": "Shop Now",
+          "button_link": "shopify:\/\/collections\/new-arrivals"
+        }
+      },
+      "1502750397730": {
+        "type": "image-with-text-overlay",
+        "disabled": true,
+        "settings": {
+          "image": "shopify:\/\/shop_images\/about-brand.jpg",
+          "img_outline": true,
+          "title": "ABOUT THE BRAND",
+          "text": "",
+          "text_size": "medium",
+          "button_label": "LEARN MORE",
+          "button_link": "shopify:\/\/pages\/the-brand",
+          "transparent_box": true
+        }
+      },
+      "1502833118491": {
+        "type": "image-with-text-overlay",
+        "disabled": true,
+        "settings": {
+          "image": "shopify:\/\/shop_images\/AbouttheBrand_3938fc7f-fd52-4ff7-b9e3-77d02d89b8e2.jpg",
+          "img_outline": false,
+          "title": "About The Brand",
+          "text": "",
+          "text_size": "medium",
+          "button_label": "LEARN MORE",
+          "button_link": "shopify:\/\/pages\/the-brand",
+          "transparent_box": false
+        }
+      },
+      "1502837807798": {
+        "type": "featured-blog",
+        "disabled": true,
+        "settings": {
+          "title": "Latest News",
+          "blog": "press",
+          "post_limit": 3,
+          "blog_show_author": false,
+          "blog_show_date": false,
+          "show_view_all": false
+        }
+      },
+      "1503341484194": {
+        "type": "slideshow-split",
+        "disabled": true,
+        "blocks": {
+          "1503341484194-0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/HOMEPAGE_SS19_1_c34b58a8-1344-420a-855c-ed87f8757954.jpg",
+              "alignment": "top",
+              "title": "SPRING\/SUMMER 2019",
+              "subheading": "Discover our newest arrivals, inspired by the cool, relaxed and serene vibes of David Hockney's paintings of Southern California.",
+              "button_text": "SHOP NOW",
+              "link": "shopify:\/\/collections\/spring-summer-2019"
+            }
+          }
+        },
+        "block_order": [
+          "1503341484194-0"
+        ],
+        "settings": {
+          "autoplay": true,
+          "autoplay_speed": "5000",
+          "slideshow_height": "extra-large",
+          "text_size": "medium"
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "layout": "grid",
+          "grid": "2",
+          "rows": "30",
+          "show_collection_image": false,
+          "title": "Fall \/ Winter 2017",
+          "subtitle": "Collection",
+          "text_alignment": "right",
+          "button_label": "Shop Now",
+          "button_link": "shopify:\/\/collections\/fall-winter-2017",
+          "show_vendor": false,
+          "sort_enable": true,
+          "tags_enable": false
+        }
+      },
+      "list-collections-template": {
+        "type": "list-collections-template",
+        "settings": {
+          "display_type": "all",
+          "sort": "alphabetical",
+          "grid": "3"
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "blocks": {
+          "1510252059755": {
+            "type": "text",
+            "settings": {
+              "shape_collection": "round",
+              "shape-icon": "shopify:\/\/shop_images\/round.png"
+            }
+          },
+          "1510252075472": {
+            "type": "text",
+            "settings": {
+              "shape_collection": "square",
+              "shape-icon": "shopify:\/\/shop_images\/square.png"
+            }
+          },
+          "1510252093144": {
+            "type": "text",
+            "settings": {
+              "shape_collection": "oval",
+              "shape-icon": "shopify:\/\/shop_images\/oval.png"
+            }
+          },
+          "1510252118148": {
+            "type": "text",
+            "settings": {
+              "shape_collection": "heart-shaped",
+              "shape-icon": "shopify:\/\/shop_images\/heart.png"
+            }
+          }
+        },
+        "block_order": [
+          "1510252059755",
+          "1510252075472",
+          "1510252093144",
+          "1510252118148"
+        ],
+        "settings": {
+          "image_size": "small",
+          "show_quantity_selector": true,
+          "show_variant_labels": true,
+          "show_vendor": false,
+          "enable_zoom": true,
+          "show_share_buttons": true
+        }
+      },
+      "custom-content": {
+        "type": "custom-content",
+        "blocks": {
+          "1504733627994": {
+            "type": "video",
+            "settings": {
+              "video_url": "",
+              "width": "50%",
+              "alignment": "center"
+            }
+          },
+          "1504733642638": {
+            "type": "text",
+            "settings": {
+              "title": "Want to learn more about this product?",
+              "text": "<p>See how the Brigette hat is produced, from raw materials, to the show room, to your wardrobe.<\/p>",
+              "width": "50%",
+              "alignment": "center",
+              "align_text": "center"
+            }
+          }
+        },
+        "block_order": [
+          "1504733627994",
+          "1504733642638"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "product-video": {
+        "type": "product-video",
+        "blocks": {
+          "1504733967914": {
+            "type": "video",
+            "settings": {
+              "video_url": "",
+              "width": "50%",
+              "alignment": "center"
+            }
+          },
+          "1504733975776": {
+            "type": "text",
+            "settings": {
+              "title": "Want to learn more about this product?",
+              "text": "<p>See how the Brigette hat is produced, from raw materials, to the show room, to your wardrobe.<\/p>",
+              "button__label": "See how it's made",
+              "button__link": "",
+              "width": "50%",
+              "alignment": "center",
+              "align_text": "center"
+            }
+          }
+        },
+        "block_order": [
+          "1504733967914",
+          "1504733975776"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "related-products": {
+        "type": "related-products",
+        "settings": {
+          "show_related_products": true,
+          "related_title": "Similar Styles",
+          "related_grid_num": "3",
+          "related_grid_row": "1"
+        }
+      },
+      "brand-template": {
+        "type": "brand-template",
+        "blocks": {
+          "1505320366065": {
+            "type": "tab",
+            "settings": {
+              "tab-title": "Eugenia Kim's Story",
+              "tab-text": "With an innovative approach to luxury, Eugenia Kim marries clean, classic shapes with fresh, feminine modernity and a playful sense of wit. Bold colors, unexpected trims and high-quality materials are the signature elements that define the collection every season.\n<br><br>\n<span style=\"font-size:14px;\">After a cafeteria-tray ride down a snowy hill landed her a month-long stay in the hospital, Eugenia’s newfound dislike for these institutions did not agree with her pre-med track at Dartmouth University. Following graduation in 1996, Eugenia moved to New York to explore a different career path. She took a position at Allure magazine, while simultaneously taking a millinery class at Parsons School of Design. \n<br><br>\nIn 1998, after a bad haircut, Eugenia created a feathered cloche to wear as a disguise. Boutiques in her downtown New York City neighborhood immediately took notice of the inventive design, and soon after, Barneys New York placed their first order. As a result, the Eugenia Kim brand was born. \n<br><br>\nThe brand quickly grew in popularity, and Eugenia soon learned that she could not limit production to her small East Village three-roommate loft. She opened her first retail boutique, where she designed and sold hats in the storefront by day, and slept in a small room in the back at night. \n\n<\/span>",
+              "page-content": "",
+              "tab-quote": ""
+            }
+          },
+          "1516213073767": {
+            "type": "tab",
+            "settings": {
+              "tab-title": "Timeline",
+              "tab-text": "",
+              "page-content": "hc-timeline",
+              "tab-quote": ""
+            }
+          }
+        },
+        "block_order": [
+          "1505320366065",
+          "1516213073767"
+        ],
+        "settings": {
+          "image": "shopify:\/\/shop_images\/kim-hero_1296x_dbf5db37-89a2-42d0-9cdd-da6eeccec639.png",
+          "image-2": "",
+          "hero-quote": "",
+          "text_alignment": "left",
+          "awards-title": "",
+          "awards-text": ""
+        }
+      },
+      "collection-landing-hero": {
+        "type": "collection-landing-hero",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/EUGENIA_KIM_BLACK_BLAINE_LANDING_PAGE.jpg",
+          "collection-description": "<p>FW19 was inspired by the work of Gustav Klimt, especially his use of gold. &nbsp;Klimt&rsquo;s work is imbued with a certain warmth and sensuality, &nbsp;and also a sense of mystery that we wanted to channel into the product.<\/p>\n<p><\/p>\n<p>We also loved his use of black and navy with silver accents. &nbsp;For the tweeds, we started by looking at Jackson Pollack. &nbsp;Color-wise, our palette&nbsp;calls on&nbsp;rich jewel tones accented with metallic&hellip;and lots of leopard, because the Eugenia Kim woman always loves leopard!<\/p>",
+          "button-label": "SHOP FALL\/WINTER 2019",
+          "button-link": "shopify:\/\/collections\/fall-winter-2019",
+          "lower-heading": "",
+          "lower-button-link": ""
+        }
+      },
+      "face-shape": {
+        "type": "face-shape",
+        "blocks": {
+          "1508535974687": {
+            "type": "text",
+            "settings": {
+              "tab-button-icon": "shopify:\/\/shop_images\/heart.png",
+              "tab-image": "shopify:\/\/shop_images\/Heart-FACES.png",
+              "face-diagram": "",
+              "tab-title": "Heart-Shaped Face",
+              "tab-text": "<p>For a slimmer, more narrow-appearing forehead, try a brimmed style that&rsquo;s medium in length as an ideal style for a heart shaped face.<\/p>",
+              "collection": "heart-shaped",
+              "tab-button-label": "Shop Your Face Shape"
+            }
+          },
+          "1508535977466": {
+            "type": "text",
+            "settings": {
+              "tab-button-icon": "shopify:\/\/shop_images\/square.png",
+              "tab-image": "shopify:\/\/shop_images\/SQUARE-FACES.png",
+              "face-diagram": "",
+              "tab-title": "Square Faces",
+              "tab-text": "<p>Styles that feature a curved silhouette are ideal for softening more angular face shapes. Look to floppys, cloches and bowler styles to round out your features.<\/p>",
+              "collection": "square",
+              "tab-button-label": "Shop Your Face Shape"
+            }
+          },
+          "1508535995683": {
+            "type": "text",
+            "settings": {
+              "tab-button-icon": "shopify:\/\/shop_images\/round.png",
+              "tab-image": "shopify:\/\/shop_images\/Round-FACES.png",
+              "face-diagram": "",
+              "tab-title": "Round Faces",
+              "tab-text": "<p>To create the desired length and height that will compliment a rounder face shape, look for styles with a tall crown. We also recommend medium to long brimmed fedoras, porkpies and trilby styles for this face shape.<\/p>",
+              "collection": "round",
+              "tab-button-label": "Shop Your Face Shape"
+            }
+          },
+          "1508535979256": {
+            "type": "text",
+            "settings": {
+              "tab-button-icon": "shopify:\/\/shop_images\/oval.png",
+              "tab-image": "shopify:\/\/shop_images\/Oval-FACES.png",
+              "face-diagram": "",
+              "tab-title": "Oval Faces",
+              "tab-text": "<p>Being one of the most versatile face shapes, an oval face works well with many styles. We recommend medium sized floppys, cloches, crushers or bucket hats for an oval face.<\/p>",
+              "collection": "oval",
+              "tab-button-label": "SHOP NOW"
+            }
+          }
+        },
+        "block_order": [
+          "1508535974687",
+          "1508535977466",
+          "1508535995683",
+          "1508535979256"
+        ],
+        "settings": {
+          "title": "Shop Face Shape",
+          "subtitle": "MATCH YOUR FACE SHAPE TO STYLISTS’ RECOMMENDED HATS"
+        }
+      },
+      "instagram-feed": {
+        "type": "instagram-feed",
+        "settings": {
+          "instagram_user_id": "23427815",
+          "instagram_access_token": "23427815.5ea0515.094cef94fba148ea9ebd0d2b9d171625",
+          "instagram_title": "@EUGENIAKIM",
+          "instagram_follow_text": "FOLLOW US ON INSTAGRAM",
+          "instagram_link": "https:\/\/www.instagram.com\/eugeniakimnyc\/",
+          "instagram_hashtag": "#EUGENIAKIM",
+          "image_padding": true
+        }
+      },
+      "page-timeline": {
+        "type": "page-timeline",
+        "blocks": {
+          "1516214752695": {
+            "type": "event",
+            "settings": {
+              "title": "APRIL 2, 1974",
+              "image": "",
+              "description": "Eugenia Kim is born in Pittsburgh, Pennsylvania."
+            }
+          },
+          "1516214759871": {
+            "type": "event",
+            "settings": {
+              "title": "JUNE 1996",
+              "image": "",
+              "description": "Eugenia Kim breaks her back sledding, and after a month-long hospital stay decides not to pursue a career in medicine. Eugenia graduates from Dartmouth with a degree in Psychology."
+            }
+          },
+          "1516214769910": {
+            "type": "event",
+            "settings": {
+              "title": "AUGUST 1997",
+              "image": "",
+              "description": "Eugenia enrolls in a millinery class at Parsons New School of Design."
+            }
+          },
+          "1516214771833": {
+            "type": "event",
+            "settings": {
+              "title": "FEBRUARY 1998",
+              "image": "",
+              "description": "Eugenia shaves her head and creates a feathered hat as a disguise; that hat draws the attention of buyers in SOHO, leading to orders being placed and the birth of the brand."
+            }
+          },
+          "1516219576139": {
+            "type": "event",
+            "settings": {
+              "title": "MAY 1998",
+              "image": "shopify:\/\/shop_images\/Screenshot_2018-01-17_15.08.22.png",
+              "description": "NY Times article announces the collection to be introduced at Barneys New York."
+            }
+          },
+          "1516221476532": {
+            "type": "event",
+            "settings": {
+              "title": "MAY 1998",
+              "image": "shopify:\/\/shop_images\/Screenshot_2018-01-17_15.39.26.png",
+              "description": "W Magazine publishes first editorial styled with a Eugenia Kim hat."
+            }
+          },
+          "1516221581138": {
+            "type": "event",
+            "settings": {
+              "title": "NOVEMBER 1998",
+              "image": "",
+              "description": "Eugenia Kim wins Gen Art Fresh Faces in Fashion Award."
+            }
+          },
+          "1516221643144": {
+            "type": "event",
+            "settings": {
+              "title": "DECEMBER 1998",
+              "image": "shopify:\/\/shop_images\/polaroids-ek.jpg",
+              "description": "Eugenia Kim opens her first store on East 4th street in New York City."
+            }
+          },
+          "1516221674218": {
+            "type": "event",
+            "settings": {
+              "title": "SEPTEMBER 2001",
+              "image": "shopify:\/\/shop_images\/SEPT_2001_ZOOLANDER.jpg",
+              "description": "Eugenia Kim “haircut” hats and Nic headpiece appear in the Ben Stiller comedy Zoolander."
+            }
+          },
+          "1516221856738": {
+            "type": "event",
+            "settings": {
+              "title": "SEPTEMBER 2001",
+              "image": "shopify:\/\/shop_images\/jlojanet.jpg",
+              "description": "Jennifer Lopez and Janet Jackson wear Eugenia Kim hats at the MTV Video Music Awards."
+            }
+          },
+          "1516221936008": {
+            "type": "event",
+            "settings": {
+              "title": "FEBRUARY 2002",
+              "image": "shopify:\/\/shop_images\/ALICE_ROI_FEBRUARY_2002.jpg",
+              "description": "NY Times covers first Eugenia Kim runway collaboration with designer Alice Roi."
+            }
+          },
+          "1516221973615": {
+            "type": "event",
+            "settings": {
+              "title": "OCTOBER 2002",
+              "image": "shopify:\/\/shop_images\/BEYONCE_VIBE.jpg",
+              "description": "Beyoncé wears Eugenia Kim Honey hat on the cover of Vibe Magazine."
+            }
+          },
+          "1516222043220": {
+            "type": "event",
+            "settings": {
+              "title": "FEBRUARY 2003",
+              "image": "",
+              "description": "Eugenia Kim collaborates with Michael Kors on hats for his Fall\/Winter 2003 collection."
+            }
+          },
+          "1516222078220": {
+            "type": "event",
+            "settings": {
+              "title": "NOVEMBER 2003",
+              "image": "shopify:\/\/shop_images\/Screenshot_2018-01-17_15.48.44.png",
+              "description": "Eugenia Kim launches first footwear collection."
+            }
+          },
+          "1516222142764": {
+            "type": "event",
+            "settings": {
+              "title": "FEBRUARY 2004",
+              "image": "shopify:\/\/shop_images\/Screenshot_2018-01-17_15.49.55.png",
+              "description": "Eugenia Kim hat is worn by Carrie Bradshaw (Sarah Jessica Parker) in an episode of Sex and the City."
+            }
+          },
+          "1516222270532": {
+            "type": "event",
+            "settings": {
+              "title": "JUNE 2004",
+              "image": "shopify:\/\/shop_images\/Screenshot_2018-01-17_15.52.10.png",
+              "description": "Eugenia Kim wins the Perry Ellis CFDA Award for Accessories Designer of the Year."
+            }
+          },
+          "1516222358641": {
+            "type": "event",
+            "settings": {
+              "title": "JANUARY 2005",
+              "image": "",
+              "description": "Eugenia Kim is awarded by Fashion Group International as the Accessories Designer of the Year."
+            }
+          },
+          "1516222399702": {
+            "type": "event",
+            "settings": {
+              "title": "FEBRUARY 2005",
+              "image": "",
+              "description": "Eugenia Kim collaborates with Donna Karan on Fall\/Winter 2005 show."
+            }
+          },
+          "1516222420609": {
+            "type": "event",
+            "settings": {
+              "title": "MAY 2005",
+              "image": "shopify:\/\/shop_images\/Screenshot_2018-01-17_15.54.50.png",
+              "description": "Genie by Eugenia Kim is launched for the Spring\/Summer 2006 season."
+            }
+          },
+          "1516222464533": {
+            "type": "event",
+            "settings": {
+              "title": "SEPTEMBER 2005",
+              "image": "shopify:\/\/shop_images\/MR_KIM_SEPTEMBER_2005.jpg",
+              "description": "Eugenia Kim launches Mr. Kim men’s line."
+            }
+          },
+          "1516222558417": {
+            "type": "event",
+            "settings": {
+              "title": "FEBRUARY 2006",
+              "image": "",
+              "description": "Mr. Kim is featured in a GQ editorial."
+            }
+          },
+          "1516222602681": {
+            "type": "event",
+            "settings": {
+              "title": "DECEMBER 2006",
+              "image": "shopify:\/\/shop_images\/SNH_DECEMBER_2006.jpg",
+              "description": "Eugenia Kim’s first book Saturday Night Hat: Quick, Easy Hatmaking for the Downtown Girl, is published by Random House."
+            }
+          },
+          "1516222659007": {
+            "type": "event",
+            "settings": {
+              "title": "FEBRUARY 2007",
+              "image": "shopify:\/\/shop_images\/Screenshot_2018-01-17_15.58.25.png",
+              "description": "Eugenia Kim collaborates on Side-Parted Hair Hats for the Catherine Malandrino FW07 runway show."
+            }
+          },
+          "1516222717090": {
+            "type": "event",
+            "settings": {
+              "title": "MAY 2007",
+              "image": "",
+              "description": "Eugenia Kim collaborates with Warner Bros. on “Tweety Bird” hat."
+            }
+          },
+          "1516222747366": {
+            "type": "event",
+            "settings": {
+              "title": "SEPTEMBER 2007",
+              "image": "shopify:\/\/shop_images\/Screenshot_2018-01-17_15.59.46.png",
+              "description": "Eugenia Kim collaborates with Michael Kors and DKNY for their SS08 collections at NYFW."
+            }
+          },
+          "1516222797777": {
+            "type": "event",
+            "settings": {
+              "title": "OCTOBER 2007",
+              "image": "shopify:\/\/shop_images\/Screenshot_2018-01-17_16.00.30.png",
+              "description": "WWD announces Eugenia Kim x Coach collaboration."
+            }
+          },
+          "1516222853647": {
+            "type": "event",
+            "settings": {
+              "title": "NOVEMBER 2007",
+              "image": "shopify:\/\/shop_images\/Screenshot_2018-01-17_16.01.39.png",
+              "description": "Eugenia Kim x Coach collaboration launches."
+            }
+          },
+          "1516222970904": {
+            "type": "event",
+            "settings": {
+              "title": "JULY 2008",
+              "image": "shopify:\/\/shop_images\/Screenshot_2018-01-17_16.03.24.png",
+              "description": "WWD features Eugenia Kim x Michael Kors collaboration."
+            }
+          },
+          "1516223023863": {
+            "type": "event",
+            "settings": {
+              "title": "SEPTEMBER 2008",
+              "image": "shopify:\/\/shop_images\/Screenshot_2018-01-17_16.04.22.png",
+              "description": "Eugenia Kim wins Cosmopolitan Fun Fearless Female Award."
+            }
+          },
+          "1516223089752": {
+            "type": "event",
+            "settings": {
+              "title": "JULY 2009",
+              "image": "shopify:\/\/shop_images\/EEK_JULY_2009.jpg",
+              "description": "EEK! A capsule collection with Urban Outfitters launches."
+            }
+          },
+          "1516223148424": {
+            "type": "event",
+            "settings": {
+              "title": "SEPTEMBER 2009",
+              "image": "",
+              "description": "Eugenia Kim collection is introduced at major retailers Neiman Marcus and Net-A-Porter."
+            }
+          },
+          "1516223173879": {
+            "type": "event",
+            "settings": {
+              "title": "NOVEMBER 2009",
+              "image": "",
+              "description": "Eugenia Kim x Opening Ceremony collaboration of iconic “haircut” hats launches."
+            }
+          },
+          "1516223199319": {
+            "type": "event",
+            "settings": {
+              "title": "APRIL 2010",
+              "image": "shopify:\/\/shop_images\/EUGENIA_KIM_TARGET.png",
+              "description": "Eugenia Kim for Target launches."
+            }
+          },
+          "1516223234866": {
+            "type": "event",
+            "settings": {
+              "title": "SEPTEMBER 2010",
+              "image": "",
+              "description": "Eugenia Kim launches first e-commerce website."
+            }
+          },
+          "1516223250392": {
+            "type": "event",
+            "settings": {
+              "title": "SEPTEMBER 2013",
+              "image": "",
+              "description": "Kid Kim - a children’s line - launches."
+            }
+          },
+          "1516223307733": {
+            "type": "event",
+            "settings": {
+              "title": "OCTOBER 2014",
+              "image": "shopify:\/\/shop_images\/SNL.jpg",
+              "description": "Eugenia Kim is included in Saks With Avenue’s collaboration with Saturday Night Live for the TV show’s 40th Anniversary."
+            }
+          },
+          "1516223341239": {
+            "type": "event",
+            "settings": {
+              "title": "FEBRUARY 2015",
+              "image": "shopify:\/\/shop_images\/Sunny_21012-61117C.jpg",
+              "description": "The \"Do Not Disturb\" sunhat is born, and becomes the most successful Eugenia Kim hat to date; commercially, editorially as well as on social media."
+            }
+          },
+          "1516742016800": {
+            "type": "event",
+            "settings": {
+              "title": "SEPTEMBER 2015",
+              "image": "shopify:\/\/shop_images\/BEYONCE_DO_NOT.jpg",
+              "description": "Beyoncé wears \"Do Not Disturb\" sunhat in Instagram post."
+            }
+          },
+          "1516223421449": {
+            "type": "event",
+            "settings": {
+              "title": "MARCH 2017",
+              "image": "shopify:\/\/shop_images\/21.jpg",
+              "description": "Eugenia Kim further expands into accessories with the brand’s first handbag collection launch."
+            }
+          },
+          "1516223446246": {
+            "type": "event",
+            "settings": {
+              "title": "MAY 2017",
+              "image": "shopify:\/\/shop_images\/GENIE_LILLY_PULITZER.png",
+              "description": "Genie by Eugenia Kim launches a collaboration with celebrated designer Lilly Pulitzer."
+            }
+          },
+          "1516223469347": {
+            "type": "event",
+            "settings": {
+              "title": "AUGUST 2017",
+              "image": "",
+              "description": "Eugenia Kim introduces a capsule collection of scarves."
+            }
+          },
+          "1516223487311": {
+            "type": "event",
+            "settings": {
+              "title": "SEPTEMBER 2017",
+              "image": "shopify:\/\/shop_images\/NYFW_SS18.png",
+              "description": "Eugenia Kim makes NYFW debut for the brand’s SS18 collection."
+            }
+          },
+          "1516223514477": {
+            "type": "event",
+            "settings": {
+              "title": "DECEMBER 2017",
+              "image": "shopify:\/\/shop_images\/WEBSITE_DECEMBER_2017.png",
+              "description": "Eugenia Kim re-launches e-commerce site, now a fully realized online shopping experience."
+            }
+          },
+          "1522703094191": {
+            "type": "event",
+            "settings": {
+              "title": "FEBRUARY 2018",
+              "image": "shopify:\/\/shop_images\/RETROSPECTIVE_FEBRUARY_2018.jpg",
+              "description": "Eugenia Kim celebrates its 20th Anniversary with a Retrospective of the brand’s most iconic styles alongside its FW18 NYFW Presentation. The retrospective collection is acquired exclusively by Barney’s."
+            }
+          },
+          "1528999707354": {
+            "type": "event",
+            "settings": {
+              "title": "JUNE 2018",
+              "image": "shopify:\/\/shop_images\/YOUR_GROUP_SHOT_63dee6ab-b5d7-4153-b642-da12711ea404.jpeg",
+              "description": "EugeniaKim.com launches its first customization program, allowing shoppers to create their own unique word hats."
+            }
+          }
+        },
+        "block_order": [
+          "1516214752695",
+          "1516214759871",
+          "1516214769910",
+          "1516214771833",
+          "1516219576139",
+          "1516221476532",
+          "1516221581138",
+          "1516221643144",
+          "1516221674218",
+          "1516221856738",
+          "1516221936008",
+          "1516221973615",
+          "1516222043220",
+          "1516222078220",
+          "1516222142764",
+          "1516222270532",
+          "1516222358641",
+          "1516222399702",
+          "1516222420609",
+          "1516222464533",
+          "1516222558417",
+          "1516222602681",
+          "1516222659007",
+          "1516222717090",
+          "1516222747366",
+          "1516222797777",
+          "1516222853647",
+          "1516222970904",
+          "1516223023863",
+          "1516223089752",
+          "1516223148424",
+          "1516223173879",
+          "1516223199319",
+          "1516223234866",
+          "1516223250392",
+          "1516223307733",
+          "1516223341239",
+          "1516742016800",
+          "1516223421449",
+          "1516223446246",
+          "1516223469347",
+          "1516223487311",
+          "1516223514477",
+          "1522703094191",
+          "1528999707354"
+        ],
+        "settings": {}
+      },
+      "1516299013184": {
+        "type": "instagram-feed",
+        "settings": {
+          "instagram_user_id": "23427815",
+          "instagram_access_token": "23427815.1677ed0.b089be2a490a4350a300b841be0e16ea",
+          "instagram_title": "@EUGENIAKIMNYC",
+          "instagram_follow_text": "FOLLOW US ON INSTAGRAM",
+          "instagram_link": "https:\/\/www.instagram.com\/eugeniakimnyc\/",
+          "instagram_hashtag": "#EUGENIAKIM",
+          "image_padding": true
+        }
+      },
+      "blog-masonry-template": {
+        "type": "blog-masonry-template",
+        "settings": {
+          "layout": "list",
+          "blog_show_author": false,
+          "blog_show_date": false
+        }
+      },
+      "collection-customize-2": {
+        "type": "collection-customize-2",
+        "settings": {
+          "alignment": "center",
+          "text_alignment": "text-right",
+          "text_alignment_vertical": "text-top",
+          "text_color": "#ffffff",
+          "text_weight": "700",
+          "collection_title": "Step 2"
+        }
+      },
+      "collection-customize-1": {
+        "type": "collection-customize-1",
+        "blocks": {
+          "1526486149435": {
+            "type": "collection",
+            "settings": {
+              "collection": "sunny-in-ivory-with-customizable-text"
+            }
+          },
+          "1522966832001": {
+            "type": "collection",
+            "settings": {
+              "collection": "bunny-sand"
+            }
+          },
+          "1522966828272": {
+            "type": "collection",
+            "settings": {
+              "collection": "bunny-natural"
+            }
+          }
+        },
+        "block_order": [
+          "1526486149435",
+          "1522966832001",
+          "1522966828272"
+        ],
+        "settings": {
+          "image": "shopify:\/\/shop_images\/YOUR_GROUP_SHOT_2.jpeg",
+          "alignment": "bottom",
+          "text_alignment": "text-right",
+          "text_alignment_vertical": "text-top",
+          "text_color": "#ffffff",
+          "text_weight": "700",
+          "title": "CUSTOMIZABLE PRODUCTS",
+          "button_label": "",
+          "button_link": "",
+          "collection_title": "Step 1",
+          "collection_subtitle": "Choose your product"
+        }
+      },
+      "customizer-steps": {
+        "type": "customizer-steps",
+        "blocks": {
+          "1542830710349": {
+            "type": "image_picker",
+            "settings": {
+              "hero-title": "Customizable Products",
+              "hero-sub-title": "Select Products",
+              "color-text": "#ffffff",
+              "hero-image": "shopify:\/\/shop_images\/YOUR_GROUP_SHOT_2_1440x720_f11f87fe-7d80-4f79-a144-d94bb024dc0a.jpg"
+            }
+          },
+          "1542830795453": {
+            "type": "content",
+            "settings": {
+              "customizer-title": "Step 1",
+              "customizer-sub-title": "Choose your product"
+            }
+          },
+          "1542830818283": {
+            "type": "text",
+            "settings": {
+              "title": "Sunny in Ivory with Customizable Text",
+              "collection-image-front": "shopify:\/\/shop_images\/SUNNY_IVORY_BLANK_800x800_400x400_23160b95-efed-43c9-bcfc-b3ee730cdc27.jpg",
+              "collection-image-back": "shopify:\/\/shop_images\/SUNNY_IVORY_Hover_400x400_21ac1033-3573-4721-827b-df906e594a4c.jpg",
+              "feature_collection": "sunny-in-ivory-with-customizable-text"
+            }
+          },
+          "1542830937733": {
+            "type": "text",
+            "settings": {
+              "title": "Bunny in Sand with Customizable Text",
+              "collection-image-front": "shopify:\/\/shop_images\/BUNNY_SAND_BLANK_800x800_400x400_110ef50e-179f-4227-a945-7815f3d29eb2.jpg",
+              "collection-image-back": "shopify:\/\/shop_images\/MODEL_FRONT_BUNNY_SAND_400x400_63990c01-1e8a-4beb-a6fe-c4420c6c58c7.jpg",
+              "feature_collection": "bunny-sand"
+            }
+          },
+          "1542831045738": {
+            "type": "text",
+            "settings": {
+              "title": "Bunny in Ivory With Customizable Text",
+              "collection-image-front": "shopify:\/\/shop_images\/BUNNY_IVORY_BLANK_800x800_400x400_f1ba7980-1535-4fd3-8262-1a870664c89d.jpg",
+              "collection-image-back": "shopify:\/\/shop_images\/MODEL_FRONT_BUNNY_IVORY_400x400_279b44b3-2bab-4386-8a32-42e1d9f7e735.jpg",
+              "feature_collection": "bunny-natural"
+            }
+          }
+        },
+        "block_order": [
+          "1542830710349",
+          "1542830795453",
+          "1542830818283",
+          "1542830937733",
+          "1542831045738"
+        ],
+        "settings": {}
+      },
+      "customizer-steps-2": {
+        "type": "customizer-steps-2",
+        "settings": {
+          "alignment": "center",
+          "text_alignment": "text-right",
+          "text_alignment_vertical": "text-top",
+          "text_color": "#ffffff",
+          "text_weight": "700",
+          "title": "Headline",
+          "button_label": "",
+          "button_link": "",
+          "collection_title": "Step 2",
+          "collection_subtitle": "Choose your product"
+        }
+      },
+      "product-customizable-template": {
+        "type": "product-customizable-template",
+        "blocks": {
+          "1542834098287": {
+            "type": "text",
+            "settings": {
+              "url_photos": "https:\/\/www.instagram.com\/p\/Bl3-Eupn3zC\/",
+              "alt_photos": "eugeniakimnyc",
+              "image_customers": "shopify:\/\/shop_images\/37380817_453264295141295_3169043650873131008_n_540x540_c89b6293-4ed9-401f-a726-28c0e87271cf.jpg"
+            }
+          },
+          "1542834130097": {
+            "type": "text",
+            "settings": {
+              "url_photos": "https:\/\/www.instagram.com\/p\/Blie-_4HGrv\/",
+              "alt_photos": "eugeniakimnyc",
+              "image_customers": "shopify:\/\/shop_images\/36962319_1968440606780572_874455852566708224_n_540x540_7b39a9a8-014e-4b66-8271-5ddfd84933b3.jpg"
+            }
+          },
+          "1542834146471": {
+            "type": "text",
+            "settings": {
+              "url_photos": "https:\/\/www.instagram.com\/p\/BlVy5vTndy_\/",
+              "alt_photos": "eugeniakimnyc",
+              "image_customers": "shopify:\/\/shop_images\/36842230_484454472002343_149690167295213568_n_540x540_2187419e-b326-41b5-a958-75890d19a91c.jpg"
+            }
+          },
+          "1542834176470": {
+            "type": "text",
+            "settings": {
+              "url_photos": "https:\/\/www.instagram.com\/p\/Bkz_6DDHRoa\/",
+              "alt_photos": "eugeniakimnyc",
+              "image_customers": "shopify:\/\/shop_images\/35575459_126485211534687_6919067961667878912_n_540x540_0317a919-c3fc-4315-b71f-13e99e834045.jpg"
+            }
+          },
+          "1542834188847": {
+            "type": "text",
+            "settings": {
+              "url_photos": "https:\/\/www.instagram.com\/p\/BjnOcWFF5XH\/",
+              "alt_photos": "eugeniakimnyc",
+              "image_customers": "shopify:\/\/shop_images\/34212231_1386401731461454_887062977444839424_n_540x540_d0b92ac1-3d2f-4295-85cf-5fa0d8c3ad2e.jpg"
+            }
+          },
+          "1542834205690": {
+            "type": "text",
+            "settings": {
+              "url_photos": "https:\/\/www.instagram.com\/p\/BkAmwnpFCq0\/",
+              "alt_photos": "eugeniakimnyc",
+              "image_customers": "shopify:\/\/shop_images\/33457249_175669656611068_9216677870762459136_n_540x540_ba99c64f-4f64-4294-a8f3-04dc84861454.jpg"
+            }
+          }
+        },
+        "block_order": [
+          "1542834098287",
+          "1542834130097",
+          "1542834146471",
+          "1542834176470",
+          "1542834188847",
+          "1542834205690"
+        ],
+        "settings": {
+          "image_size": "medium",
+          "show_quantity_selector": true,
+          "show_variant_labels": true,
+          "show_vendor": false,
+          "enable_zoom": false,
+          "show_share_buttons": true,
+          "customerphotos_title": "EugeniaKim in Real life",
+          "customerphotos_subtitle": "SEE PHOTOS OF OUR CUSTOMERS",
+          "customerphotos_instagram": "eugeniakimnyc"
+        }
+      },
+      "article-template": {
+        "type": "article-template",
+        "settings": {
+          "blog_show_author": true,
+          "blog_show_date": true,
+          "show_share_buttons": true
+        }
+      },
+      "1578074573489": {
+        "type": "custom-content",
+        "blocks": {
+          "1578074573489-1": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/FFF_Box_Partner_Badge_2.jpg",
+              "width": "25%",
+              "alignment": "bottom-right"
+            }
+          }
+        },
+        "block_order": [
+          "1578074573489-1"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "1588952693814": {
+        "type": "instafeed",
+        "settings": {
+          "heading_font": "helvetica_n4",
+          "heading_size": 20,
+          "feed_width": 100,
+          "html_area": "<!-- -->"
+        }
+      },
+      "1591374010288": {
+        "type": "sk-two-img",
+        "settings": {
+          "first-img": "shopify:\/\/shop_images\/HeaderMask.jpg",
+          "second-img": "shopify:\/\/shop_images\/Homepage-ShopbyFaceShape.jpg",
+          "first-text": "Fashion Face Mask",
+          "second-text": "Shop by Face Shape",
+          "first-link-text": "SHOP NOW",
+          "second-link-text": "SHOP NOW",
+          "first-link-url": "shopify:\/\/collections\/face-masks",
+          "second-link-url": "https:\/\/eugeniakim.com\/pages\/face-shape"
+        }
+      },
+      "1591380270439": {
+        "type": "sk-full-img",
+        "settings": {
+          "full-img": "shopify:\/\/shop_images\/Homepage-Summer-Essentials.jpg",
+          "full-img-text": "Summer Essentials",
+          "link-text": "SHOP NOW",
+          "link-url": "https:\/\/eugeniakim.com\/collections\/sunhats"
+        }
+      }
+    },
+    "content_for_index": [
+      "1502750296449",
+      "1591374010288",
+      "1591380270439",
+      "featured-collections",
+      "1503341484194",
+      "1502488989737",
+      "1516299013184",
+      "1588952693814",
+      "1502833118491",
+      "1502837807798",
+      "1502750397730",
+      "1578074573489"
+    ]
+  },
+  "presets": {
+    "Default": {
+      "color_text": "#3d4246",
+      "color_body_text": "#788188",
+      "color_sale_text": "#7796A8",
+      "color_borders": "#e8e9eb",
+      "color_button": "#7796A8",
+      "color_button_text": "#fff",
+      "color_small_button": "#fff",
+      "color_small_button_text": "#3d4246",
+      "color_text_field": "#fff",
+      "color_text_field_text": "#000",
+      "color_image_overlay_text": "#fff",
+      "color_image_overlay": "#3d4246",
+      "image_overlay_opacity": "0.25",
+      "color_body_bg": "#fff",
+      "type_header_family": "Google_Work+Sans_600_sans",
+      "type_header_base_size": "26px",
+      "type_base_family": "Google_Work+Sans_400_sans",
+      "type_base_size": "16px",
+      "type_bold_product_titles": false,
+      "share_facebook": true,
+      "share_twitter": true,
+      "share_pinterest": true,
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {}
+        },
+        "hero": {
+          "type": "hero",
+          "settings": {}
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-0": {
+              "type": "image",
+              "settings": {}
+            },
+            "slideshow-1": {
+              "type": "image",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "slideshow-0",
+            "slideshow-1"
+          ],
+          "settings": {}
+        },
+        "featured-collections": {
+          "type": "collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "feature-row": {
+          "type": "feature-row",
+          "settings": {}
+        },
+        "footer": {
+          "type": "footer",
+          "settings": {
+            "footer_linklist_two": ""
+          }
+        }
+      },
+      "content_for_index": [
+        "hero",
+        "featured-collections",
+        "feature-row",
+        "slideshow"
+      ]
+    },
+    "Light": {
+      "color_text": "#162950",
+      "color_body_text": "#757575",
+      "color_sale_text": "#ff574f",
+      "color_borders": "#e4e4e4",
+      "color_button": "#ff574f",
+      "color_button_text": "#ffffff",
+      "color_small_button": "#eaeaea",
+      "color_small_button_text": "#162950",
+      "color_text_field": "#ffffff",
+      "color_text_field_text": "#162950",
+      "color_image_overlay_text": "#ffffff",
+      "color_image_overlay": "#3d3d3d",
+      "image_overlay_opacity": "0.3",
+      "color_body_bg": "#f8f8f8",
+      "type_header_family": "Google_Muli_600_sans",
+      "type_header_base_size": "26px",
+      "type_base_family": "Google_Muli_600_sans",
+      "type_base_size": "18px",
+      "type_bold_product_titles": true,
+      "share_facebook": true,
+      "share_twitter": true,
+      "share_pinterest": true,
+      "social_twitter_link": "",
+      "social_facebook_link": "",
+      "social_pinterest_link": "",
+      "social_instagram_link": "",
+      "social_tumblr_link": "",
+      "social_snapchat_link": "",
+      "social_youtube_link": "",
+      "social_vimeo_link": "",
+      "favicon": "",
+      "checkout_header_image": "",
+      "checkout_logo_image": "",
+      "checkout_logo_position": "left",
+      "checkout_logo_size": "small",
+      "checkout_body_background_image": "",
+      "checkout_body_background_color": "#ffffff",
+      "checkout_input_background_color_mode": "white",
+      "checkout_sidebar_background_image": "",
+      "checkout_sidebar_background_color": "#e8f3f6",
+      "checkout_heading_font": "Roboto",
+      "checkout_body_font": "Source Sans Pro",
+      "checkout_accent_color": "#1990c6",
+      "checkout_button_color": "#23314e",
+      "checkout_error_color": "#ff6d6d",
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "align_logo": "left",
+            "logo": "",
+            "logo_max_width": "135",
+            "main_linklist": "main-menu",
+            "message": true,
+            "color_bg": "#162950",
+            "color_text": "#ffffff"
+          }
+        },
+        "hero": {
+          "type": "hero",
+          "settings": {
+            "alignment": "center",
+            "hero_size": "x-large"
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-0": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "alignment": "center"
+              }
+            },
+            "1492095993817": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "alignment": "center"
+              }
+            }
+          },
+          "block_order": [
+            "slideshow-0",
+            "1492095993817"
+          ],
+          "settings": {
+            "autoplay": true,
+            "autoplay_speed": "6000",
+            "slideshow_height": "medium",
+            "text_size": "medium"
+          }
+        },
+        "featured-collections": {
+          "type": "collection",
+          "settings": {
+            "grid": "3",
+            "rows": "1",
+            "show_vendor": true,
+            "show_view_all": true
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "settings": {
+            "footer_linklist": "main-menu",
+            "footer_linklist_two": "footer",
+            "footer_newsletter_enable": true,
+            "show_payment_icons": true
+          }
+        },
+        "product-template": {
+          "type": "product-template",
+          "settings": {
+            "image_size": "medium",
+            "show_quantity_selector": false,
+            "show_variant_labels": true,
+            "show_vendor": false,
+            "enable_zoom": true,
+            "show_share_buttons": true
+          }
+        },
+        "collection-template": {
+          "type": "collection-template",
+          "settings": {
+            "layout": "grid",
+            "grid": "2",
+            "rows": "2",
+            "show_collection_image": true,
+            "show_vendor": false,
+            "sort_enable": true,
+            "tags_enable": true
+          }
+        },
+        "1492033809691": {
+          "type": "map",
+          "settings": {
+            "show_button": true
+          }
+        },
+        "1492033877875": {
+          "type": "quotes",
+          "blocks": {
+            "1492033877875-0": {
+              "type": "quote",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "1492033877875-0"
+          ],
+          "settings": {}
+        },
+        "1492033924902": {
+          "type": "custom-content",
+          "blocks": {
+            "1492033924902-0": {
+              "type": "text",
+              "settings": {
+                "width": "100%",
+                "alignment": "center",
+                "align_text": "center"
+              }
+            }
+          },
+          "block_order": [
+            "1492033924902-0"
+          ],
+          "settings": {
+            "title": ""
+          }
+        },
+        "1492096252560": {
+          "type": "collection-list",
+          "blocks": {
+            "1492096252560-0": {
+              "type": "featured_collection",
+              "settings": {}
+            },
+            "1492096252560-1": {
+              "type": "featured_collection",
+              "settings": {}
+            },
+            "1492096252560-2": {
+              "type": "featured_collection",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "1492096252560-0",
+            "1492096252560-1",
+            "1492096252560-2"
+          ],
+          "settings": {
+            "grid": "3"
+          }
+        },
+        "blog-template": {
+          "type": "blog-template",
+          "settings": {
+            "layout": "grid",
+            "blog_show_author": true,
+            "blog_show_date": false
+          }
+        },
+        "article-template": {
+          "type": "article-template",
+          "settings": {
+            "blog_show_author": true,
+            "blog_show_date": true,
+            "show_share_buttons": true
+          }
+        },
+        "cart-template": {
+          "type": "cart-template",
+          "settings": {
+            "cart_notes_enable": false
+          }
+        }
+      },
+      "content_for_index": [
+        "hero",
+        "featured-collections",
+        "slideshow",
+        "1492033924902",
+        "1492096252560",
+        "1492033877875",
+        "1492033809691"
+      ]
+    }
+  }
+}

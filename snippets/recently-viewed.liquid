@@ -1,0 +1,163 @@
+{% comment %}<ul class="recently-viewed-products"></ul>{% endcomment %}
+
+<script>
+  //grabs product array from local storage
+  function getRecentlyViewed() {
+    var recentlyViewedItems = JSON.parse(localStorage.getItem('recentlyViewedItems'));
+    return Array.isArray(recentlyViewedItems) ? recentlyViewedItems : []
+  }
+
+  //checks if current item is already in local storage array
+  function removeCurrentProduct(recentArray) {
+    var index = 0;
+    var duplicateIndex = 0;
+
+
+    recentArray.forEach(function(item) {
+      //if duplicate found remove (this allows adding it to the end of the array)
+      if (item.handle == '{{product.handle}}') {
+        foundDuplicate = true;
+        duplicateIndex = index;
+        var lastIndex = recentArray[duplicateIndex];
+        recentArray.splice(duplicateIndex, 1);
+      }
+
+      index++;
+    })
+    return recentArray;
+  }
+
+  //resize thumbs
+  function resizeImage(src, size) {
+    if (!size) return src
+    if (size === 'master') return src
+
+    var match  = src.match(/\.(jpg|jpeg|gif|png|bmp|bitmap|tiff|tif)(\?v=\d+)?/i)
+    if (match) {
+      var prefix = src.split(match[0])
+      var suffix = match[0]
+      return (prefix[0] + "_" + size + suffix)
+    }
+
+    return null
+  }
+
+  //api call to get product information for current product to add to local storage array
+  function getProductInfo(handle, callback){
+    $.ajax({
+      type: 'GET',
+      url: '/products/'+handle+'.js',
+      dataType: 'json',
+      success: function(product){
+        //console.log(product);
+        var productLink = product.url;
+        if (product.tags.includes('custom')){
+          productLink = 'https://eugeniakim.com/apps/customify/view/' + product.handle + '/' + product.id + '?variant=' + product.variants[0].id + '&domain=eugeniakim.com';
+        }
+
+        var productInfo = {
+          handle: product.handle,
+          url: productLink,
+          title: product.title,
+          price: product.price,
+          image: resizeImage(product.images[0], '{{image_size}}')
+        }
+        callback(productInfo)
+      }
+    })
+  }
+
+  //only store n+1 most recently viewed items (+1 item used in the case of viewing a recently viewed item)
+  function trimArray(recentArray){
+    var trimmedArray = recentArray
+    while (trimmedArray.length > {{limit | plus: 1}} ) {
+      trimmedArray.shift()
+    }
+    return trimmedArray
+  }
+
+  //append products into container
+  function renderProducts(recentArray){
+    console.log(recentArray);
+    var container = $('.recently-viewed-products');
+    var html = '';
+    var images = [];
+    if (recentArray.length <= {{limit}}) {
+      recentArray.forEach(function(product){
+        //check if array contains current product
+        if (product.handle != '{{product.handle}}'){
+          html +=
+          '<li class="recent-product">'+
+            '<a href="'+product.url+'">'+
+              '<div class="image-container">'+
+                '<img src="'+product.image+'" alt="'+product.title+'">'+
+              '</div>'+
+              '<p>Recently Viewed</p>' +
+              '<div class="recent-product__info">' +
+                '<span class="recent-product__title">'+ product.title + '</span>' +
+                '<span class="recent-product__price">'+ Shopify.formatMoney(product.price, {% raw %}'${{amount}}'{% endraw %}) + '</span>' +
+              '</div>' +
+//               '<button class="btn recent-product__btn">Go To Product</button>' +
+            '</a>'+
+          '</li>'
+          images.push(product.image);
+        }
+      })
+    }else{
+      var currentProductFound = false;
+      for(i=1;i< {{ limit | plus:1 }} ;i++){
+        if(recentArray[i].handle != '{{product.handle}}'){
+          console.log(recentArray[i].url);
+          html +=
+          '<li class="recent-product">'+
+            '<a href="'+recentArray[i].url+'">'+
+              '<div class="image-container">'+
+                '<img src="'+recentArray[i].image+'" alt="'+recentArray[i].title+'">'+
+              '</div>'+
+              '<p>Recently Viewed</p>' +
+              '<div class="recent-product__info">' +
+                '<span class="recent-product__title">'+ recentArray[i].title + '</span>' +
+                '<span class="recent-product__price">'+ Shopify.formatMoney(recentArray[i].price, {% raw %}'${{amount}}'{% endraw %}) + '</span>' +
+              '</div>' +
+            '</a>'+
+          '</li>'
+          images.push(recentArray[i].image);
+        }else{
+          currentProductFound = true;
+        }
+      }
+
+      if (currentProductFound) {
+        //console.log(recentArray[0].url);
+        var prehtml =
+        '<li class="recent-product">'+
+          '<a href="'+recentArray[0].url+'">'+
+            '<div class="image-container">'+
+              '<img src="'+recentArray[0].image+'" alt="'+recentArray[0].title+'">'+
+            '</div>'+
+            '<p>Recently Viewed</p>' +
+            '<div class="recent-product__info">' +
+              '<span class="recent-product__title">'+ recentArray[0].title + '</span>' +
+              '<span class="recent-product__price">'+ Shopify.formatMoney(recentArray[0].price, {% raw %}'${{amount}}'{% endraw %}) + '</span>' +
+            '</div>' +
+          '</a>'+
+        '</li>'
+        images.push(recentArray[0].image);
+        container.append(prehtml);
+      }
+    }
+
+    theme.Images.preload(images);
+    container.append(html);
+  }
+
+  //run on load
+  var recentlyViewedItems = getRecentlyViewed();
+  recentlyViewedItems = removeCurrentProduct(recentlyViewedItems);
+  getProductInfo('{{product.handle}}', function(product) {
+    //converts object to array -> add to local storage
+    recentlyViewedItems = trimArray(recentlyViewedItems.concat(product));
+    localStorage.recentlyViewedItems = JSON.stringify(recentlyViewedItems);
+    renderProducts(recentlyViewedItems)
+  })
+</script>

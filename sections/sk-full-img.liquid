@@ -1,0 +1,53 @@
+<div class="sk-full-img-wrap">
+  <div class="sk-full-img-inner">
+    
+      <a  href="{{section.settings.link-url}}" class="sk-full-img"  style="background-image: url({{section.settings.full-img | img_url: 'master'}})">
+      </a>
+      
+      <div class="sk-col-text sk-full-img-text">
+        <h3>{{section.settings.full-img-text}}</h3>
+        <a href="{{section.settings.link-url}}">{{section.settings.link-text}}</a>
+      </div>
+  
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Full Image Row",
+    "settings": [
+		{
+			"type": "image_picker",
+			"label": "Image",
+			"id": "full-img"
+		},
+		{
+			"type": "text",
+			"label": "Full Image Text",
+			"id": "full-img-text"
+		},	
+		{
+			"type": "text",
+			"label": "Link Text",
+			"id": "link-text"
+		},
+        {
+          "type": "url",
+          "id": "link-url",
+          "label": "Link Url"
+      	}
+	],
+	"presets": [
+      {
+        "name": "Full Image Row",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

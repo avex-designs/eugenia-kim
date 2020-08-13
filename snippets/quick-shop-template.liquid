@@ -1,0 +1,42 @@
+<!-- Quick shop modal window -->
+
+<div class="remodal quick-shop" id="quick-shop__modal" data-remodal-id="modal__quick-shop">
+  <button data-remodal-action="close" class="remodal-close"></button>
+
+  <div class="quick-shop__slider"></div>
+
+  <h1 class="quick-shop__title"></h1>
+  <h3 class="compare-price quick-shop__compare-at-price"></h3>
+  <h2 class="quick-shop__price"></h2>
+  <div class="quick-shop__description"></div>
+
+  <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form modal__form">
+
+    <select name="id" class="product-form__variants no-js">
+      <option class="quick-shop__id" value=""></option>
+    </select>
+
+    <div class="product-form__btn-container">
+
+        <div class="quantity-selector">
+          <input type="number" id="Quantity" name="quantity" value="1" pattern="[0-9]*"/>
+        </div>
+      
+      <div class="product-form__item product-form__item--submit">
+        <button type="submit" name="add" class="btn product-form__cart-submit AddToCart quick-shop__add">
+          <span>
+              {{ 'products.product.add_to_cart' | t }}
+          </span>
+        </button>
+
+      </div>
+
+    </div>
+
+  </form> 
+
+  <a class="quick-shop__link" href="">
+    <p>Learn More</p>
+  </a>
+
+</div>

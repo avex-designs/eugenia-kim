@@ -1,0 +1,152 @@
+ 
+        {% case section.blocks.size %}
+          {% when 2 %}
+          {% when 3 %}
+            {% assign column_width = 'text-center' %}
+          {% when 4 %}
+            {% assign column_width = 'small--one-half medium-up--one-half' %}
+          {% when 5 %}
+            {% assign column_width = 'small--one-half medium-up--one-third' %}
+          {% when 6 %}
+            {% assign column_width = 'small--one-half medium-up--one-third' %}
+          {% when 7 %}
+            {% assign column_width = 'small--one-half medium-up--one-third' %}
+          {% when 8 %}
+            {% assign column_width = 'small--one-half medium-up--one-third' %}
+        {% endcase %}
+
+        
+        {% for block in section.blocks %}
+
+          {% case block.type %}
+          
+          
+          {% when 'text' %}
+              <li class="grid__item product-grid__item product-grid__item--small {{ column_width }}" style="margin-bottom:10px;">
+                <div class="grid-view-item--collection">
+                  <a href="{{collections[block.settings.feature_collection].url }}" class="grid-view-item__link grid-view-item__image-container">
+                    <div class="grid-view-item__image-wrapper">
+                      <div style="padding-top: 100%;">
+                        <img class="grid-view-item__image collection__image--main lazyload" data-src="{{ block.settings.collection-image-front | img_url: '400x400' }}"/>
+                        <img class="grid-view-item__image collection__image--hover lazyload" data-src="{{ block.settings.collection-image-back | img_url: '400x400' }}"/>
+                      </div>
+                    </div>
+                    <div class="h4 grid-view-item__title">{{ block.settings.title }}</div>
+                  </a>
+                </div>
+              </li>
+          
+          {% when 'content' %}
+              <div class="collection-grid__container collection__grid--custom" style="padding-bottom:0;">
+                <div class="collection__title">{{ block.settings.customizer-title }}</div>
+                <div class="collection__subtitle">{{ block.settings.customizer-sub-title }}</div>
+              </div>
+          
+          {% when 'image_picker' %}
+              <div class="hero-wrapper hero--medium">
+                  <div id="hero" class="hero box ratio-container js lazyload" data-bgset="{{ block.settings.hero-image | img_url: '1440x720'}}">
+                    <div class="hero__inner text-right text-top"> 
+                        <div class="hero__content" style="color: {{block.settings.color-text}}">
+                            <h4 class="hero__subtitle small--hide">{{ block.settings.hero-sub-title | uppercase }}</h4>
+                            <h1 class="small--hide" style="font-weight: 700">{{ block.settings.hero-title | uppercase }}</h1>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+
+          {% endcase %}
+        {% endfor %}
+   
+    
+
+{% schema %}
+  {
+    "name": "Customizer Collection",
+    "max_blocks": 8,
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Add Collections",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Collection Name"
+          },
+          {
+            "type": "image_picker",
+            "id": "collection-image-front",
+            "label": "Collection Image Front"
+          },
+      {
+            "type": "image_picker",
+            "id": "collection-image-back",
+            "label": "Collection Image Back"
+          },
+          {
+             "type": "collection",
+             "id": "feature_collection",
+             "label": "Link to Collection"
+          }
+        ]
+      },
+      {
+        "type": "image_picker",
+        "name": "Hero Image",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "hero-title",
+            "label": "Enter Title",
+            "placeholder": "Type something..."
+          },
+          {
+            "type": "text",
+            "id": "hero-sub-title",
+            "label": "Enter Sub Title",
+            "placeholder": "Type something..."
+          },
+          {
+            "type": "color",
+            "id": "color-text",
+            "label": "Text Color",
+            "default": "#333333"
+          },
+          {
+            "type": "image_picker",
+            "id": "hero-image",
+            "label": "Hero image"
+          }
+        ]
+      },
+      {
+        "type": "content",
+        "name": "Content",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "customizer-title",
+            "label": "Enter Title",
+            "placeholder": "Step 1"
+          },
+          {
+            "type": "text",
+            "id": "customizer-sub-title",
+            "label": "Enter Sub Title",
+            "placeholder": "Choose your Product"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+
+
+{% javascript %}
+  window.scrollTo( 0, 0);
+  jQuery( ".product-grid__item" ).wrapAll( "<div class='product-grid--custom'></div>");
+{% endjavascript %}

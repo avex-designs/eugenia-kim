@@ -1,0 +1,179 @@
+<div class="hero-wrapper">
+<div class="hero hero--{{ section.settings.hero_size }} box ratio-container lazyload js" id="hero" 
+     {% if section.settings.image %}
+     data-bgset="{% include 'bgset', image: section.settings.image %}"
+     data-sizes="auto"
+     data-parent-fit="cover"
+     style="background-position: {{ section.settings.alignment }}; background-image: url('{{ section.settings.image | img_url: '300x300' }});"
+     {% endif %}>
+  {% if section.settings.image == blank %}
+    <div class="placeholder-background">
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {% endif %}
+  {% if section.settings.button_label == blank %}<a href="{{ section.settings.button_link }}" class="">{% endif %}
+  <div class="hero__inner {{section.settings.text_alignment}} {{section.settings.text_alignment_vertical}}">
+    <div class="hero__content">
+      
+      {% if section.settings.title != blank %}
+        <h1 class="small--hide" style="font-weight: {{ section.settings.text_weight }} ">{{section.settings.title}}</h1>
+      {% endif %}
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}" class="btn hero__btn">
+          {{ section.settings.button_label | escape }}
+        </a>
+      {% endif %}
+    </div>
+    
+  </div>
+  {% if section.settings.button_label == blank %}</a>{% endif %}
+</div>
+</div>
+
+<noscript>
+  <div class="hero hero--{{ section.settings.hero_size }}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %}"{% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: center {{ section.settings.alignment }};"{% endif %}></div>
+</noscript>
+
+{% schema %}
+  {
+    "name": "Hero",
+    "class": "index-section index-section--flush",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "select",
+        "id": "alignment",
+        "label": "Image alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "top",
+            "label": "Top"
+          },
+          {
+            "value": "center",
+            "label": "Middle"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom"
+          }
+        ]
+      },
+	  {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text alignment horizontal",
+        "default": "text-left",
+        "options": [
+          {
+            "value": "text-left",
+            "label": "Left"
+          },
+          {
+            "value": "text-center",
+            "label": "Middle"
+          },
+          {
+            "value": "text-right",
+            "label": "Right"
+          }
+        ]
+      },
+	  {
+        "type": "select",
+        "id": "text_alignment_vertical",
+        "label": "Text alignment vertical",
+        "default": "text-middle",
+        "options": [
+          {
+            "value": "text-top",
+            "label": "Top"
+          },
+          {
+            "value": "text-middle",
+            "label": "Middle"
+          },
+          {
+            "value": "text-bottom",
+            "label": "Bottom"
+          }
+        ]
+      },
+	  {
+        "type": "select",
+        "id": "text_weight",
+        "label": "Text Weight",
+        "default": "700",
+        "options": [
+          {
+            "value": "300",
+            "label": "Light"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Headline"
+      },
+      {
+        "type": "select",
+        "id": "hero_size",
+        "label": "Section height",
+        "default": "medium",
+        "options": [
+          {
+            "label": "Extra Small",
+            "value": "x-small"
+          },
+          {
+            "label": "Small",
+            "value": "small"
+          },
+          {
+            "label": "Medium",
+            "value": "medium"
+          },
+          {
+            "label": "Large",
+            "value": "large"
+          },
+          {
+            "label": "Extra Large",
+            "value": "x-large"
+          },
+          {
+            "label": "Full Size",
+            "value": "full-size"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

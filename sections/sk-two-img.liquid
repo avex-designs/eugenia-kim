@@ -1,0 +1,83 @@
+<div class="sk-two-img-wrap">
+  <div class="sk-two-img-wrap-inner">
+    <div class="sk-two-img-col sk-three-col">
+      <a href="{{section.settings.first-link-url}}" class="sk-three-col-img" style="background-image: url({{section.settings.first-img | img_url: 'master'}})">
+      </a>
+      
+       <div class="sk-col-text">
+         <h3>{{section.settings.first-text}}</h3>
+           <a href="{{section.settings.first-link-url}}">{{section.settings.first-link-text}}</a>
+      </div>
+    </div>
+    
+   	<div class="sk-two-img-col sk-one-col">
+      <a href="{{section.settings.second-link-url}}" class="sk-col-one-img"  style="background-image: url({{section.settings.second-img | img_url: 'master'}})">
+      </a>
+      
+      <div class="sk-col-text">
+        <h3>{{section.settings.second-text}}</h3>
+        <a href="{{section.settings.second-link-url}}">{{section.settings.second-link-text}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Two Image Row",
+    "settings": [
+		{
+			"type": "image_picker",
+			"label": "First Image",
+			"id": "first-img"
+		},
+		{
+			"type": "image_picker",
+			"label": "Second Image",
+			"id": "second-img"
+		},
+		{
+			"type": "text",
+			"label": "First Image Text",
+			"id": "first-text"
+		},
+		{
+			"type": "text",
+			"label": "Second Image Text",
+			"id": "second-text"
+		},
+		{
+			"type": "text",
+			"label": "First Link Text",
+			"id": "first-link-text"
+		},
+		{
+			"type": "text",
+			"label": "Second Link Text",
+			"id": "second-link-text"
+		},
+        {
+          "type": "url",
+          "id": "first-link-url",
+          "label": "First link"
+      	},
+		{
+          "type": "url",
+          "id": "second-link-url",
+          "label": "Second link"
+        }
+	],
+	"presets": [
+      {
+        "name": "Two Image Row",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

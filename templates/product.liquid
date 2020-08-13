@@ -1,0 +1,27 @@
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
+
+{% section 'product-template' %}
+
+
+{% if product.metafields.c_f.product_video_embed != blank %}
+  {% section 'product-video' %}
+{% endif %}
+
+<div class="recently-viewed-products">
+  {% include 'recently-viewed' with limit: 2, image_size: '400x' %}
+</div>
+
+{% section 'related-products' %}
+
+<script>
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  theme.productStrings = {
+    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  }
+</script>

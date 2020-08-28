@@ -271,7 +271,7 @@
          <div class="medium--hide site-header__section desktop-search desk-search-wrap">
 
           <span class="site-header__search small--hide">
-            {% include 'search-form' %}
+            {% render 'search-form', from: 'header' %}
           </span>
 
           {% include 'account-header' %}

@@ -6,7 +6,8 @@
     aria-label="{{ 'general.search.placeholder' | t }}">
   <input type="hidden" name="type" value="product" />
   <button class="search-header__submit search__submit btn--link" type="submit">
-    {% include 'icon-search' %}
+    {% render 'icon-search' %}
+    <span class="searchbutton-text">Search</span>
     <span class="icon__fallback-text">{{ 'general.search.submit' | t }}</span>
   </button>
 </form>

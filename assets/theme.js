@@ -2985,7 +2985,15 @@ function updateSpinner(obj)
 $(document).ready(function(){
   $('.product-slider').slick({
     dots: true,
+    asNavFor: '.product-slider-thumbnails'
+  });
 
+  $('.product-slider-thumbnails').slick({
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    asNavFor: '.product-slider',
+    dots: false,
+    focusOnSelect: true
   });
 
   if($(".slick-dots li").length <= 1 ){

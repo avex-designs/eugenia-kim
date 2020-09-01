@@ -11226,3 +11226,22 @@ display: block;
 .bc-sf-most-popular-products-wrapper .grid-view-item{
 	padding: 0 !important;
 }
+.product-card .price .price__regular{
+  display: block;
+}
+.product-card .price .price__sale{
+  display: none;
+}
+.product-card .price.price--on-sale .price__regular{
+  display: none;
+}
+.product-card .price--on-sale.price .price__sale{
+  display: block;
+}
+
+.product-card .price {
+    text-align: center;
+    dd{
+      margin: 0;
+    }
+}

@@ -1,4 +1,6 @@
 <div class="hero-wrapper">
+  
+{%if section.settings.image%}
 <div class="hero hero--{{ section.settings.hero_size }} box ratio-container lazyload js" id="hero" 
      {% if section.settings.image %}
      data-bgset="{% include 'bgset', image: section.settings.image %}"
@@ -28,6 +30,22 @@
   </div>
   {% if section.settings.button_label == blank %}</a>{% endif %}
 </div>
+{%endif%}
+  
+  {%if section.settings.video%}
+  <div class="video-wrap">
+ 	 <iframe 
+             class="video-wrap-iframe" 
+             src="{{section.settings.video}}" 
+             height="100%" width="100%" 
+             frameBorder="0" 
+             allow="autoplay; fullscreen"
+             allowfullscreen>
+    </iframe>
+  </div>
+  {%endif%}
+  
+  
 </div>
 
 <noscript>
@@ -43,6 +61,12 @@
         "type": "image_picker",
         "id": "image",
         "label": "Image"
+      },
+	  {
+        "type": "video_url",
+        "id": "video",
+		"accept": ["youtube", "vimeo"],
+        "label": "Video"
       },
       {
         "type": "select",

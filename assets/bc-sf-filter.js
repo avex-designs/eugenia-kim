@@ -240,10 +240,13 @@ function buildImageStyle(data) {
     imageStyle += '#' + imgId + ' {' +
       'max-width: ' + maximum_width + 'px;' +
       'max-height: ' + maximum_height + 'px;' +
+      
       '}' +
       '#' + wrapperId + ' {' +
       'max-width: ' + maximum_width + 'px;' +
       'max-height: ' + maximum_height + 'px;' +
+      'height: ' + 226 + 'px;' +
+      'overflow: hidden;' +
       '}';
     if (small_style) imageStyle += '}';
 

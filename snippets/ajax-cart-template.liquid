@@ -7,42 +7,45 @@
 
 {% endcomment %}
   <script id="CartTemplate" type="text/template">
-  {% raw %}
+  
+   {% raw %}
     <form action="/cart" method="post" novalidate class="cart ajaxcart">
       <div class="ajaxcart__inner">
+      
+      
+      
+      
+      
         {{#items}}
         <div class="ajaxcart__product">
           <div class="ajaxcart__row" data-line="{{line}}">
             <div class="grid">
+            
               <div class="grid__item one-third">
                 <a href="{{url}}" class="ajaxcart__product-image"><img src="{{img}}" alt=""></a>
               </div>
-              <div class="grid__item two-thirds">
-
-                <p class="ajaxcart__product-name--wrapper">
-                  <a href="{{url}}" class="ajaxcart__product-name">
-                    {{name}}
-                    <span>({{itemQty}})</span>
-                  </a>
+              
+               <div class="grid__item two-thirds">
+              
+                <p>
+                  <a href="{{url}}" class="ajaxcart__product-name">{{name}} <span>({{itemQty}})</span></a>
                 </p>
 
                 <div class="grid--full display-table">
+                
                   <div class="grid__item display-table-cell">
-
                     {{#if discountsApplied}}
                       <small class="ajaxcart-item__price-strikethrough"><s>{{{originalLinePrice}}}</s></small>
                       <br><span>{{{linePrice}}}</span>
                     {{else}}
                       <span>{{{linePrice}}}</span>
                     {{/if}}
-
+                    
                     <h2 class="cart__dropdown--remove" data-line="{{line}}">
                       <a>[Remove from cart]</a>
                     </h2>
-
                   </div>
-                </div>
-
+                  
                   {{#if discountsApplied}}
                     <div class="grid--full display-table">
                       <div class="grid__item text-right">
@@ -52,14 +55,27 @@
                       </div>
                     </div>
                   {{/if}}
-
-                  </div>
+                  
+                  
                 </div>
               </div>
             </div>
           </div>
         </div>
         {{/items}}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         {% endraw %}{% if settings.cart_notes_enable %}{% raw %}
           <div>
@@ -68,6 +84,7 @@
           </div>
         {% endraw %}{% endif %}{% raw %}
       </div>
+      
       <div class="ajaxcart__footer">
         <a class="cart-button__container" href="/cart">
           <button class="btn edit-cart__button">
@@ -80,6 +97,12 @@
       </div>
     </form>
   {% endraw %}
+  
+  
+  
+  
+  
+  
   </script>
   <script id="AjaxQty" type="text/template">
   {% raw %}

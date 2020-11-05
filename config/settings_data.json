@@ -102,7 +102,6 @@
             "settings": {
               "video_url": "https:\/\/youtu.be\/byWnWWMaRuE",
               "video_type": "background",
-              "image": "",
               "title": "",
               "subheading": ""
             }
@@ -134,16 +133,15 @@
       "1502750296449": {
         "type": "hero",
         "settings": {
-          "image": "shopify:\/\/shop_images\/Screen_Shot_2020-09-20_at_11.23.08_AM.png",
-          "video": "https:\/\/player.vimeo.com\/video\/136920991?autoplay=1&loop=1\" style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" frameborder=\"0\" allow=\"autoplay; fullscreen\" allowfullscreen",
+          "video": "https:\/\/player.vimeo.com\/video\/466703316?autoplay=1&loop=1&muted=1",
           "alignment": "center",
           "text_alignment": "text-left",
           "text_alignment_vertical": "text-bottom",
           "text_weight": "700",
-          "title": "40% Off Sale",
+          "title": "NEW ARRIVALS",
           "hero_size": "x-small",
           "button_label": "Shop Now",
-          "button_link": "shopify:\/\/collections\/sale"
+          "button_link": "shopify:\/\/collections\/new-arrivals"
         }
       },
       "1502750397730": {
@@ -350,7 +348,7 @@
         "type": "related-products",
         "settings": {
           "show_related_products": true,
-          "related_title": "Similar Styles",
+          "related_title": "You May Also Like",
           "related_grid_num": "3",
           "related_grid_row": "1"
         }
@@ -980,40 +978,70 @@
               "customizer-sub-title": "Choose your product"
             }
           },
-          "1542830818283": {
+          "d2adf79a-04c1-459a-a547-fa12071afa08": {
             "type": "text",
             "settings": {
-              "title": "Sunny in Ivory with Customizable Text",
-              "collection-image-front": "shopify:\/\/shop_images\/SUNNY_IVORY_BLANK_800x800_400x400_23160b95-efed-43c9-bcfc-b3ee730cdc27.jpg",
-              "collection-image-back": "shopify:\/\/shop_images\/SUNNY_IVORY_Hover_400x400_21ac1033-3573-4721-827b-df906e594a4c.jpg",
-              "feature_collection": "sunny-in-ivory-with-customizable-text"
+              "title": "Abilene",
+              "collection-image-front": "shopify:\/\/shop_images\/4347_EugeniaKim073120_277.jpg",
+              "collection-image-back": "shopify:\/\/shop_images\/4347_EugeniaKim073120_277.jpg",
+              "feature_collection": "abilene"
             }
           },
-          "1542830937733": {
+          "1603129638049": {
             "type": "text",
             "settings": {
-              "title": "Bunny in Sand with Customizable Text",
-              "collection-image-front": "shopify:\/\/shop_images\/BUNNY_SAND_BLANK_800x800_400x400_110ef50e-179f-4227-a945-7815f3d29eb2.jpg",
-              "collection-image-back": "shopify:\/\/shop_images\/MODEL_FRONT_BUNNY_SAND_400x400_63990c01-1e8a-4beb-a6fe-c4420c6c58c7.jpg",
-              "feature_collection": "bunny-sand"
+              "title": "Blaine",
+              "collection-image-front": "shopify:\/\/shop_images\/4347_EugeniaKim073120_215.jpg",
+              "collection-image-back": "shopify:\/\/shop_images\/4347_EugeniaKim073120_215.jpg",
+              "feature_collection": "blaine"
             }
           },
-          "1542831045738": {
+          "1603212247248": {
             "type": "text",
             "settings": {
-              "title": "Bunny in Ivory With Customizable Text",
-              "collection-image-front": "shopify:\/\/shop_images\/BUNNY_IVORY_BLANK_800x800_400x400_f1ba7980-1535-4fd3-8262-1a870664c89d.jpg",
-              "collection-image-back": "shopify:\/\/shop_images\/MODEL_FRONT_BUNNY_IVORY_400x400_279b44b3-2bab-4386-8a32-42e1d9f7e735.jpg",
-              "feature_collection": "bunny-natural"
+              "title": "Sabrina",
+              "collection-image-front": "shopify:\/\/shop_images\/4347_EugeniaKim073120_241.jpg",
+              "collection-image-back": "shopify:\/\/shop_images\/4347_EugeniaKim073120_241.jpg",
+              "feature_collection": "sabrina"
+            }
+          },
+          "d8eee204-3c08-4905-9be8-f1ee7d177d3f": {
+            "type": "text",
+            "settings": {
+              "title": "Harlowe",
+              "collection-image-front": "shopify:\/\/shop_images\/4347_EugeniaKim073120_178.jpg",
+              "collection-image-back": "shopify:\/\/shop_images\/4347_EugeniaKim073120_178.jpg",
+              "feature_collection": "harlowe"
+            }
+          },
+          "658e567d-14e2-47c5-aa3b-b9d695c4a879": {
+            "type": "text",
+            "settings": {
+              "title": "Emmanuelle",
+              "collection-image-front": "shopify:\/\/shop_images\/4347_EugeniaKim073120_297.jpg",
+              "collection-image-back": "shopify:\/\/shop_images\/4347_EugeniaKim073120_297.jpg",
+              "feature_collection": "emmanuelle"
+            }
+          },
+          "1603212080762": {
+            "type": "text",
+            "settings": {
+              "title": "Sunny",
+              "collection-image-front": "shopify:\/\/shop_images\/Screen_Shot_2020-10-28_at_2.20.04_PM.png",
+              "collection-image-back": "shopify:\/\/shop_images\/Screen_Shot_2020-10-28_at_2.20.04_PM.png",
+              "feature_collection": "sunny"
             }
           }
         },
         "block_order": [
           "1542830710349",
           "1542830795453",
-          "1542830818283",
-          "1542830937733",
-          "1542831045738"
+          "d2adf79a-04c1-459a-a547-fa12071afa08",
+          "1603129638049",
+          "1603212247248",
+          "d8eee204-3c08-4905-9be8-f1ee7d177d3f",
+          "658e567d-14e2-47c5-aa3b-b9d695c4a879",
+          "1603212080762"
         ],
         "settings": {}
       },
@@ -1144,7 +1172,7 @@
       "1591374010288": {
         "type": "sk-two-img",
         "settings": {
-          "first-img": "shopify:\/\/shop_images\/exclsuives.png",
+          "first-img": "shopify:\/\/shop_images\/HarleyinNude.png",
           "second-img": "shopify:\/\/shop_images\/facemask.png",
           "first-text": "Online Exclusives",
           "second-text": "Face Masks",
@@ -1157,10 +1185,10 @@
       "1591380270439": {
         "type": "sk-full-img",
         "settings": {
-          "full-img": "shopify:\/\/shop_images\/Homepage-Summer-Essentials.jpg",
-          "full-img-text": "Summer Essentials",
+          "full-img": "shopify:\/\/shop_images\/FW20Edit.png",
+          "full-img-text": "Fall Essentials",
           "link-text": "SHOP NOW",
-          "link-url": "https:\/\/eugeniakim.com\/collections\/sunhats"
+          "link-url": "shopify:\/\/collections\/new-arrivals"
         }
       }
     },

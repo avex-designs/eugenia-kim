@@ -103,6 +103,9 @@
   {% capture related_items %}
 
     <div class="grid related-items__grid grid--uniform{% if related_collection.products_count > 0 %} grid--view-items{% endif %}">
+      
+     
+      
       {% comment %}loop reversed to show newest items first{% endcomment %}
       {% for product in related_collection.products reversed %}
       {% unless product.handle == current_product.handle %}
@@ -134,7 +137,13 @@
   {% assign related_items = related_items | trim %}
 
   {% unless related_items == blank %}
-
+  
+  {%- comment -%}Didnt  find where the padding in the slider is controlled, please refactor if you do{%- endcomment -%}
+  <style>
+    body .related-items__grid .slick-list {
+      padding: 0px 25px !important;
+    }
+  </style>
   <aside class="grid">
     <div class="grid__item">
       {% unless heading == blank %}
@@ -143,7 +152,16 @@
         <h2 class="section-header__title related-products__view-all small--hide"><a href="{{related_collection.url}}">View All <i class="fa fa-angle-right" aria-hidden="true"></i></a></h2>
       </header>
       {% endunless %}
-      <div class="grid-uniform">
+      <div class="grid-uniform arrow-rel">
+        
+      <div class="prev circle-arrow">
+        <img src="{{'prev-circle.svg' | asset_url}}" />
+      </div>
+      
+      <div class="next circle-arrow">
+         <img src="{{'next-circle.svg' | asset_url}}" />
+      </div>
+        
         {{ related_items }}
       </div>
       <h2 class="section-header__title related-products__view-all medium-up--hide"><a href="{{related_collection.url}}">View All <i class="fa fa-angle-right" aria-hidden="true"></i></a></h2>

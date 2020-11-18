@@ -8,6 +8,11 @@
   {%- assign product_image_zoom_size = '1024x1024' -%}
   {%- assign product_image_scale = '2' -%}
   {%- assign enable_zoom = section.settings.enable_zoom -%}
+  
+   
+ 
+  {%- assign compare_at_price = current_variant.compare_at_price -%}
+  {%- assign price = current_variant.price -%}
 
   {% case section.settings.image_size %}
     {% when 'small' %}
@@ -38,31 +43,20 @@
     {% if current_variant.compare_at_price > current_variant.price %}
       <span class="medium-up--hide sale__label">Final Sale</span>
     {% endif %}
+    
+    {%comment%}
     <h1 itemprop="name" class="medium-up--hide product-single__title">{{ product.title }}</h1>
+    {%endcomment%}
 
     <div class="product-section-container" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
       
-      <p class="medium-up--hide product-single__price product-single__price-{{ section.id }}{% unless current_variant.available %} product-price--sold-out{% endunless %}">
-        {% if current_variant.compare_at_price > current_variant.price %}
-            <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-            <s class="compare-price">{{ current_variant.compare_at_price | money }}</s>
-            <span class="product-price__price product-price__price-{{ section.id }} product-price__sale product-price__sale--single">
-              <span id="ProductPrice-{{ section.id }}"
-                itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-                {{ current_variant.price | money }}
-              </span>
-            </span>
-        {% else %}
-          <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-          <s class="hide">{{ current_variant.compare_at_price | money }}</s>
-          <span class="product-price__price product-price__price-{{ section.id }}">
-            <span id="ProductPrice-{{ section.id }}"
-              itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-              {{ current_variant.price | money }}
-            </span>
-          </span>
-        {% endif %}
-      </p>
+     <div class="product__price">
+       {% include 'product-price-two', variant: current_variant, show_vendor: section.settings.show_vendor %}
+      </div>
+      
+     
+      
+     
 
       <div class="grid__item ek-product-single product-single__photos {{ product_image_width }}{% if section.settings.image_size == 'full' %} product-single__photos--full{% endif %}">
         
@@ -78,7 +72,7 @@
               {% if image.alt contains 'front' or image.alt contains 'back' %}
 
               {% else %}
-              <div class="product-slide">
+              <div class="product-slide" data-alt="{{ image.alt | escape }}">
                 <img src="{{ image | img_url: '800x800' }}"
                      data-src="{{ img_url }}"
                      data-id="{{ image.id }}"
@@ -89,9 +83,16 @@
               </div>
               {% endif %}
             {% endfor %}
+            
+                 
+           <div id="customizable-text-on-image" style="font-family:'Mr De Haviland', cursive;" class="input-customizable-text custom-init {% unless product.tags contains 'text-box' %}d-none{%endunless%}">Custom Text Here</div>
+           <div id="customizable-text-on-image-two" style="font-family:'Mr De Haviland', cursive;" class="input-customizable-text custom-after {% unless product.tags contains 'text-box' %}d-none{%endunless%}">Custom Text Here</div>
+       
           </div>
 
-          <div id="customizable-text-on-image" style="font-family:'Mr De Haviland', cursive;" class="input-customizable-text">Custom Text Here</div>
+       
+          
+          
       	</div>
         
         
@@ -118,10 +119,15 @@
           {% if current_variant.compare_at_price > current_variant.price %}
             <span class="small--hide sale__label">Final Sale</span>
           {% endif %}
-          <h1 itemprop="name" class="small--hide product-single__title">{{ product.title }}</h1>
+          <h1 itemprop="name" class="product-single__title">{{ product.title }}</h1>
 
           <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-            <p class="small--hide product-single__price product-single__price-{{ section.id }}{% unless current_variant.available %} product-price--sold-out{% endunless %}">
+            
+            
+            
+            
+            <!-- desktop price -->
+            <p class="product-single__price product-single__price-{{ section.id }}{% unless current_variant.available %} product-price--sold-out{% endunless %}">
               {% if current_variant.compare_at_price > current_variant.price %}
                   <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
                   <s class="compare-price">{{ current_variant.compare_at_price | money }}</s>
@@ -148,6 +154,13 @@
               {% endif %}
             </p>
             
+            
+            
+            
+            
+            
+            
+            
             <!-- Current inventory -->
             <div id="variant-inventory">
               {% if product.variants.first.inventory_management == "shopify" and product.variants.first.inventory_quantity == 2 %}
@@ -160,50 +173,43 @@
 
           <form action="/cart/add" method="post" autocomplete="off" enctype="multipart/form-data" class="product-form product-form-{{ section.id }}{% unless section.settings.show_variant_labels %} product-form--hide-variant-labels{% endunless %}" data-section="{{ section.id }}">
 
-                {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
-                  {% for option in product.options_with_values %}
-                {% assign option_index = forloop.index0 %}
-                    <div class="ek-section">
-                      
-                      <div class="ek-section-block">
-                          <label class="option--label">
-                          <span>Select trim color</span>
-                        </label>
-                      </div>
-                      
-                      <select class="single-option-selector single-option-selector-{{ option_index }} product-form__input" id="product-select-option-{{ option_index }}" name="id" data-index="option{{ option_index }}">
-                        {% for value in option.values %}
-                          <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
-                        {% endfor %}
-                      </select>
-                      
-                      <div class="swatches-container">
-                        {% if product.available and product.variants.size > 1 %}
-                          {% for option in product.options %}
-                            {% include 'swatch' with option %}
-                          {% endfor %}
-                        {% endif %}
-                      </div>
-                    </div>
-                  {% endfor %}
-                {% endunless %}
-                
-                
-                <select name="id" id="ProductSelect-{{ section.id }}" data-section="{{ section.id }}" class="product-form__variants">
-                  {% for variant in product.variants %}
-                    {% if variant.available %}
-                      <option data-image-id="{{ variant.featured_image.id }}" {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-color="{{variant.title}}"  value="{{ variant.id }}">
-                        {{ variant.title }}
-                      </option>
-                    {% else %}
-                      <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
-                    {% endif %}
-                  {% endfor %}
-                </select>
+			{% unless product.has_only_default_variant %}
+              <div class="product-form__controls-group">
+                {% for option in product.options_with_values %}
+                  <div class="selector-wrapper js product-form__item">
+                    <label for="SingleOptionSelector-{{ forloop.index0 }}">
+                      {{ option.name }}
+                    </label>
+                    <select class="single-option-selector single-option-selector-{{ section.id }} product-form__input"
+                      id="SingleOptionSelector-{{ forloop.index0 }}"
+                      data-index="option{{ forloop.index }}"
+                    >
+                      {% for value in option.values %}
+                        <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endunless %}
+
+            <select name="id" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js">
+              {% for variant in product.variants %}
+                <option value="{{ variant.id }}"
+                  {%- if variant == current_variant %} selected="selected" {%- endif -%}
+                >
+                  {{ variant.title }}  {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
+                </option>
+              {% endfor %}
+            </select>
             
             	
-            	<div class="ek-section">
-                  <div class="ek-section-block">
+            
+            
+            
+             {% if product.tags contains 'text-box' %}
+                <div class="product-form__controls-group">
+                  <div class="selector-wrapper js product-form__item">
                       <label class="option--label">
                       <span>Your custom text</span>
                     </label>
@@ -214,31 +220,13 @@
                     <input required class="required" id="custom-text" placeholder="Custom Text Here" type="text" maxlength="20" name="properties[Custom Text]">
                   </p>  
                 </div>
+              {% endif %}
+            	
+            
+            
+             
 
-
-            	<div class="ek-section">
-                  <div class="ek-section-block">
-                      <label class="option--label">
-                      <span>Select text color</span>
-                    </label>
-                  </div>
-				  <!--<p class="line-item-property__field">
-                      <label for="note" class="ek-d-none">Note</label>
-                      <textarea id="note" name="properties[Note]"></textarea>
-                  </p> -->
-                  <div class="swatch clearfix">
-                    <div class="header ek-d-none">Color Text</div>
-                    {% for tag in product.tags %}
-                       {% if tag contains "color-text-" %}
-                       <div class="swatch-element swatch-element-get-color" data-hex="#{{ tag | remove: "color-text-" | replace: '-', ' ' | split:"#" | last }}">
-                         <div class="tooltip">{{ tag | remove: "color-text-" | replace: '-', ' ' | split:"#" | first }}</div>
-                         <input id="{{tag}}" required class="required" type="radio" name="properties[Color Text]"  value="{{ tag | remove: "color-text-" | replace: '-', ' ' | split:"#" | first }}" title="{{ tag | remove: "color-text-" | replace: '-', ' ' | split:"#" | first }}">
-                         <label for="{{tag}}" style="background-color:#{{ tag | remove: 'color-text-' | replace: '-', ' ' | split:"#" | last }}"><span class="visually-hidden">{{ tag | remove: 'color-text-' | replace: '-', ' ' | split:'#' | first }}</span></label>
-                        </div>
-                       {% endif %}
-                    {% endfor %}
-                  </div>
-            	</div>
+            	
 
 
                   <div class="product-form__btn-container">
@@ -265,15 +253,73 @@
                  
            </form>
           
-          {% if product.description != blank %}
-            <div class="rte product-single__description" itemprop="description">
-              {{ product.description }}
-            </div>
-          {% endif %}
+            
+            
+            
+            
+            
+            
+             
+           
+            
+            
+            
+      <ul class="vertical menu accordion-menu pdp-custom-acc" data-accordion-menu>
+        <li>
+          <a class="accordion-a" href="#">
+            Product Details
+             <img class="dropdown-symbol"  src="{{'plus.svg' | asset_url}}" />
+             <img class="d-none dropdown-symbol" src="{{'minus.svg' | asset_url}}" />
+          </a>
+          <ul class="menu vertical nested">
+            <li>
+            {% if product.description != blank %}
+                <div class="rte product-single__description" itemprop="description">
+                  {{ product.description }}
+                </div>
+              {% endif %}
+            </li>
+           
+          </ul>
+        </li>
+        <li>
+          <a class="accordion-a" href="#">
+            Storage &amp; Care
+             <img class="dropdown-symbol" src="{{'plus.svg' | asset_url}}" />
+             <img class="d-none dropdown-symbol" src="{{'minus.svg' | asset_url}}" />
+          </a>
+          <ul class="menu vertical nested">
+            <li>
+            	  <div class="product__details">
+                  {% if product.metafields.c_f.product_size_info %}
+                    <p>{{ product.metafields.c_f.product_size_info }}</p>
+                  {% endif %}
+                   {% comment %}
+                  {% if product.metafields.c_f.product_style_info %}
+                    <p>{{ product.metafields.c_f.product_style_info }}</p>
+                  {% endif %}
+                  {% endcomment %}
+                  {% if product.metafields.c_f.product_orgin_info %}
+                    <p>{{ product.metafields.c_f.product_orgin_info }}</p>
+                  {% endif %}
+                  {% if product.metafields.c_f.product_cleaning_info %}
+                    <p>{{ product.metafields.c_f.product_cleaning_info }}</p>
+                  {% endif %}
+
+                  <p class="product__details--link storage-care__link"><a href="/pages/storage-and-care" target="_blank">Storage &amp; Care</a><p>
+                  {% comment %}<div class="storage-care__dropdown"> {{ pages['storage-and-care'].content }} </div>{% endcomment %}
+                  {% comment %}<p class="product__details--link size-guide__link"><a href="#">Size Guide</a></p>{% endcomment %}
+                  {% comment %}<div class="size-guide__dropdown">{{ pages['size-guide'].content }}</div>{% endcomment %}
+                </div>
+            </li>    
+          </ul>
+        </li>
+      </ul>  
           
           
     
-
+       
+            
 
         {% if section.settings.show_share_buttons %}
                   {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
@@ -284,28 +330,7 @@
       </div>
 
       <!--Product Details -->
-      <div class="product__details">
-
-        {% if product.metafields.c_f.product_size_info %}
-          <p>{{ product.metafields.c_f.product_size_info }}</p>
-        {% endif %}
-         {% comment %}
-        {% if product.metafields.c_f.product_style_info %}
-          <p>{{ product.metafields.c_f.product_style_info }}</p>
-        {% endif %}
-        {% endcomment %}
-        {% if product.metafields.c_f.product_orgin_info %}
-          <p>{{ product.metafields.c_f.product_orgin_info }}</p>
-        {% endif %}
-        {% if product.metafields.c_f.product_cleaning_info %}
-          <p>{{ product.metafields.c_f.product_cleaning_info }}</p>
-        {% endif %}
-
-        <p class="product__details--link storage-care__link"><a href="/pages/storage-and-care" target="_blank">Storage &amp; Care</a><p>
-        {% comment %}<div class="storage-care__dropdown"> {{ pages['storage-and-care'].content }} </div>{% endcomment %}
-        {% comment %}<p class="product__details--link size-guide__link"><a href="#">Size Guide</a></p>{% endcomment %}
-        {% comment %}<div class="size-guide__dropdown">{{ pages['size-guide'].content }}</div>{% endcomment %}
-      </div>
+     
 
         <!-- Face Shapes -->
         {% if section.blocks.size > 0 %}
@@ -390,6 +415,18 @@
     {{ product | json }}
   </script>
 {% endunless %}
+  
+  
+  
+   {%comment%}
+    <div class="swatches-container">
+      {% if product.available and product.variants.size > 1 %}
+        {% for option in product.options %}
+          {% include 'swatch' with option %}
+        {% endfor %}
+      {% endif %}
+    </div>
+    {%endcomment%}
 
 {% schema %}
   {
@@ -498,7 +535,7 @@
 {% endschema %}
   
 
-{% javascript %}
+<script>
 
   
 jQuery(function() {
@@ -566,10 +603,16 @@ jQuery(function() {
     	$('.input-customizable-text').css('top', '65%');
     }
     
-    $('#customizable-text-on-image').text(newValueText);
-    var circleType = new CircleType(document.getElementById('customizable-text-on-image'));
+    $(".custom-init").css("display", "none");
+    
+    $(".custom-after").css("display", "block");
+    
+    $('#customizable-text-on-image-two').text(newValueText);
+    var circleType = new CircleType(document.getElementById('customizable-text-on-image-two'));
   	circleType.radius(newRadiusText).dir(-1);
   });
+  
+  
   
   jQuery('.swatch-element-get-color').on('click tap', function(){
   	var newValueColor = $(this).data('hex');
@@ -580,10 +623,11 @@ jQuery(function() {
   });
   
   
+  
   var circleType = new CircleType(document.getElementById('customizable-text-on-image'));
   circleType.radius(400).dir(-1);
   $(circleType.element).fitText(0.85, { minFontSize: '40px', maxFontSize: '140px' });
+  
 });
   
-{% endjavascript %}
-  
+</script>

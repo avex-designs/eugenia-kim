@@ -39,8 +39,14 @@
 
   {% include 'social-meta-tags' %}
 
+  {{ 'foundation.css' | asset_url | stylesheet_tag }}
+   
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
-  {{'skh.css' | asset_url | stylesheet_tag}}
+  
+  {{ 'slick.scss' | asset_url | stylesheet_tag }}
+   {{ 'slick-theme.scss' | asset_url | stylesheet_tag }}
+  
+   {{'skh.scss.css' | asset_url | stylesheet_tag}}
    {{'jquery.fancybox.min.css' | asset_url | stylesheet_tag}}
   {% include 'google-fonts' %}
 
@@ -97,6 +103,13 @@
   <!--[if lte IE 9]><script src="{{ 'ajax-cart.js' | asset_url }}"></script><![endif]-->
   
   <script src="{{ 'jquery.fancybox.min.js' | asset_url }}" defer="defer"></script>
+  
+   <script src="{{ 'foundation.js' | asset_url }}" defer="defer"></script>
+  
+  <script src="{{ 'slick.min.js' | asset_url }}" defer="defer"></script>
+  
+   <script src="{{ 'skh.js' | asset_url }}" defer="defer"></script>
+  
 {% endunless %}
   {{ content_for_header }}
   
@@ -187,7 +200,11 @@ _affirm_config = {
   
   
   <script>
+ 
+    
   $(document).ready(function(){
+    
+  $(document).foundation();
     
     $('.m-dropdown').click(function() {
     	$(this).children('.m-dropdown-items').toggleClass('dropdown-hidden')
@@ -230,6 +247,11 @@ _affirm_config = {
     });
     }
 });
+    
+    
+    $(".accordion-a").click(function() {
+    	$(this).find(".dropdown-symbol").toggleClass("d-none");
+    })
   
   });
 </script>

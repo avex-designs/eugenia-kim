@@ -407,9 +407,8 @@
             "settings": {
               "tab-button-icon": "shopify:\/\/shop_images\/heart.png",
               "tab-image": "shopify:\/\/shop_images\/Heart-FACES.png",
-              "face-diagram": "",
               "tab-title": "Heart-Shaped Face",
-              "tab-text": "<p>For a slimmer, more narrow-appearing forehead, try a brimmed style that&rsquo;s medium in length as an ideal style for a heart shaped face.<\/p>",
+              "tab-text": "<p>For a slimmer, more narrow-appearing forehead, try a brimmed style that’s medium in length as an ideal style for a heart shaped face.<\/p>",
               "collection": "heart-shaped",
               "tab-button-label": "Shop Your Face Shape"
             }
@@ -419,7 +418,6 @@
             "settings": {
               "tab-button-icon": "shopify:\/\/shop_images\/square.png",
               "tab-image": "shopify:\/\/shop_images\/SQUARE-FACES.png",
-              "face-diagram": "",
               "tab-title": "Square Faces",
               "tab-text": "<p>Styles that feature a curved silhouette are ideal for softening more angular face shapes. Look to floppys, cloches and bowler styles to round out your features.<\/p>",
               "collection": "square",
@@ -431,7 +429,6 @@
             "settings": {
               "tab-button-icon": "shopify:\/\/shop_images\/round.png",
               "tab-image": "shopify:\/\/shop_images\/Round-FACES.png",
-              "face-diagram": "",
               "tab-title": "Round Faces",
               "tab-text": "<p>To create the desired length and height that will compliment a rounder face shape, look for styles with a tall crown. We also recommend medium to long brimmed fedoras, porkpies and trilby styles for this face shape.<\/p>",
               "collection": "round",
@@ -443,7 +440,6 @@
             "settings": {
               "tab-button-icon": "shopify:\/\/shop_images\/oval.png",
               "tab-image": "shopify:\/\/shop_images\/Oval-FACES.png",
-              "face-diagram": "",
               "tab-title": "Oval Faces",
               "tab-text": "<p>Being one of the most versatile face shapes, an oval face works well with many styles. We recommend medium sized floppys, cloches, crushers or bucket hats for an oval face.<\/p>",
               "collection": "oval",
@@ -1055,7 +1051,6 @@
           "text_weight": "700",
           "title": "Headline",
           "button_label": "",
-          "button_link": "",
           "collection_title": "Step 2",
           "collection_subtitle": "Choose your product"
         }
@@ -1127,6 +1122,7 @@
           "show_vendor": false,
           "enable_zoom": false,
           "show_share_buttons": true,
+          "custom-text": "All customizable products are made-to-order, one-of-a-kind and are considered final sale. Please allow 48-72 business hours for production time. All trim add-ons are reflected in the price shown.",
           "customerphotos_title": "EugeniaKim in Real life",
           "customerphotos_subtitle": "SEE PHOTOS OF OUR CUSTOMERS",
           "customerphotos_instagram": "eugeniakimnyc"

@@ -39,6 +39,7 @@
     "social_youtube_link": "",
     "social_vimeo_link": "",
     "favicon": "shopify:\/\/shop_images\/EK.png",
+    "giftwrap": "eugeniakim-com-gift-wrapping",
     "checkout_header_image": "",
     "checkout_logo_image": "shopify:\/\/shop_images\/EUGENIA_KIM_Logo-checkout.png",
     "checkout_logo_position": "center",
@@ -133,13 +134,14 @@
       "1502750296449": {
         "type": "hero",
         "settings": {
-          "video": "https:\/\/player.vimeo.com\/video\/466703316?autoplay=1&loop=1&muted=1",
-          "alignment": "center",
+          "image": "shopify:\/\/shop_images\/header_c65bf6b1-68fe-4541-a03e-cc5e750b0fe7.jpg",
+          "video": "",
+          "alignment": "top",
           "text_alignment": "text-left",
-          "text_alignment_vertical": "text-bottom",
+          "text_alignment_vertical": "text-middle",
           "text_weight": "700",
           "title": "NEW ARRIVALS",
-          "hero_size": "x-small",
+          "hero_size": "medium",
           "button_label": "Shop Now",
           "button_link": "shopify:\/\/collections\/new-arrivals"
         }
@@ -407,9 +409,8 @@
             "settings": {
               "tab-button-icon": "shopify:\/\/shop_images\/heart.png",
               "tab-image": "shopify:\/\/shop_images\/Heart-FACES.png",
-              "face-diagram": "",
               "tab-title": "Heart-Shaped Face",
-              "tab-text": "<p>For a slimmer, more narrow-appearing forehead, try a brimmed style that&rsquo;s medium in length as an ideal style for a heart shaped face.<\/p>",
+              "tab-text": "<p>For a slimmer, more narrow-appearing forehead, try a brimmed style that’s medium in length as an ideal style for a heart shaped face.<\/p>",
               "collection": "heart-shaped",
               "tab-button-label": "Shop Your Face Shape"
             }
@@ -419,7 +420,6 @@
             "settings": {
               "tab-button-icon": "shopify:\/\/shop_images\/square.png",
               "tab-image": "shopify:\/\/shop_images\/SQUARE-FACES.png",
-              "face-diagram": "",
               "tab-title": "Square Faces",
               "tab-text": "<p>Styles that feature a curved silhouette are ideal for softening more angular face shapes. Look to floppys, cloches and bowler styles to round out your features.<\/p>",
               "collection": "square",
@@ -431,7 +431,6 @@
             "settings": {
               "tab-button-icon": "shopify:\/\/shop_images\/round.png",
               "tab-image": "shopify:\/\/shop_images\/Round-FACES.png",
-              "face-diagram": "",
               "tab-title": "Round Faces",
               "tab-text": "<p>To create the desired length and height that will compliment a rounder face shape, look for styles with a tall crown. We also recommend medium to long brimmed fedoras, porkpies and trilby styles for this face shape.<\/p>",
               "collection": "round",
@@ -443,7 +442,6 @@
             "settings": {
               "tab-button-icon": "shopify:\/\/shop_images\/oval.png",
               "tab-image": "shopify:\/\/shop_images\/Oval-FACES.png",
-              "face-diagram": "",
               "tab-title": "Oval Faces",
               "tab-text": "<p>Being one of the most versatile face shapes, an oval face works well with many styles. We recommend medium sized floppys, cloches, crushers or bucket hats for an oval face.<\/p>",
               "collection": "oval",
@@ -1055,7 +1053,6 @@
           "text_weight": "700",
           "title": "Headline",
           "button_label": "",
-          "button_link": "",
           "collection_title": "Step 2",
           "collection_subtitle": "Choose your product"
         }
@@ -1127,6 +1124,7 @@
           "show_vendor": false,
           "enable_zoom": false,
           "show_share_buttons": true,
+          "custom-text": "All customizable products are made-to-order, one-of-a-kind and are considered final sale. Please allow 48-72 business hours for production time. All trim add-ons are reflected in the price shown.",
           "customerphotos_title": "EugeniaKim in Real life",
           "customerphotos_subtitle": "SEE PHOTOS OF OUR CUSTOMERS",
           "customerphotos_instagram": "eugeniakimnyc"
@@ -1173,13 +1171,13 @@
         "type": "sk-two-img",
         "settings": {
           "first-img": "shopify:\/\/shop_images\/HarleyinNude.png",
-          "second-img": "shopify:\/\/shop_images\/facemask.png",
+          "second-img": "shopify:\/\/shop_images\/Sabrina.jpg",
           "first-text": "Online Exclusives",
-          "second-text": "Face Masks",
-          "first-link-text": "SHOP NOW",
-          "second-link-text": "SHOP NOW",
+          "second-text": "Personalize Your Own",
+          "first-link-text": "Shop Now",
+          "second-link-text": "Start Here",
           "first-link-url": "shopify:\/\/collections\/exclusives",
-          "second-link-url": "shopify:\/\/collections\/face-masks"
+          "second-link-url": "https:\/\/eugeniakim.com\/pages\/step-1"
         }
       },
       "1591380270439": {
@@ -1189,6 +1187,13 @@
           "full-img-text": "Fall Essentials",
           "link-text": "SHOP NOW",
           "link-url": "shopify:\/\/collections\/new-arrivals"
+        }
+      },
+      "cart-template": {
+        "type": "cart-template",
+        "settings": {
+          "cart_notes_enable": false,
+          "cart_ajax_enable": true
         }
       }
     },

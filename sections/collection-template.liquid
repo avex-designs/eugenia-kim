@@ -91,14 +91,16 @@
     <div class="filters-toolbar-wrapper">
       <div class="page-width">
         <div class="filters-toolbar">
-          <div class="filters-toolbar__item">
+          <!-- <div class="filters-toolbar__item">
             <h3 class="sh-collection-name">{{ collection.title }}</h3>
             <div id="bc-sf-filter-top-display-type">
-              
               {% include 'bc-sf-filter-skeleton', width: 2 %}
             </div>
-          </div>
+          </div> -->
 
+          <div class="filters-toolbar__item">
+            <button class='shop-filter-desctop-mobile'>Filter</button>
+          </div>
           <div class="filters-toolbar__item filters-toolbar__item--count">
             <span class="filters-toolbar__product-count" id="bc-sf-filter-total-product">
               {% include 'bc-sf-filter-skeleton', width: 2 %}
@@ -106,9 +108,9 @@
           </div>
 
           {% if section.settings.sort_enable %}
-          <div class="filters-toolbar__item text-right" id="bc-sf-filter-top-sorting">
-            {% include 'bc-sf-filter-skeleton', width: 2 %}
-          </div>
+            <div class="filters-toolbar__item text-right" id="bc-sf-filter-top-sorting">
+              {% include 'bc-sf-filter-skeleton', width: 2 %}
+            </div>
           {% endif %}
         </div>
       </div>
@@ -120,7 +122,6 @@
     <div id="bc-sf-filter-tree-h">
       {% include 'bc-sf-filter-tree-placeholder' %}
     </div>
-    <button class='shop-filter-desctop-mobile'>Filter</button>
     {% comment %}<div id="bc-sf-filter-tree-mobile">
 	  <button class='shop-filter-desctop-mobile'>Filter</button>
 <!--       {% include 'bc-sf-filter-skeleton', type: 'button' %} -->

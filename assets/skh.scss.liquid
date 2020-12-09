@@ -482,6 +482,24 @@ text-transform: uppercase;
  display: none; 
 }
 
+.grid-view-item__meta .price__pricing-group {
+ display: block; 
+  
+  & dd {
+   margin-inline-start:0; 
+  }
+  
+  & .price__sale {
+   display: none; 
+  }
+}
+
+
+.grid-view-item__meta .price__badges {
+ display: none; 
+}
+
+
 .price__unit {
  display: none; 
 }
@@ -547,5 +565,33 @@ text-transform: uppercase;
   @media(min-width: 851px) {
    height: 30vh;
    overflow-y: scroll;
+  }
+}
+
+
+.sk-custom-text p {
+ color: #000; 
+ font-family: 'Roboto';
+}
+
+.hero__content {
+ position: absolute; 
+}
+
+.text-bottom {
+ bottom: 5%; 
+}
+
+.text-middle {
+   top: 50%;
+   transform: translateY(-50%);
+} 
+
+
+.mob-alignment {
+  @media(max-width: 850px) {
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
   }
 }

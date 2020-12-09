@@ -137,7 +137,13 @@
   {% assign related_items = related_items | trim %}
 
   {% unless related_items == blank %}
-
+  
+  {%- comment -%}Didnt  find where the padding in the slider is controlled, please refactor if you do{%- endcomment -%}
+  <style>
+    body .related-items__grid .slick-list {
+      padding: 0px 25px !important;
+    }
+  </style>
   <aside class="grid">
     <div class="grid__item">
       {% unless heading == blank %}

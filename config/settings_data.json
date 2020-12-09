@@ -39,6 +39,7 @@
     "social_youtube_link": "",
     "social_vimeo_link": "",
     "favicon": "shopify:\/\/shop_images\/EK.png",
+    "giftwrap": "eugeniakim-com-gift-wrapping",
     "checkout_header_image": "",
     "checkout_logo_image": "shopify:\/\/shop_images\/EUGENIA_KIM_Logo-checkout.png",
     "checkout_logo_position": "center",
@@ -133,13 +134,14 @@
       "1502750296449": {
         "type": "hero",
         "settings": {
-          "video": "https:\/\/player.vimeo.com\/video\/466703316?autoplay=1&loop=1&muted=1",
-          "alignment": "center",
+          "image": "shopify:\/\/shop_images\/header_c65bf6b1-68fe-4541-a03e-cc5e750b0fe7.jpg",
+          "video": "",
+          "alignment": "top",
           "text_alignment": "text-left",
-          "text_alignment_vertical": "text-bottom",
+          "text_alignment_vertical": "text-middle",
           "text_weight": "700",
           "title": "NEW ARRIVALS",
-          "hero_size": "x-small",
+          "hero_size": "medium",
           "button_label": "Shop Now",
           "button_link": "shopify:\/\/collections\/new-arrivals"
         }
@@ -1169,13 +1171,13 @@
         "type": "sk-two-img",
         "settings": {
           "first-img": "shopify:\/\/shop_images\/HarleyinNude.png",
-          "second-img": "shopify:\/\/shop_images\/facemask.png",
+          "second-img": "shopify:\/\/shop_images\/Sabrina.jpg",
           "first-text": "Online Exclusives",
-          "second-text": "Face Masks",
-          "first-link-text": "SHOP NOW",
-          "second-link-text": "SHOP NOW",
+          "second-text": "Personalize Your Own",
+          "first-link-text": "Shop Now",
+          "second-link-text": "Start Here",
           "first-link-url": "shopify:\/\/collections\/exclusives",
-          "second-link-url": "shopify:\/\/collections\/face-masks"
+          "second-link-url": "https:\/\/eugeniakim.com\/pages\/step-1"
         }
       },
       "1591380270439": {
@@ -1185,6 +1187,13 @@
           "full-img-text": "Fall Essentials",
           "link-text": "SHOP NOW",
           "link-url": "shopify:\/\/collections\/new-arrivals"
+        }
+      },
+      "cart-template": {
+        "type": "cart-template",
+        "settings": {
+          "cart_notes_enable": false,
+          "cart_ajax_enable": true
         }
       }
     },

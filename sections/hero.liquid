@@ -14,11 +14,11 @@
     </div>
   {% endif %}
   {% if section.settings.button_label == blank %}<a href="{{ section.settings.button_link }}" class="">{% endif %}
-  <div class="hero__inner {{section.settings.text_alignment}} {{section.settings.text_alignment_vertical}}">
-    <div class="hero__content">
+  <div class="hero__inner {{section.settings.text_alignment}}">
+    <div class="hero__content {{section.settings.text_alignment_vertical}} mob-alignment">
       
       {% if section.settings.title != blank %}
-        <h1 class="small--hide" style="font-weight: {{ section.settings.text_weight }} ">{{section.settings.title}}</h1>
+        <h1 style="font-weight: {{ section.settings.text_weight }} ">{{section.settings.title}}</h1>
       {% endif %}
       {% if section.settings.button_label != blank and section.settings.button_link != blank %}
         <a href="{{ section.settings.button_link }}" class="btn hero__btn">

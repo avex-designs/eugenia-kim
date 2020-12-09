@@ -7,7 +7,7 @@ if ((typeof Shopify) === 'undefined') { Shopify = {}; }
 if (!Shopify.formatMoney) {
   Shopify.formatMoney = function(cents, format) {
     var value = '',
-        placeholderRegex = /\{\{\s*(\w+)\s*\}\}/, 
+        placeholderRegex = /\{\{\s*(\w+)\s*\}\}/,
         formatString = (format || this.money_format);
 
     if (typeof cents == 'string') {
@@ -21,7 +21,7 @@ if (!Shopify.formatMoney) {
     function formatWithDelimiters(number, precision, thousands, decimal) {
       precision = defaultOption(precision, 2);
       thousands = defaultOption(thousands, ',');
-      decimal   = defaultOption(decimal, '.'); 
+      decimal   = defaultOption(decimal, '.');
 
       if (isNaN(number) || number == null) {
         return 0;
@@ -217,6 +217,26 @@ ShopifyAPI.changeItem = function(line, quantity, callback) {
   jQuery.ajax(params);
 };
 
+function initGiftProduct(cart) {
+  let giftWrap = false;
+  const cartCount = jQuery('[data-cart-count]');
+  const giftProductId = jQuery('[data-gift-id]').attr('data-gift-id');
+
+  jQuery(cart.items).each(function() {
+    if(this.variant_id == giftProductId) {
+      giftWrap = true;
+    }
+  });
+
+  cartCount.html(cart.item_count);
+
+  if(giftWrap === true) {
+    jQuery('[data-gift-product]').prop('checked', true);
+  } else {
+    jQuery('[data-gift-product]').prop('checked', false);
+  }
+}
+
 /*============================================================================
   Ajax Shopify Add To Cart
 ==============================================================================*/
@@ -283,6 +303,11 @@ var ajaxCart = (function(module, $) {
     adjustCart();
   };
 
+
+
+
+
+
   loadCart = function () {
     $body.addClass('drawer--is-loading');
     ShopifyAPI.getCart(cartUpdateCallback);
@@ -332,13 +357,42 @@ var ajaxCart = (function(module, $) {
     }
   };
 
+  function initHideGiftProductMini(cart) {
+    const giftProductId = jQuery('[data-gift-id]').attr('data-gift-id');
+
+    jQuery(cart.items).each(function() {
+      if(this.variant_id == giftProductId && cart.items.length == 1 ) {
+        CartJS.clear();
+
+        setTimeout(function() {
+          isUpdating = false;
+          ShopifyAPI.getCart(buildCart);
+        }, 300)
+      }
+    });
+  }
+
   cartUpdateCallback = function (cart) {
     // Update quantity and price
     updateCountPrice(cart);
     buildCart(cart);
-    
+
+    var $giftBox = $('[data-update-minicart]');
+
+    $giftBox.on('change', function(){
+      $giftBox.prop('disabled', true);
+      $giftBox.closest('.gift-product').addClass('disabled-element');
+      setTimeout(function() {
+        isUpdating = false;
+        ShopifyAPI.getCart(buildCart);
+      }, 400)
+    });
+
+    setTimeout(function() {
+      $giftBox.prop('disabled', false);
+    }, 1000)
     //update item count in header
-    $('.site-header__cart--link span').text('(' + cart.item_count + ')');
+    //$('.site-header__cart--link span').text('(' + cart.item_count + ')');
   };
 
   buildCart = function (cart) {
@@ -409,12 +463,30 @@ var ajaxCart = (function(module, $) {
 
     $cartContainer.append(template(data));
 
+    initGiftProduct(cart);
+    initHideGiftProductMini(cart);
+
     cartCallback(cart);
   };
 
   cartCallback = function(cart) {
     $body.removeClass('drawer--is-loading');
     $body.trigger('afterCartLoad.ajaxCart', cart);
+
+    var $giftBox = $('[data-update-minicart]');
+
+    $giftBox.on('change', function() {
+      $giftBox.prop('disabled', true);
+      $giftBox.closest('.gift-product').addClass('disabled-element');
+      setTimeout(function() {
+        isUpdating = false;
+        ShopifyAPI.getCart(buildCart);
+      }, 400)
+    })
+
+    setTimeout(function() {
+      $giftBox.prop('disabled', false);
+    }, 1000)
 
     if (window.Shopify && Shopify.StorefrontExpressButtons) {
       Shopify.StorefrontExpressButtons.initialize();
@@ -605,13 +677,13 @@ var ajaxCart = (function(module, $) {
         if ($el.hasClass('js-qty__adjust--plus')) {
           if (qty < 10) {
             qty += 1;
-          } 
-          else { 
+          }
+          else {
             qty -= 1;
             if (qty <= 1) qty = 1;
           }
        	}
-        else { 
+        else {
             qty -= 1;
             if (qty <= 1) qty = 1;
           }

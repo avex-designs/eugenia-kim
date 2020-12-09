@@ -7,32 +7,27 @@
 
 {% endcomment %}
   <script id="CartTemplate" type="text/template">
-  
+
    {% raw %}
     <form action="/cart" method="post" novalidate class="cart ajaxcart">
       <div class="ajaxcart__inner">
-      
-      
-      
-      
-      
         {{#items}}
         <div class="ajaxcart__product">
           <div class="ajaxcart__row" data-line="{{line}}">
             <div class="grid">
-            
+
               <div class="grid__item one-third">
                 <a href="{{url}}" class="ajaxcart__product-image"><img src="{{img}}" alt=""></a>
               </div>
-              
+
                <div class="grid__item two-thirds">
-              
+
                 <p>
                   <a href="{{url}}" class="ajaxcart__product-name">{{name}} <span>({{itemQty}})</span></a>
                 </p>
 
                 <div class="grid--full display-table">
-                
+
                   <div class="grid__item display-table-cell">
                     {{#if discountsApplied}}
                       <small class="ajaxcart-item__price-strikethrough"><s>{{{originalLinePrice}}}</s></small>
@@ -40,12 +35,12 @@
                     {{else}}
                       <span>{{{linePrice}}}</span>
                     {{/if}}
-                    
+
                     <h2 class="cart__dropdown--remove" data-line="{{line}}">
                       <a>[Remove from cart]</a>
                     </h2>
                   </div>
-                  
+
                   {{#if discountsApplied}}
                     <div class="grid--full display-table">
                       <div class="grid__item text-right">
@@ -55,27 +50,14 @@
                       </div>
                     </div>
                   {{/if}}
-                  
-                  
+
+
                 </div>
               </div>
             </div>
           </div>
         </div>
         {{/items}}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         {% endraw %}{% if settings.cart_notes_enable %}{% raw %}
           <div>
@@ -84,8 +66,32 @@
           </div>
         {% endraw %}{% endif %}{% raw %}
       </div>
-      
+
       <div class="ajaxcart__footer">
+        {% endraw %}
+		
+        {%comment%}
+        {% if section.settings.cart_notes_enable or settings.giftwrap != blank %}
+          {% assign gift_product = all_products[settings.giftwrap] %}
+
+          <label class="gift-product dark--style">
+            <input type="checkbox"
+                   class="visually-hidden"
+                   data-cart-toggle="{{- gift_product.selected_or_first_available_variant.id -}}"
+                   data-gift-product
+                   data-update-minicart/>
+            <span class="fake-checkbox dark--style"></span>
+
+            {{ settings.giftwrap_text}} {{ gift_product.selected_or_first_available_variant.price | money | replace: '.00', '' }}
+
+            <svg class="gift-product__icon" width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 7.00005C11.0968 7.00003 6.37895 3.73386 8.55641 1.55646C10.7339 -0.620952 14.0001 4.09682 14 7.00005ZM14 7.00005C16.9032 7.00003 21.6211 3.73386 19.4436 1.55646C17.2661 -0.620952 13.9999 4.09682 14 7.00005ZM14 7.50005V25.5001M2 13.0001H25C25.5523 13.0001 26 12.5523 26 12.0001V8.00005C26 7.44777 25.5523 7.00005 25 7.00005H2C1.44772 7.00005 1 7.44777 1 8.00005V12.0001C1 12.5523 1.44772 13.0001 2 13.0001ZM3 13.0001V24.0001C3 25.1046 3.89543 26.0001 5 26.0001H22C23.1046 26.0001 24 25.1046 24 24.0001V13.0001H3Z" stroke="white"/>
+            </svg>
+          </label>
+        {% endif %}
+      	{%endcomment%}
+      
+        {% raw %}
         <a class="cart-button__container" href="/cart">
           <button class="btn edit-cart__button">
             Edit Cart
@@ -97,26 +103,26 @@
       </div>
     </form>
   {% endraw %}
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
   </script>
   <script id="AjaxQty" type="text/template">
   {% raw %}
     <div class="ajaxcart__qty">
       <button type="button" class="ajaxcart__qty-adjust ajaxcart__qty--minus" data-id="{{key}}" data-qty="{{itemMinus}}">
-        
+
         <span>&minus;</span>
-        
+
       </button>
       <input type="text" class="ajaxcart__qty-num" value="{{itemQty}}" min="0" data-id="{{key}}" aria-label="quantity" pattern="[0-9]*">
       <button type="button" class="ajaxcart__qty-adjust ajaxcart__qty--plus" data-id="{{key}}" data-qty="{{itemAdd}}">
-        
+
         <span>&plus;</span>
-        
+
       </button>
     </div>
   {% endraw %}
@@ -125,15 +131,15 @@
   {% raw %}
     <div class="js-qty">
       <button type="button" class="js-qty__adjust js-qty__adjust--minus" data-id="{{key}}" data-qty="{{itemMinus}}">
-        
+
         <span>&minus;</span>
-        
+
       </button>
       <input type="text" class="js-qty__num" value="{{itemQty}}" min="1" max="10" data-id="{{key}}" aria-label="quantity" pattern="[0-9]*" name="{{inputName}}" id="{{inputId}}">
       <button type="button" class="js-qty__adjust js-qty__adjust--plus" data-id="{{key}}" data-qty="{{itemAdd}}">
-        
+
         <span>&plus;</span>
-        
+
       </button>
     </div>
   {% endraw %}

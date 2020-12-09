@@ -215,11 +215,7 @@
                 </option>
               {% endfor %}
             </select>
-            
-            	
-            
-            
-            
+                  
              {% if product.tags contains 'text-box' %}
                 <div class="product-form__controls-group">
                   <div class="selector-wrapper js product-form__item">
@@ -234,12 +230,7 @@
                   </p>  
                 </div>
               {% endif %}
-            	
-            
-            
-             
-
-            	
+            	      	
 
 
                   <div class="product-form__btn-container">
@@ -553,99 +544,6 @@
 {% endschema %}
   
 
-<script>
+
 
   
-jQuery(function() {
-  
-  var selectOptionImgId = $("#ProductSelect-product-customizable-template option:first").data('image-id');
-  
-  function checkVisibility(optionId) {
-    jQuery('.product-slide img').each(function( index ) {
-      var imgId = $(this).data('id');
-
-      if(optionId == imgId) {
-          $(this).addClass('image-visible');
-      } else {
-          $(this).removeClass('image-visible');
-      }
-    });
-  }
-  
-  checkVisibility(selectOptionImgId)
-  
-  jQuery('.swatches-container .swatch :radio').change(function(e) {
-    e.preventDefault();
-    var optionIndex = jQuery(this).closest('.swatch').attr('data-option-index');
-    var optionValue = jQuery(this).val();
-    
-    jQuery(this)
-      .closest('form')
-      .find('.single-option-selector')
-      .eq(optionIndex)
-      .val(optionValue)
-      .trigger('change');
-    
-    var selectOptionIndex;
-    var selectOptionValue;
-    
-    jQuery( "#ProductSelect-product-customizable-template option" ).each(function( index ) {
-      var colorSelected = $(this).text().trim();
-      if (optionValue == colorSelected) {
-        selectOptionIndex = index;
-        selectOptionValue = $(this).val();
-        selectOptionImgId = $(this).data('image-id');
-        checkVisibility(selectOptionImgId);
-      }
-    });
-    
-    
-    jQuery(this)
-      .closest('form')
-      .find('#ProductSelect-product-customizable-template')
-      .val(selectOptionValue)
-  });
-  
-  jQuery('#custom-text').on('keyup', function(){
-  	var newValueText = $(this).val();
-    var newRadiusText = 400;
-    
-    if (newValueText.length > 12) {
-    	newRadiusText = 360;
-    }
-    
-    if (newValueText.length > 16) {
-    	newRadiusText = 320;
-      	$('.input-customizable-text').css('top', '55%');
-    } else {
-    	$('.input-customizable-text').css('top', '65%');
-    }
-    
-    $(".custom-init").css("display", "none");
-    
-    $(".custom-after").css("display", "block");
-    
-    $('#customizable-text-on-image-two').text(newValueText);
-    var circleType = new CircleType(document.getElementById('customizable-text-on-image-two'));
-  	circleType.radius(newRadiusText).dir(-1);
-  });
-  
-  
-  
-  jQuery('.swatch-element-get-color').on('click tap', function(){
-  	var newValueColor = $(this).data('hex');
-    if(newValueColor === '#' || newValueColor == undefined) {
-    	newValueColor = '#000000';
-    }
-    $('#customizable-text-on-image').css('color', newValueColor);
-  });
-  
-  
-  
-  var circleType = new CircleType(document.getElementById('customizable-text-on-image'));
-  circleType.radius(400).dir(-1);
-  $(circleType.element).fitText(0.85, { minFontSize: '40px', maxFontSize: '140px' });
-  
-});
-  
-</script>

@@ -1,0 +1,96 @@
+<tr class="cart__row border-bottom line{{ forloop.index }} cart-flex{% if forloop.first %} border-top{% endif %}"
+    data-rv-each-item="cart.items">
+  <td class="cart__image-wrapper cart-flex-item">
+    <a data-rv-href="item.url">
+      <img class="cart__image"
+           src="{{ item | img_url: '95x95' }}"
+           data-rv-alt="item.product_title"
+           data-rv-src="item.image | product_image_size '240x240'">
+    </a>
+  </td>
+  <td class="cart__meta small--text-left cart-flex-item">
+    <div class="list-view-item__title">
+      <a class="list-view-item__title-link" data-rv-href="item.url">
+        <span data-rv-text="item.product_title"></span>
+        {{ item.product.title }}
+        {% if item.quantity > 1 %}
+          <span class="medium-up--hide">
+            <span class="visually-hidden">{{ 'cart.label.quantity' | t }}</span>(x<span data-rv-text="item.quantity"></span>)
+          </span>
+        {% endif %}
+      </a>
+    </div>
+
+    <div class="cart__meta-text">
+      <span data-rv-each-option="item.options_with_values">{option.name}: {option.value}<br/></span>
+    </div>
+
+  </td>
+  <td class="cart__price-wrapper cart-flex-item">
+    <span data-rv-html="item.original_price | money Currency.currentCurrency"></span>
+
+    <div class="cart__edit medium-up--hide">
+      <button type="button" class="btn btn--secondary btn--small js-editor-toggle cart__edit--active">
+        <span class="cart__edit-text--edit">{{ 'cart.general.edit' | t }}</span>
+        <span class="cart__edit-text--cancel">{{ 'cart.general.cancel' | t }}</span>
+      </button>
+    </div>
+  </td>
+
+  <td class="cart__update-wrapper cart-flex-item text-right">
+    <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0"
+       class="btn btn--small btn--secondary cart__remove medium-up--hide"
+       data-rv-data-cart-remove="index | plus 1">{{ 'cart.general.remove' | t }}</a>
+
+    <div class="cart__qty"
+         data-rv-hide="item.handle | includes '{{ settings.giftwrap }}'">
+      <label for="updates_{{ item.key }}" class="cart__qty-label">{{ 'cart.label.quantity' | t }}</label>
+      <div class="js-qty">
+        <button type="button"
+                class="number_button number_button--minus"
+                data-rv-data-cart-update="index | plus 1"
+                data-rv-data-cart-quantity="item.quantity | minus 1">
+          <span>−</span>
+        </button>
+
+        <input type="text"
+               data-rv-value="item.quantity"
+               min="1"
+               max="10"
+               aria-label="quantity"
+               pattern="[0-9]*"
+               name="updates[]">
+
+        <button type="button"
+                class="number_button number_button--plus"
+                data-rv-data-cart-update="index | plus 1"
+                data-rv-data-cart-quantity="item.quantity | plus 1">
+          <span>+</span>
+        </button>
+      </div>
+    </div>
+  </td>
+  <td class="cart-flex-item text-center">
+    <p class="small--hide">
+      <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0"
+         class="cart__remove"
+         aria-label="{{ 'cart.general.remove' }}"
+         data-rv-data-cart-remove="index | plus 1">X</a>
+    </p>
+  </td>
+  <td class="text-right small--hide js-item-price">
+    <div class="cart-item__original-price">
+      <s data-rv-html="item.original_line_price | money Currency.currentCurrency"
+         data-rv-data-original_line_price="item.original_line_price">
+        {{ item.original_line_price | money }}
+      </s>
+    </div>
+
+    <div data-rv-html="item.line_price | money Currency.currentCurrency"
+         data-rv-data-line_price="item.line_price">
+      {{ item.line_price | money }}
+    </div>
+
+    <div data-rv-each-discount="item.discounts" class="cart-item__discount">{discount.title}</div>
+  </td>
+</tr>

@@ -1936,9 +1936,7 @@ body { position: relative; }
 .section-header {
   margin-bottom: 30px;
   font-size: 1em;
-
-  @include media-query($medium-up) {
-  }
+  
 }
 
 .template-page .section-header h1 {
@@ -3757,12 +3755,6 @@ $slick-dot-size-small: 10px;
       margin: 36px auto 0;
       display: block;
       
-    }
-    .section-header {
-      h2 {
-        font-size: 20px;
-        font-weight: 700;
-      }
     }
     .product-grid__container {
       max-width: 100%;
@@ -7617,6 +7609,12 @@ $toolbar-height-small: 46px;
 .product-grid__container{
   max-width:75%;
   margin: 0 auto 40px;
+  .section-header {
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+  }
 }
 
 .product-card__link {

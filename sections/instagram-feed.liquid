@@ -10,7 +10,8 @@
   or settings.social_youtube_link != blank
   or settings.social_vimeo_link != blank
   or template.name == 'article'
-  or template.name == 'blog' %}
+  or template.name == 'blog'
+%}
   {%- assign social_icons = true -%}
 {% endif %}
 
@@ -26,21 +27,21 @@
         </div>
 
         <div class="grid__item medium-up--one-third">
-          {% if section.settings.instagram_title.size > 0 %}
+        	{% if section.settings.instagram_title.size > 0 %}
             <h2 class="section-header__title text-center">
               <span>
               {% if section.settings.instagram_link != blank %}
                 <a href="{{ section.settings.instagram_link }}" target="_blank">
                   {{ section.settings.instagram_title }}
                 </a>
-              {% else %}
+              {% else  %}
                 {{ section.settings.instagram_title }}
               {% endif %}
               </span>
             </h2>
-          {% endif %}
+            {% endif %}
 
-          {% if section.settings.instagram_follow_text != blank %}
+            {% if section.settings.instagram_follow_text != blank  %}
             <p class="text-center">
               {% if section.settings.instagram_link != blank %}
                 <a href="{{ section.settings.instagram_link }}" target="_blank">
@@ -50,74 +51,96 @@
                 {{ section.settings.instagram_follow_text }}
               {% endif %}
             </p>
-          {% endif %}
+            {% endif %}
         </div>
 
         <div class="grid__item medium-up--one-third">
           {% if social_icons %}
-            <div class="grid__item{% if section.settings.footer_newsletter_enable %} medium-up--one-quarter{% else %} text-center{% endif %}">
-              <ul class="list--inline instagram-feed__icons social-icons">
-                {% if settings.social_facebook_link != blank %}
-                  <li>
-                    <a class="social-icons__link"
-                       href="{{ settings.social_facebook_link | escape }}"
-                       title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Facebook' }}"
-                       target="_blank">
-                      {% include 'icon-facebook' %}
-                      <span class="icon__fallback-text">Facebook</span>
-                    </a>
-                  </li>
-                {% endif %}
-                {% if settings.social_twitter_link != blank %}
-                  <li>
-                    <a class="social-icons__link"
-                       href="{{ settings.social_twitter_link | escape }}"
-                       title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Twitter' }}"
-                       target="_blank">
-                      {% include 'icon-twitter' %}
-                      <span class="icon__fallback-text">Twitter</span>
-                    </a>
-                  </li>
-                {% endif %}
-                {% if settings.social_pinterest_link != blank %}
-                  <li>
-                    <a class="social-icons__link"
-                       href="{{ settings.social_pinterest_link | escape }}"
-                       title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Pinterest' }}"
-                       target="_blank">
-                      {% include 'icon-pinterest' %}
-                      <span class="icon__fallback-text">Pinterest</span>
-                    </a>
-                  </li>
-                {% endif %}
-                {% if settings.social_instagram_link != blank %}
-                  <li>
-                    <a class="social-icons__link"
-                       href="{{ settings.social_instagram_link | escape }}"
-                       title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Instagram' }}"
-                       target="_blank">
-                      {% include 'icon-instagram' %}
-                      <span class="icon__fallback-text">Instagram</span>
-                    </a>
-                  </li>
-                {% endif %}
-              </ul>
-            </div>
-          {% endif %}
+          <div class="grid__item{% if section.settings.footer_newsletter_enable %} medium-up--one-quarter{% else %} text-center{% endif %}">
+            <ul class="list--inline instagram-feed__icons social-icons">
+              {% if settings.social_facebook_link != blank %}
+                <li>
+                  <a class="social-icons__link" href="{{ settings.social_facebook_link | escape }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Facebook' }}" target="_blank">
+                    {% include 'icon-facebook' %}
+                    <span class="icon__fallback-text">Facebook</span>
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_twitter_link != blank %}
+                <li>
+                  <a class="social-icons__link" href="{{ settings.social_twitter_link | escape }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Twitter' }}" target="_blank">
+                    {% include 'icon-twitter' %}
+                    <span class="icon__fallback-text">Twitter</span>
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_pinterest_link != blank %}
+                <li>
+                  <a class="social-icons__link" href="{{ settings.social_pinterest_link | escape }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Pinterest' }}" target="_blank">
+                    {% include 'icon-pinterest' %}
+                    <span class="icon__fallback-text">Pinterest</span>
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_instagram_link != blank %}
+                <li>
+                  <a class="social-icons__link" href="{{ settings.social_instagram_link | escape }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Instagram' }}" target="_blank">
+                    {% include 'icon-instagram' %}
+                    <span class="icon__fallback-text">Instagram</span>
+                  </a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        {% endif %}
         </div>
 
-        <h3 class="text-center medium-up--hide">{{ section.settings.instagram_hashtag }}</h3>
+		<h3 class="text-center medium-up--hide">{{ section.settings.instagram_hashtag }}</h3>
 
       </div>
+
+   {%comment%}
+      <div id="instafeed--{{ section.id }}" class="grid {% unless section.settings.image_padding %}grid--no-gutters{% endunless %}">
+      </div>
+
     </div>
+
+
+    <!-- {% assign instafeed_template = '<a href="{{link}}" target="blank" class="instagram-feed__image-link"><img src="{{image}}" /></a>' %} -->
+
+    {% assign instafeed_template =  '<div class="insta-thumb"><a href="{{link}}" style="background: #fff url(&quot;{{image}}&quot;); background-position: center; background-repeat: no-repeat; background-size: cover;" target="_blank"></a></div>' %}
+
+    <script type="text/javascript">
+        var container =  document.getElementById("instafeed--{{ section.id }}");
+        var feed = new Instafeed({
+            target: container,
+            get: 'user',
+            userId: '{{ section.settings.instagram_user_id }}',
+            accessToken: '{{ section.settings.instagram_access_token }}',
+            limit: '6',
+            resolution: 'standard_resolution',
+            template: '<div class="instagram-feed__image {% if section.settings.image_padding %}instagram-feed__image--padded{% endif %} grid__item medium-up--one-third small--one-whole">{{ instafeed_template }}</div>',
+            after: function(){
+        $('.instagram-feed__image a img').each(function(){
+          var src = $(this).attr('src');
+          // $(this).attr('src', src.replace('150x150', '640x640'));
+        })
+      }
+      });
+      feed.run();
+    </script>
+    {%endcomment%}
+    
+    
+    
   </div>
 </div>
 
 {% schema %}
-  {
-    "name": "Instagram Feed",
-    "class": "index-section index-section--flush instagram-feed__container",
-    "settings": [
+{
+  "name": "Instagram Feed",
+  "class": "index-section index-section--flush instagram-feed__container",
+  "settings": [
     {
       "type": "text",
       "id": "instagram_user_id",
@@ -157,10 +180,10 @@
       "label": "Enable image padding"
     }
   ],
-    "presets": [{
+  "presets": [{
     "name": "Instagram Feed",
     "category": "Image"
   }]
-  }
+}
 
 {% endschema %}

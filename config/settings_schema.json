@@ -871,21 +871,5 @@
         "info": "Will be scaled down to 32 x 32px"
       }
     ]
-  },
-  {
-    "name": "Giftwrap",
-    "settings": [
-      {
-        "type": "product",
-        "id": "giftwrap",
-        "label": "Giftwrap Product"
-      },
-      {
-        "type": "text",
-        "id": "giftwrap_text",
-        "label": "Giftwrap text",
-        "default": "Add gift wrapping for "
-      }
-    ]
   }
 ]

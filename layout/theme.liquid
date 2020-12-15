@@ -13,7 +13,7 @@
   {% if settings.favicon != blank %}
     <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
   {% endif %}
-
+  
   {% if template == 'product.customizable'%}
   	 <link href="https://fonts.googleapis.com/css?family=Mr+De+Haviland" rel="stylesheet">
   	 <link href="{{ 'customizer.scss.css' | asset_url }}" rel="stylesheet">
@@ -40,12 +40,12 @@
   {% include 'social-meta-tags' %}
 
   {{ 'foundation.css' | asset_url | stylesheet_tag }}
-
+   
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
-
+  
   {{ 'slick.scss' | asset_url | stylesheet_tag }}
    {{ 'slick-theme.scss' | asset_url | stylesheet_tag }}
-
+  
    {{'skh.scss.css' | asset_url | stylesheet_tag}}
    {{'jquery.fancybox.min.css' | asset_url | stylesheet_tag}}
   {% include 'google-fonts' %}
@@ -64,7 +64,7 @@
 
     document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
   </script>
-
+ 
 
   <!-- <script type="text/javascript" src="{{ 'skrollr.min.js' | asset_url }}" ></script> -->
 
@@ -74,11 +74,11 @@
     <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script><!--<![endif]-->
     <!--[if lte IE 9]><script src="{{ 'shopify_common.js' | shopify_asset_url }}"></script><![endif]-->
   {% endif %}
-
+  
   {% if template == 'product.customizable'%}
   	<!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'circletype.min.js' | asset_url }}" ></script><!--<![endif]-->
   	<!--[if lte IE 9]><script src="{{ 'circletype.min.js' | asset_url }}"></script><![endif]-->
-
+  
   	<!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'fittext.js' | asset_url }}" async="async"></script><!--<![endif]-->
   	<!--[if lte IE 9]><script src="{{ 'fittext.js' | asset_url }}"></script><![endif]-->
   {% endif %}
@@ -88,29 +88,31 @@
  {% unless template == blank %}
   <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'vendor.js' | asset_url }}" ></script><!--<![endif]-->
   <!--[if lte IE 9]><script src="{{ 'vendor.js' | asset_url }}"></script><![endif]-->
-
+ 
   <!-- HC - Masonry plugin - 25 Jan '18 -->
   {{ 'jquery.shapeshift.js' | asset_url | script_tag }}
 
   <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'theme.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
   <!--[if lte IE 9]><script src="{{ 'theme.js' | asset_url }}"></script><![endif]-->
 
-  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'quick-shop.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
-
   <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'ajax-cart.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
   <!--[if lte IE 9]><script src="{{ 'ajax-cart.js' | asset_url }}"></script><![endif]-->
 
+
+  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'quick-shop.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
+  <!--[if lte IE 9]><script src="{{ 'ajax-cart.js' | asset_url }}"></script><![endif]-->
+  
   <script src="{{ 'jquery.fancybox.min.js' | asset_url }}" defer="defer"></script>
-
+  
    <script src="{{ 'foundation.js' | asset_url }}" defer="defer"></script>
-
+  
   <script src="{{ 'slick.min.js' | asset_url }}" defer="defer"></script>
-
+  
    <script src="{{ 'skh.js' | asset_url }}" defer="defer"></script>
-
+  
 {% endunless %}
   {{ content_for_header }}
-
+  
  <!-- Affirm -->
 <script>
 _affirm_config = {
@@ -121,9 +123,10 @@ _affirm_config = {
 (function(l,g,m,e,a,f,b){var d,c=l[m]||{},h=document.createElement(f),n=document.getElementsByTagName(f)[0],k=function(a,b,c){return function(){a[b]._.push([c,arguments])}};c[e]=k(c,e,"set");d=c[e];c[a]={};c[a]._=[];d._=[];c[a][b]=k(c,a,b);a=0;for(b="set add save post open empty reset on off trigger ready setProduct".split(" ");a<b.length;a++)d[b[a]]=k(c,e,b[a]);a=0;for(b=["get","token","url","items"];a<b.length;a++)d[b[a]]=function(){};h.async=!0;h.src=g[f];n.parentNode.insertBefore(h,n);delete g[f];d(g);l[m]=c})(window,_affirm_config,"affirm","checkout","ui","script","ready");
 // Use your live public API Key and https://cdn1.affirm.com/js/v2/affirm.js script to point to Affirm production environment.
 </script>
-<!-- End Affirm -->
-
+<!-- End Affirm --> 
+  
   <script src="{{ 'jquery.zoom.min.js' | asset_url }}" defer="defer"></script>
+  <script type="text/javascript" src="path/to/instafeed.min.js"></script>
 
 <!--begin-bc-sf-filter-css-->
   {% include 'bc-sf-filter-style' %}
@@ -143,20 +146,13 @@ _affirm_config = {
 
 </head>
 
-<body class="template-{{ template | split: '.' | first }}"
-      id="skrollr-body"
-  {% if settings.giftwrap != blank %}
-      data-gift-id="{{- all_products[settings.giftwrap].selected_or_first_available_variant.id -}}"
-      data-gift-url="{{- all_products[settings.giftwrap].selected_or_first_available_variant.url -}}"
-  {% endif %}>
+<body class="template-{{ template | split: '.' | first }}"  id=”skrollr-body”>
 
-  {% if template != 'cart' %}
-    <div class="drawer drawer--right">
-      <div id="CartDrawer">
-        <div id="CartContainer"></div>
-      </div>
+  <div class="drawer drawer--right">
+    <div id="CartDrawer">
+      <div id="CartContainer"></div>
     </div>
-  {% endif %}
+  </div>
 
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
@@ -200,20 +196,20 @@ _affirm_config = {
 <!-- Back in Stock helper snippet -->
 {% render 'back-in-stock-helper' %}
 <!-- End Back in Stock helper snippet -->
-
-
-
+  
+  
+  
   <script>
-
-
+ 
+    
   $(document).ready(function(){
-
+    
   $(document).foundation();
-
+    
     $('.m-dropdown').click(function() {
     	$(this).children('.m-dropdown-items').toggleClass('dropdown-hidden')
     })
-
+    
     $('.image-zoom')
     .wrap('<span style="display:inline-block"></span>')
     .css('display', 'block')
@@ -223,22 +219,22 @@ _affirm_config = {
       on: 'mouseover',
       magnify: 1.2
     });
-
-
-
+    
+    
+      
     if ($(window).width()<768) {
-        $('.image-zoom').trigger('zoom.destroy');
+        $('.image-zoom').trigger('zoom.destroy'); 
     }
-
-
-
-
-
+    
+   
+    
+    
+    
     $(window).on('resize', function() {
     if ($(window).width()<768) {
-        $('.image-zoom').trigger('zoom.destroy');
+        $('.image-zoom').trigger('zoom.destroy'); 
     }
-
+      
     if ($(window).width()>768) {
          $('.image-zoom')
     .wrap('<span style="display:inline-block"></span>')
@@ -251,15 +247,15 @@ _affirm_config = {
     });
     }
 });
-
-
+    
+    
     $(".accordion-a").click(function() {
     	$(this).find(".dropdown-symbol").toggleClass("d-none");
     })
-
+  
   });
 </script>
-
+  
 
 <!--begin-bc-sf-filter-js-->
   {% include 'bc-sf-filter' %}
@@ -276,16 +272,5 @@ _affirm_config = {
 <!--start-bc-most-popular-product-init-->
   {% include 'bc-most-popular-product-init' %}
 <!--end-bc-most-popular-product-init-->
-
-  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
-  <script src="{{ 'rivets-cart.min.js' | asset_url }}"></script>
-  <script src="{{ 'cart.min.js' | asset_url }}"></script>
-  <script src="{{ 'custom-cart.js' | asset_url }}"></script>
-
-  <script>
-    (function () {
-      CartJS.init({{ cart | json }});
-    })();
-  </script>
 </body>
 </html>

@@ -210,30 +210,28 @@
           {% include 'account-header' %}
 
           <span class="site-header__cart sk-mob-cart">
-            <a class="site-header__cart--link js-cart-nav-toggle">
-              MY BAG <span>(<span data-cart-count>{{ cart.item_count }}</span>)</span>
-            </a>
+            <a class="site-header__cart--link js-cart-nav-toggle">MY BAG <span>({{ cart.item_count }})</span></a>
           </span>
 
         </div>
-
+     
 
 
     </div>
-
-
+    
+    
     <div class='sk-desk-nav'>
-
+        
       <div class="placeholder">
       </div>
-
-      <div class="sk-desk-logo-nav">
+     
+      <div class="sk-desk-logo-nav">  
       <div class="sk-desk-nav-logo">
-
+      
           <h1 class="h2 site-header__logo small-hide" itemscope itemtype="http://schema.org/Organization">
-
+       
           <div class="h2 site-header__logo small-hide" itemscope itemtype="http://schema.org/Organization">
-
+       
           {% if section.settings.logo %}
             {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
             <a href="/" itemprop="url" class="mobile-logo site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}">
@@ -258,18 +256,18 @@
           {% else %}
             <a class="site-header__logo-link" href="/" itemprop="url">{{ shop.name }}</a>
           {% endif %}
-
+       
           </h1>
-
+       
       </div>
-
+        
        <div>
          {% include 'site-nav' %}
         </div>
-
+       
       </div>
-
-      <div class="sk-desk-nav-wrap">
+        
+      <div class="sk-desk-nav-wrap"> 
          <div class="medium--hide site-header__section desktop-search desk-search-wrap">
 
           <span class="site-header__search small--hide">
@@ -279,15 +277,15 @@
           {% include 'account-header' %}
 
           <span class="site-header__cart">
-            <a class="site-header__cart--link js-cart-nav-toggle">MY BAG <span>(<span data-cart-count>{{ cart.item_count }}</span>)</span></a>
+            <a class="site-header__cart--link js-cart-nav-toggle">MY BAG <span>({{ cart.item_count }})</span></a>
           </span>
 
         </div>
       </div>
 
     </div>
-
-
+    
+    
 </header>
     </div>
 

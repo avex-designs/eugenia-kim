@@ -109,11 +109,33 @@
   <!-- END MEDIUM-UP GRID -->
 
 </div>
-
+<a href="{{ collection.url }}" class="featured-collection__link btn-dark">
+  Shop all
+</a>
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  var featuredCollectionSlick;
+  function initFeaturedCollectionSlick() {
+    if (window.innerWidth <= 768) {
+      featuredCollectionSlick && featuredCollectionSlick.slick('unslick')
+      featuredCollectionSlick = $('.featured-collection .grid').slick({
+        slidesToShow: 2.5, 
+        arrows: false,
+        infinite: false
+      })
+    } else {
+      featuredCollectionSlick && featuredCollectionSlick.slick('unslick')
+    }
+  }
+  
+  window.addEventListener('resize', initFeaturedCollectionSlick)
+  initFeaturedCollectionSlick()
+})
+</script>
 {% schema %}
   {
     "name": "Featured collection",
-    "class": "index-section",
+    "class": "index-section featured-collection",
     "settings": [
       {
         "type": "text",

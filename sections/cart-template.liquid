@@ -30,7 +30,7 @@
       <footer class="cart__footer">
         <div class="grid">
           
-          {%comment%}
+        
           {% if section.settings.cart_notes_enable or settings.giftwrap != blank %}
             <div class="grid__item medium-up--one-half cart-note">
               {% assign gift_product = all_products[settings.giftwrap] %}
@@ -55,12 +55,12 @@
               {% endif %}
             </div>
           {% endif %}
-          {%endcomment%}
+         
           
           <div class="grid__item text-right small--text-center
-                      {%comment%}
+                    
                       {% if section.settings.cart_notes_enable or settings.giftwrap != blank %} medium-up--one-half{% endif %}"
-               		  {%endcomment%}
+               		 
                >
             <div>
               <span class="cart__subtotal-title">{{ 'cart.general.subtotal' | t }}</span>

@@ -1,12 +1,8 @@
 <!-- /snippets/ajax-cart-template.liquid -->
-{% comment %}
-
-  This snippet provides the default handlebars.js templates for
-  the ajax cart plugin. Use the raw liquid tags to keep the
-  handlebar.js template tags as available hooks.
-
-{% endcomment %}
-  <script id="CartTemplate" type="text/template">
+{% comment %} This snippet provides the default handlebars.js templates for the
+ajax cart plugin. Use the raw liquid tags to keep the handlebar.js template tags
+as available hooks. {% endcomment %}
+<script id="CartTemplate" type="text/template">
 
    {% raw %}
     <form action="/cart" method="post" novalidate class="cart ajaxcart">
@@ -69,8 +65,8 @@
 
       <div class="ajaxcart__footer">
         {% endraw %}
-		
-        {%comment%}
+
+
         {% if section.settings.cart_notes_enable or settings.giftwrap != blank %}
           {% assign gift_product = all_products[settings.giftwrap] %}
 
@@ -89,8 +85,8 @@
             </svg>
           </label>
         {% endif %}
-      	{%endcomment%}
-      
+
+
         {% raw %}
         <a class="cart-button__container" href="/cart">
           <button class="btn edit-cart__button">
@@ -103,14 +99,8 @@
       </div>
     </form>
   {% endraw %}
-
-
-
-
-
-
-  </script>
-  <script id="AjaxQty" type="text/template">
+</script>
+<script id="AjaxQty" type="text/template">
   {% raw %}
     <div class="ajaxcart__qty">
       <button type="button" class="ajaxcart__qty-adjust ajaxcart__qty--minus" data-id="{{key}}" data-qty="{{itemMinus}}">
@@ -126,8 +116,8 @@
       </button>
     </div>
   {% endraw %}
-  </script>
-  <script id="JsQty" type="text/template">
+</script>
+<script id="JsQty" type="text/template">
   {% raw %}
     <div class="js-qty">
       <button type="button" class="js-qty__adjust js-qty__adjust--minus" data-id="{{key}}" data-qty="{{itemMinus}}">
@@ -143,4 +133,4 @@
       </button>
     </div>
   {% endraw %}
-  </script>
+</script>

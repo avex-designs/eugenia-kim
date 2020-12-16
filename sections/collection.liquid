@@ -129,6 +129,7 @@ window.addEventListener('DOMContentLoaded', function () {
   }
   
   window.addEventListener('resize', initFeaturedCollectionSlick)
+  document.addEventListener('shopify:section:load', initFeaturedCollectionSlick)
   initFeaturedCollectionSlick()
 })
 </script>

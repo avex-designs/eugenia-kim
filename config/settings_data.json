@@ -134,7 +134,7 @@
       "1502750296449": {
         "type": "hero",
         "settings": {
-          "image": "shopify:\/\/shop_images\/header_c65bf6b1-68fe-4541-a03e-cc5e750b0fe7.jpg",
+          "image": "shopify:\/\/shop_images\/Header_ca6bea8e-ef79-4a2e-a8d5-c91e4daccc8e.jpg",
           "video": "",
           "alignment": "top",
           "text_alignment": "text-left",
@@ -883,7 +883,8 @@
           "1522703094191",
           "1528999707354"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "1516299013184": {
         "type": "instagram-feed",
@@ -1041,7 +1042,8 @@
           "658e567d-14e2-47c5-aa3b-b9d695c4a879",
           "1603212080762"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "customizer-steps-2": {
         "type": "customizer-steps-2",
@@ -1170,23 +1172,23 @@
       "1591374010288": {
         "type": "sk-two-img",
         "settings": {
-          "first-img": "shopify:\/\/shop_images\/HarleyinNude.png",
-          "second-img": "shopify:\/\/shop_images\/Sabrina.jpg",
+          "first-img": "shopify:\/\/shop_images\/exclusives.jpg",
+          "second-img": "shopify:\/\/shop_images\/sale_00696edb-181c-4b34-ad12-6b9abd48746f.jpg",
           "first-text": "Online Exclusives",
-          "second-text": "Personalize Your Own",
+          "second-text": "Up to 60% Off",
           "first-link-text": "Shop Now",
-          "second-link-text": "Start Here",
+          "second-link-text": "Shop Sale",
           "first-link-url": "shopify:\/\/collections\/exclusives",
-          "second-link-url": "https:\/\/eugeniakim.com\/pages\/step-1"
+          "second-link-url": "shopify:\/\/collections\/sale"
         }
       },
       "1591380270439": {
         "type": "sk-full-img",
         "settings": {
-          "full-img": "shopify:\/\/shop_images\/FW20Edit.png",
-          "full-img-text": "Fall Essentials",
+          "full-img": "shopify:\/\/shop_images\/ColdWeather.jpg",
+          "full-img-text": "Cold-Weather Essentials",
           "link-text": "SHOP NOW",
-          "link-url": "shopify:\/\/collections\/new-arrivals"
+          "link-url": "shopify:\/\/collections\/cold-weather"
         }
       },
       "cart-template": {
@@ -1239,29 +1241,34 @@
       "sections": {
         "header": {
           "type": "header",
-          "settings": {}
+          "settings": {
+          }
         },
         "hero": {
           "type": "hero",
-          "settings": {}
+          "settings": {
+          }
         },
         "slideshow": {
           "type": "slideshow",
           "blocks": {
             "slideshow-0": {
               "type": "image",
-              "settings": {}
+              "settings": {
+              }
             },
             "slideshow-1": {
               "type": "image",
-              "settings": {}
+              "settings": {
+              }
             }
           },
           "block_order": [
             "slideshow-0",
             "slideshow-1"
           ],
-          "settings": {}
+          "settings": {
+          }
         },
         "featured-collections": {
           "type": "collection",
@@ -1271,7 +1278,8 @@
         },
         "feature-row": {
           "type": "feature-row",
-          "settings": {}
+          "settings": {
+          }
         },
         "footer": {
           "type": "footer",
@@ -1434,13 +1442,15 @@
           "blocks": {
             "1492033877875-0": {
               "type": "quote",
-              "settings": {}
+              "settings": {
+              }
             }
           },
           "block_order": [
             "1492033877875-0"
           ],
-          "settings": {}
+          "settings": {
+          }
         },
         "1492033924902": {
           "type": "custom-content",
@@ -1466,15 +1476,18 @@
           "blocks": {
             "1492096252560-0": {
               "type": "featured_collection",
-              "settings": {}
+              "settings": {
+              }
             },
             "1492096252560-1": {
               "type": "featured_collection",
-              "settings": {}
+              "settings": {
+              }
             },
             "1492096252560-2": {
               "type": "featured_collection",
-              "settings": {}
+              "settings": {
+              }
             }
           },
           "block_order": [

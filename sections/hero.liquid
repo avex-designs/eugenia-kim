@@ -1,196 +1,210 @@
-<div class="hero-wrapper">
-  
-{%if section.settings.image%}
-<div class="hero hero--{{ section.settings.hero_size }} box ratio-container lazyload js" id="hero" 
-     {% if section.settings.image %}
-     data-bgset="{% include 'bgset', image: section.settings.image %}"
-     data-sizes="auto"
-     data-parent-fit="cover"
-     style="background-position: {{ section.settings.alignment }}; background-image: url('{{ section.settings.image | img_url: '300x300' }});"
-     {% endif %}>
-  {% if section.settings.image == blank %}
-    <div class="placeholder-background">
-      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
-    </div>
-  {% endif %}
-  {% if section.settings.button_label == blank %}<a href="{{ section.settings.button_link }}" class="">{% endif %}
-  <div class="hero__inner {{section.settings.text_alignment}}">
-    <div class="hero__content {{section.settings.text_alignment_vertical}} mob-alignment">
-      
-      {% if section.settings.title != blank %}
-        <h1 style="font-weight: {{ section.settings.text_weight }} ">{{section.settings.title}}</h1>
-      {% endif %}
-      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-        <a href="{{ section.settings.button_link }}" class="btn hero__btn">
-          {{ section.settings.button_label | escape }}
-        </a>
-      {% endif %}
-    </div>
-    
-  </div>
-  {% if section.settings.button_label == blank %}</a>{% endif %}
+<div class="hero-wrapper hero-slider">
+  {% for block in section.blocks %}
+    {%if block.settings.image%}
+      <div class="hero hero--{{ block.settings.hero_size }} box ratio-container lazyload js" id="hero" 
+          {% if block.settings.image %}
+          data-bgset="{% include 'bgset', image: block.settings.image %}"
+          data-sizes="auto"
+          data-parent-fit="cover"
+          style="background-position: {{ block.settings.alignment }}; background-image: url('{{ block.settings.image | img_url: '300x300' }});"
+          {% endif %}>
+        {% if block.settings.image == blank %}
+          <div class="placeholder-background">
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {% endif %}
+        {% if block.settings.button_label == blank %}<a href="{{ block.settings.button_link }}" class="">{% endif %}
+        <div class="hero__inner {{block.settings.text_alignment}}">
+          <div class="hero__content {{block.settings.text_alignment_vertical}} mob-alignment">
+            
+            {% if block.settings.title != blank %}
+              <h1 style="font-weight: {{ block.settings.text_weight }} ">{{block.settings.title}}</h1>
+            {% endif %}
+            {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+              <a href="{{ block.settings.button_link }}" class="btn hero__btn">
+                {{ block.settings.button_label | escape }}
+              </a>
+            {% endif %}
+          </div>
+          
+        </div>
+        {% if block.settings.button_label == blank %}</a>{% endif %}
+      </div>
+    {%endif%}
+    {%if block.settings.video%}
+      <div class="video-wrap">
+        <iframe 
+                  class="video-wrap-iframe" 
+                  src="{{block.settings.video}}" 
+                  height="100%" width="100%" 
+                  frameBorder="0" 
+                  allow="autoplay; fullscreen"
+                  allowfullscreen>
+        </iframe>
+      </div>
+    {%endif%}
+  {% endfor %}
 </div>
-{%endif%}
-  
-  {%if section.settings.video%}
-  <div class="video-wrap">
- 	 <iframe 
-             class="video-wrap-iframe" 
-             src="{{section.settings.video}}" 
-             height="100%" width="100%" 
-             frameBorder="0" 
-             allow="autoplay; fullscreen"
-             allowfullscreen>
-    </iframe>
-  </div>
-  {%endif%}
-  
-  
-</div>
-
 <noscript>
-  <div class="hero hero--{{ section.settings.hero_size }}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %}"{% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: center {{ section.settings.alignment }};"{% endif %}></div>
+  <div class="hero hero--{{ section.blocks.first.settings.hero_size }}{% if section.blocks.first.settings.title != blank or section.blocks.first.text != blank or section.blocks.first.button_label != blank %} hero__overlay{% endif %}"{% if section.blocks.first.image %} style="background-image: url('{{ section.blocks.first.image | img_url: '2048x' }}'); background-position: center {{ section.blocks.first.alignment }};"{% endif %}></div>
 </noscript>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    $('.hero-slider').slick({
+      slidesToShow: 1, 
+      infinite: false,
+      dots: true
+    })
+  })
+</script>
 
 {% schema %}
   {
-    "name": "Hero",
+    "name": "Hero Slider",
     "class": "index-section index-section--flush",
-    "settings": [
+    "max_blocks": 5,
+    "blocks": [
       {
-        "type": "image_picker",
-        "id": "image",
-        "label": "Image"
-      },
-	  {
-        "type": "video_url",
-        "id": "video",
-		"accept": ["youtube", "vimeo"],
-        "label": "Video"
-      },
-      {
-        "type": "select",
-        "id": "alignment",
-        "label": "Image alignment",
-        "default": "center",
-        "options": [
+        "type": "slide",
+        "name": "Slide",
+        
+        "settings": [
           {
-            "value": "top",
-            "label": "Top"
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
           },
           {
-            "value": "center",
-            "label": "Middle"
+            "type": "video_url",
+            "id": "video",
+        "accept": ["youtube", "vimeo"],
+            "label": "Video"
           },
           {
-            "value": "bottom",
-            "label": "Bottom"
+            "type": "select",
+            "id": "alignment",
+            "label": "Image alignment",
+            "default": "center",
+            "options": [
+              {
+                "value": "top",
+                "label": "Top"
+              },
+              {
+                "value": "center",
+                "label": "Middle"
+              },
+              {
+                "value": "bottom",
+                "label": "Bottom"
+              }
+            ]
+          },
+        {
+            "type": "select",
+            "id": "text_alignment",
+            "label": "Text alignment horizontal",
+            "default": "text-left",
+            "options": [
+              {
+                "value": "text-left",
+                "label": "Left"
+              },
+              {
+                "value": "text-center",
+                "label": "Middle"
+              },
+              {
+                "value": "text-right",
+                "label": "Right"
+              }
+            ]
+          },
+        {
+            "type": "select",
+            "id": "text_alignment_vertical",
+            "label": "Text alignment vertical",
+            "default": "text-middle",
+            "options": [
+              {
+                "value": "text-top",
+                "label": "Top"
+              },
+              {
+                "value": "text-middle",
+                "label": "Middle"
+              },
+              {
+                "value": "text-bottom",
+                "label": "Bottom"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "text_weight",
+            "label": "Text Weight",
+            "default": "700",
+            "options": [
+              {
+                "value": "300",
+                "label": "Light"
+              },
+              {
+                "value": "700",
+                "label": "Bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Headline"
+          },
+          {
+            "type": "select",
+            "id": "hero_size",
+            "label": "Section height",
+            "default": "medium",
+            "options": [
+              {
+                "label": "Extra Small",
+                "value": "x-small"
+              },
+              {
+                "label": "Small",
+                "value": "small"
+              },
+              {
+                "label": "Medium",
+                "value": "medium"
+              },
+              {
+                "label": "Large",
+                "value": "large"
+              },
+              {
+                "label": "Extra Large",
+                "value": "x-large"
+              },
+              {
+                "label": "Full Size",
+                "value": "full-size"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
           }
-        ]
-      },
-	  {
-        "type": "select",
-        "id": "text_alignment",
-        "label": "Text alignment horizontal",
-        "default": "text-left",
-        "options": [
-          {
-            "value": "text-left",
-            "label": "Left"
-          },
-          {
-            "value": "text-center",
-            "label": "Middle"
-          },
-          {
-            "value": "text-right",
-            "label": "Right"
-          }
-        ]
-      },
-	  {
-        "type": "select",
-        "id": "text_alignment_vertical",
-        "label": "Text alignment vertical",
-        "default": "text-middle",
-        "options": [
-          {
-            "value": "text-top",
-            "label": "Top"
-          },
-          {
-            "value": "text-middle",
-            "label": "Middle"
-          },
-          {
-            "value": "text-bottom",
-            "label": "Bottom"
-          }
-        ]
-      },
-	  {
-        "type": "select",
-        "id": "text_weight",
-        "label": "Text Weight",
-        "default": "700",
-        "options": [
-          {
-            "value": "300",
-            "label": "Light"
-          },
-          {
-            "value": "700",
-            "label": "Bold"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Headline"
-      },
-      {
-        "type": "select",
-        "id": "hero_size",
-        "label": "Section height",
-        "default": "medium",
-        "options": [
-          {
-            "label": "Extra Small",
-            "value": "x-small"
-          },
-          {
-            "label": "Small",
-            "value": "small"
-          },
-          {
-            "label": "Medium",
-            "value": "medium"
-          },
-          {
-            "label": "Large",
-            "value": "large"
-          },
-          {
-            "label": "Extra Large",
-            "value": "x-large"
-          },
-          {
-            "label": "Full Size",
-            "value": "full-size"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "id": "button_label",
-        "label": "Button label"
-      },
-      {
-        "type": "url",
-        "id": "button_link",
-        "label": "Button link"
+        ]  
       }
     ],
     "presets": [

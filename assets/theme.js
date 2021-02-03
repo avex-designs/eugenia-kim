@@ -3318,9 +3318,25 @@ $(function(){
 
 /* HC - Masonry Fixed - 2.9.18 */
 
-jQuery(window).load( function(){
+document.addEventListener('DOMContentLoaded', function () {
+  $('.masonry.blog__articles').shapeshift({
+    Selector: '.blog-masonry',
+    enableDrag: false,
+    enableCrossDrop: false,
+    gutterX: 0,
+    gutterY: 0,
+    paddingX: 0,
+    paddingY: 0,
+    enableResize: false
+  })
 
-  $(function(){
+  var resizeId
+  $(window).resize(function() {
+      clearTimeout(resizeId);
+      resizeId = setTimeout(doneResizing, 100);
+  })
+
+  function doneResizing(){
     $('.masonry.blog__articles').shapeshift({
       Selector: '.blog-masonry',
       enableDrag: false,
@@ -3330,30 +3346,9 @@ jQuery(window).load( function(){
       paddingX: 0,
       paddingY: 0,
       enableResize: false
-    });
-
-    var resizeId;
-    $(window).resize(function() {
-        clearTimeout(resizeId);
-        resizeId = setTimeout(doneResizing, 100);
-    });
-
-
-    function doneResizing(){
-      $('.masonry.blog__articles').shapeshift({
-        Selector: '.blog-masonry',
-        enableDrag: false,
-        enableCrossDrop: false,
-        gutterX: 0,
-        gutterY: 0,
-        paddingX: 0,
-        paddingY: 0,
-        enableResize: false
-      });
-    }
-  });
-
-});
+    })
+  }
+})
 
 
 

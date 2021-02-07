@@ -100,6 +100,7 @@
 
           <div class="filters-toolbar__item">
             <button class='shop-filter-desctop-mobile'>Filter</button>
+            <!-- <button class='shop-filter-desctop'>Filter</button> -->
           </div>
           <div class="filters-toolbar__item filters-toolbar__item--count">
             <span class="filters-toolbar__product-count" id="bc-sf-filter-total-product">
@@ -117,70 +118,67 @@
     </div>
   </header>
 
-  <div class="page-width" id="Collection">
-    <button class='shop-filter-desctop'>Filter</button>
-    <div id="bc-sf-filter-tree-h">
-      {% include 'bc-sf-filter-tree-placeholder' %}
+  <div class="page-width collection-page" id="Collection">
+    <div class="collection-page__filter">
+      <div id="bc-sf-filter-tree-h" class="bc-sf-filter-tree-h-open">
+        {% include 'bc-sf-filter-tree-placeholder' %}
+      </div>
+      <div id="bc-sf-filter-tree">
+        {% include 'bc-sf-filter-tree-placeholder' %}
+      </div>
     </div>
-    {% comment %}<div id="bc-sf-filter-tree-mobile">
-	  <button class='shop-filter-desctop-mobile'>Filter</button>
-<!--       {% include 'bc-sf-filter-skeleton', type: 'button' %} -->
-    </div>{% endcomment %}
-    <div id="bc-sf-filter-tree">
-      {% include 'bc-sf-filter-tree-placeholder' %}
-    </div>
+    <div class="collection-page__body">
+      {% if section.settings.layout == 'grid' %}
 
-    {% if section.settings.layout == 'grid' %}
+        <div id="bc-sf-filter-products" class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}" data-bc-sort="{{ collection.default_sort_by }}">
+          {% for product in collection.products %}
+            <div class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+              {% include 'product-card-grid', max_height: max_height %}
+            </div>
+          {% endfor %}
+        </div>
 
-      <div id="bc-sf-filter-products" class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}" data-bc-sort="{{ collection.default_sort_by }}">
-        {% for product in collection.products %}
-          <div class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
-            {% include 'product-card-grid', max_height: max_height %}
-          </div>
-        {% endfor %}
-      </div>
+      {% else %}
 
-    {% else %}
+        <div id="bc-sf-filter-products" data-bc-sort="{{ collection.default_sort_by }}">
+          <ul class="list-view-items">
+            {% if collection.default_sort_by != 'best-selling' %}
+              {% for product in collection.products %}
+                <li href="{{ product.url | within: collection }}" class="list-view-item">
+                  {% include 'product-card-list', product: product %}
+                </li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
 
-      <div id="bc-sf-filter-products" data-bc-sort="{{ collection.default_sort_by }}">
-        <ul class="list-view-items">
-          {% if collection.default_sort_by != 'best-selling' %}
-            {% for product in collection.products %}
-              <li href="{{ product.url | within: collection }}" class="list-view-item">
-                {% include 'product-card-list', product: product %}
-              </li>
-            {% endfor %}
-          {% endif %}
-        </ul>
-      </div>
-
-    {% endif %}
-
-    {% if is_empty_collection %}
-      <div class="grid__item small--text-center">
-        <p class="text-center">{{ 'collections.general.no_matches' | t }}</p>
-      </div>
-    {% endif %}
-
-    <div id="bc-sf-filter-bottom-pagination">
-      {% if paginate.pages > 1 %}
-        {% include 'pagination' %}
       {% endif %}
-    </div>
-    <div id="bc-sf-filter-load-more"></div>
 
-    {% comment %} start-bc-most-popular-template {% endcomment %}    
-      <div class="bc-sf-most-popular-products-wrapper bc-sf-widget-slider-wrapper">
-        <div class="bc-sf-most-popular-products bc-sf-widget-products owl-carousel"></div>
-      </div>        
-    {% comment %} end-bc-most-popular-template {% endcomment %}
+      {% if is_empty_collection %}
+        <div class="grid__item small--text-center">
+          <p class="text-center">{{ 'collections.general.no_matches' | t }}</p>
+        </div>
+      {% endif %}
 
-    {% comment %} start-bc-recently-viewed-template {% endcomment %}
-      <div class="bc-sf-recent-products-wrapper bc-sf-widget-slider-wrapper">
-        <div class="bc-sf-recent-products bc-sf-widget-products owl-carousel"></div>
+      <div id="bc-sf-filter-bottom-pagination">
+        {% if paginate.pages > 1 %}
+          {% include 'pagination' %}
+        {% endif %}
       </div>
-    {% comment %} end-bc-recently-viewed-template {% endcomment %}
+      <div id="bc-sf-filter-load-more"></div>
 
+      {% comment %} start-bc-most-popular-template {% endcomment %}    
+        <div class="bc-sf-most-popular-products-wrapper bc-sf-widget-slider-wrapper">
+          <div class="bc-sf-most-popular-products bc-sf-widget-products owl-carousel"></div>
+        </div>        
+      {% comment %} end-bc-most-popular-template {% endcomment %}
+
+      {% comment %} start-bc-recently-viewed-template {% endcomment %}
+        <div class="bc-sf-recent-products-wrapper bc-sf-widget-slider-wrapper">
+          <div class="bc-sf-recent-products bc-sf-widget-products owl-carousel"></div>
+        </div>
+      {% comment %} end-bc-recently-viewed-template {% endcomment %}
+    </div>
   </div>
 </div>
 
@@ -219,21 +217,6 @@
     }
   };
 
-  document.querySelector('.shop-filter-desctop').onclick = function(){
-    if(document.querySelector('#bc-sf-filter-tree-h').classList.contains("bc-sf-filter-tree-h-open")){
-    	document.querySelector('#bc-sf-filter-tree-h').classList.remove('bc-sf-filter-tree-h-open');
-      	document.querySelector('.shop-filter-desctop').classList.remove('shop-filter-desctop-open');
-    }else{
-      	document.querySelector('.shop-filter-desctop').classList.add('shop-filter-desctop-open');
-    	document.querySelector('#bc-sf-filter-tree-h').classList.add('bc-sf-filter-tree-h-open');
-      	document.querySelector('.bc-sf-filter-option-block').querySelector('#bc-sf-filter-block-content-category').style.top = '56px';      	
-      	document.querySelector('.bc-sf-filter-option-block').querySelector('#bc-sf-filter-block-content-category').style.display = 'block';
-      document.querySelector('.bc-sf-filter-option-block').querySelector('#bc-sf-filter-block-title-category').querySelector('a').classList.add('selected');
-      document.querySelector('.bc-sf-filter-option-block').querySelector('#bc-sf-filter-block-title-category').querySelector('a').setAttribute("aria-expanded", "true")
-
-    }
-  	
-  }
   
   document.querySelector('.shop-filter-desctop-mobile').onclick = function(){
     if(document.querySelector('#bc-sf-filter-tree').classList.contains("bc-sf-filter-tree-mobile-open")){
@@ -246,7 +229,6 @@
       document.querySelector('#bc-sf-filter-tree').style.display = 'block';
     	document.querySelector('#bc-sf-filter-tree').classList.add('bc-sf-filter-tree-mobile-open');
     }
-  	
   }
 </script>
 

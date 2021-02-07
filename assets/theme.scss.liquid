@@ -11507,3 +11507,27 @@ display: block;
 }
 
 
+
+
+ul.breadcrumbs {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 2rem;
+  padding: 0 45px;
+  li {
+    display: inline-block;
+    &::after {
+      opacity: 0.5;
+      content: "/";
+      margin: 0 0.2em 0 0.5em;
+    }
+    &:last-child::after {
+      display: none;
+    }
+  }
+  
+  @media screen and (max-width: 767px){
+    margin: 1rem 0;
+    padding: 0 1rem;   
+  }
+}

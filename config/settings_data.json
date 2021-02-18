@@ -134,16 +134,6 @@
       "1502750296449": {
         "type": "hero",
         "settings": {
-          "image": "shopify:\/\/shop_images\/header_c65bf6b1-68fe-4541-a03e-cc5e750b0fe7.jpg",
-          "video": "",
-          "alignment": "top",
-          "text_alignment": "text-left",
-          "text_alignment_vertical": "text-middle",
-          "text_weight": "700",
-          "title": "NEW ARRIVALS",
-          "hero_size": "medium",
-          "button_label": "Shop Now",
-          "button_link": "shopify:\/\/collections\/new-arrivals"
         }
       },
       "1502750397730": {
@@ -883,7 +873,8 @@
           "1522703094191",
           "1528999707354"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "1516299013184": {
         "type": "instagram-feed",
@@ -1041,7 +1032,8 @@
           "658e567d-14e2-47c5-aa3b-b9d695c4a879",
           "1603212080762"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "customizer-steps-2": {
         "type": "customizer-steps-2",
@@ -1239,29 +1231,34 @@
       "sections": {
         "header": {
           "type": "header",
-          "settings": {}
+          "settings": {
+          }
         },
         "hero": {
           "type": "hero",
-          "settings": {}
+          "settings": {
+          }
         },
         "slideshow": {
           "type": "slideshow",
           "blocks": {
             "slideshow-0": {
               "type": "image",
-              "settings": {}
+              "settings": {
+              }
             },
             "slideshow-1": {
               "type": "image",
-              "settings": {}
+              "settings": {
+              }
             }
           },
           "block_order": [
             "slideshow-0",
             "slideshow-1"
           ],
-          "settings": {}
+          "settings": {
+          }
         },
         "featured-collections": {
           "type": "collection",
@@ -1271,7 +1268,8 @@
         },
         "feature-row": {
           "type": "feature-row",
-          "settings": {}
+          "settings": {
+          }
         },
         "footer": {
           "type": "footer",
@@ -1349,8 +1347,6 @@
         "hero": {
           "type": "hero",
           "settings": {
-            "alignment": "center",
-            "hero_size": "x-large"
           }
         },
         "slideshow": {
@@ -1434,13 +1430,15 @@
           "blocks": {
             "1492033877875-0": {
               "type": "quote",
-              "settings": {}
+              "settings": {
+              }
             }
           },
           "block_order": [
             "1492033877875-0"
           ],
-          "settings": {}
+          "settings": {
+          }
         },
         "1492033924902": {
           "type": "custom-content",
@@ -1466,15 +1464,18 @@
           "blocks": {
             "1492096252560-0": {
               "type": "featured_collection",
-              "settings": {}
+              "settings": {
+              }
             },
             "1492096252560-1": {
               "type": "featured_collection",
-              "settings": {}
+              "settings": {
+              }
             },
             "1492096252560-2": {
               "type": "featured_collection",
-              "settings": {}
+              "settings": {
+              }
             }
           },
           "block_order": [

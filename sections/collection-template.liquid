@@ -26,8 +26,10 @@
 
 <div data-section-id="{{ section.id }}" data-section-type="collection-template">
   <header class="collection-header">
-<h2 class="collection-header__title">SHOP EUGENIA KIM</h2>
-     <ul class="collection-header__nav">
+    <h2 class="collection-header__title">{{collection.title}}</h2>
+    <div class="collection-header__description">{{collection.description}}</div>
+  
+    <ul class="collection-header__nav">
       {% for link in linklists['collections-nav'].links %}
         <span class="small--hide">
           <a href="{{ link.url }}"><li {% if collection.url == link.url %}class="current-link" {% endif %}>{{ link.title }}</li></a>

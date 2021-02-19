@@ -2864,17 +2864,17 @@ if ( window.location.pathname == '/' ){
     });
      $(window).scroll(function() {
       var height = $(window).scrollTop();
-      if(height  > ($("#hero").height() ) ) {
+      if(height  > ($(".site-header").outerHeight() ) ) {
         $(".site-header__logo").show();
         $(".site-header").css("background-color", "#F5F5F5").css("position", "fixed");
-        
+        $('body').css('paddingTop', $('.site-header').outerHeight())
         $(".drawer--right").css("top", "75px");
 
       }
        else {
          $(".site-header").css("background-color", "transparent").css("position", "relative");
          $(".drawer--right").css("top", "120px");
-      
+         $('body').css('paddingTop', 0)
        };
      });
 }

@@ -7,21 +7,6 @@
 
   {%- assign collection = collections[section.settings.collection] -%}
 
-  {% case section.settings.grid %}
-    {% when '2' %}
-      {%- assign max_height = 530 -%}
-      {%- assign grid_item_width = 'medium-up--one-half' -%}
-    {% when '3' %}
-      {%- assign max_height = 345 -%}
-      {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
-    {% when '4' %}
-      {%- assign max_height = 250 -%}
-      {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
-    {% when '5' %}
-      {%- assign max_height = 195 -%}
-      {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
-  {% endcase %}
-
   {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
   
   <!--MOBILE GRID -->
@@ -51,23 +36,16 @@
   <!-- END MOBILE GRID -->
 
   <!-- MEDIUM-UP GRID -->     
-  <div class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
+  <div class="grid">
     {% for product in collection.products %}
     	
       {% if forloop.null %}
-          <div class="grid__item grid__item--{{section.id}} product-grid__item--large medium-up--one-half">
-            <a class="product-card__link" href="{{ product.url | within: collection }}">
-              {% include 'product-card-grid', max_height: max_height %}
-              {% comment %} <div class="h4 grid-view-item__title">{{ product.title }}</div> {% endcomment %}
-            </a>
+          <div class="grid__item grid__item--{{section.id}}">
+            {% include 'product-card-grid' %}
           </div>
-    
       {% else %}
-        <div class="grid__item product-grid__item grid__item--{{section.id}} small--one-half medium-up--one-third">
-          <a class="product-card__link" href="{{ product.url | within: collection }}">
-            {% include 'product-card-grid', max_height: max_height %}
-          {% comment %}<div class="h4 grid-view-item__title">{{ product.title }}</div>{% endcomment %}
-          </a>
+        <div class="grid__item product-grid__item grid__item--{{section.id}}">
+          {% include 'product-card-grid'  %}
         </div>
       {% endif %}
  
@@ -78,20 +56,19 @@
       Add default products to help with onboarding for collections/all only.
 
       The onboarding styles and products are only loaded if the
-      store has no products.
+    store has no products.
       {% endcomment %}
       {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
         <div class="grid__item">
           <div class="grid grid--uniform">
             {% for i in (1..limit) %}
-              <div class="grid__item {{ grid_item_width }}">
+              <div class="grid__item">
                 <div class="grid-view-item">
                   <a href="#" class="grid-view-item__link">
                     <div class="grid-view-item__image">
                       {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
                       {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
                     </div>
-<!--                     <div class="h4 grid-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div> -->
                     <div class="grid-view-item__meta">
                       <span class="product-price__price">$19.99</span>
                     </div>
@@ -114,18 +91,20 @@
 </a>
 <script>
 window.addEventListener('DOMContentLoaded', function () {
-  var featuredCollectionSlick;
   function initFeaturedCollectionSlick() {
-    if (window.innerWidth <= 768) {
-      featuredCollectionSlick && featuredCollectionSlick.slick('unslick')
-      featuredCollectionSlick = $('.featured-collection .grid').slick({
-        slidesToShow: 2.5, 
-        arrows: false,
-        infinite: false
-      })
-    } else {
-      featuredCollectionSlick && featuredCollectionSlick.slick('unslick')
-    }
+    $('.featured-collection .grid').slick({
+      arrows: true,
+      slidesToShow: 4, 
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2.5,
+            arrows: false,
+          }
+        }
+      ]
+    })
   }
   
   window.addEventListener('resize', initFeaturedCollectionSlick)

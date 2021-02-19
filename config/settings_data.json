@@ -134,16 +134,6 @@
       "1502750296449": {
         "type": "hero",
         "settings": {
-          "image": "shopify:\/\/shop_images\/Header_ca6bea8e-ef79-4a2e-a8d5-c91e4daccc8e.jpg",
-          "video": "",
-          "alignment": "top",
-          "text_alignment": "text-left",
-          "text_alignment_vertical": "text-middle",
-          "text_weight": "700",
-          "title": "NEW ARRIVALS",
-          "hero_size": "medium",
-          "button_label": "Shop Now",
-          "button_link": "shopify:\/\/collections\/new-arrivals"
         }
       },
       "1502750397730": {
@@ -1357,8 +1347,6 @@
         "hero": {
           "type": "hero",
           "settings": {
-            "alignment": "center",
-            "hero_size": "x-large"
           }
         },
         "slideshow": {

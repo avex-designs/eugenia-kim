@@ -1,0 +1,15 @@
+development:
+  password: 2060a105de3df46b4238392fc9ee2166
+  theme_id: ""
+  store: eugenia-kim.myshopify.com
+  ignore_files:
+    - config/settings_data.json
+    - locales/en.default.json
+
+production:
+  password: 2060a105de3df46b4238392fc9ee2166
+  theme_id: "83550437453"
+  store: eugenia-kim.myshopify.com
+  ignore_files:
+    - config/settings_data.json
+    - locales/en.default.json
